@@ -1,0 +1,150 @@
+\documentclass[
+  %fleqn,     das ist für die zentrierung
+	parskip=half,
+	captions=tableheading,
+  titlepage=firstiscover, 		%************************************************** by Rk
+	bibliography=totoc		%*************************************by Rk
+	]{scrartcl}			
+% \usepackage{etex}
+% \reserveinserts{28}
+
+%Das ist für die Kopfzeile
+\usepackage[headsepline]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ofoot{\pagemark}
+\ohead{\headmark}
+\automark{section}
+
+% Warnung, falls nochmal kompiliert werden muss		%*************************************by Rk
+\usepackage[aux]{rerunfilecheck}
+
+% unverzichtbare Mathe-Befehle
+\usepackage{amsmath}
+% viele Mathe-Symbole
+\usepackage{amssymb}
+% Erweiterungen für amsmath
+\usepackage{mathtools}
+\usepackage{upgreek}
+% Fonteinstellungen
+\usepackage{fontspec}				%************************************************** by Rk
+% Latin Modern Fonts werden automatisch geladen
+% Latin Modern Fonts werden automatisch geladen
+% Alternativ zum Beispiel:
+%\setromanfont{Libertinus Serif}
+%\setsansfont{Libertinus Sans}
+%\setmonofont{Libertinus Mono}
+
+\usepackage{polyglossia}
+\usepackage[				%************************************************** by Rk
+	backend=biber,
+]{biblatex}  	
+%Quellendatenbank	
+\setmainlanguage{german}			
+\addbibresource{lit.bib}		%************************************************** by Rk
+
+
+\usepackage{expl3}
+\usepackage{xparse}
+
+\usepackage{physics}
+
+\usepackage[unicode, german]{hyperref}
+\usepackage[autostyle]{csquotes}
+\usepackage[
+  math-style=ISO,    % ┐
+  bold-style=ISO,    % │
+  sans-style=italic, % │ ISO-Standard folgen
+  nabla=upright,     % │
+  partial=upright,   % ┘
+  warnings-off={           % ┐
+    mathtools-colon,       % │ unnötige Warnungen ausschalten
+    mathtools-overbracket, % │
+  },                       % ┘
+]{unicode-math}
+
+% traditionelle Fonts für Mathematik
+\setmathfont{Latin Modern Math}
+% Alternativ zum Beispiel:
+%\setmathfont{Libertinus Math}
+
+\setmathfont{XITS Math}[range={scr, bfscr}]
+\setmathfont{XITS Math}[range={cal, bfcal}, StylisticSet=1]
+
+% Zahlen und Einheiten
+\usepackage[
+  locale=DE,                 % deutsche Einstellungen
+  separate-uncertainty=true, % immer Fehler mit \pm
+  per-mode=symbol-or-fraction,       % ^-1 für inverse Einheiten
+  % output-decimal-marker=.,   % . statt , für Dezimalzahlen
+]{siunitx}
+
+% chemische Formeln
+\usepackage[
+  version=4,
+  math-greek=default, % ┐ mit unicode-math zusammenarbeiten
+  text-greek=default, % ┘
+]{mhchem}
+
+% Wenn man andere Schriftarten gesetzt hat,
+% sollte man das Seiten-Layout neu berechnen lassen
+\recalctypearea{}				%************************************************** by Rk
+
+
+% richtige Anführungszeichen 
+\usepackage[autostyle]{csquotes}
+
+% schöne Brüche im Text
+\usepackage{xfrac}
+
+% Grafiken können eingebunden werden
+\usepackage{graphicx}
+% größere Variation von Dateinamen möglich
+% \usepackage{grffile}
+\usepackage{scrhack}
+
+% Verbesserungen am Schriftbild
+\usepackage{microtype}
+
+% Standardplatzierung für Floats einstellen
+\usepackage{float}
+\usepackage[section, below]{placeins}
+% \usepackage[..]{caption}
+\floatplacement{figure}{htbp}
+\floatplacement{table}{htbp}
+
+\usepackage{booktabs}
+\usepackage{subcaption}
+% \usepackage{subfig}
+\author{%
+  Raphael Rico Kaiser\\%
+  \href{raphael.kaiser@tu-dortmund.de}{raphael.kaiser@tu-dortmund.de}%
+  \texorpdfstring{\and}{,}%
+  Hendrik Trojan\\%
+  \href{hendrik.trojan@tu-dortmund.de}{hendrik.trojan@tu-dortmund.de}%
+}
+
+\publishers{TU Dortmund - Fakultät Physik}
+\usepackage{romannum}
+\AtBeginDocument{\pagenumbering{arabic}}
+
+\NewDocumentCommand \e {}
+{
+  \symup{e}
+}
+
+\NewDocumentCommand \const {}
+{
+  \text{const.}
+}
+
+\NewDocumentCommand \fig {mmm}
+{
+\begin{figure}
+    \centering 
+    \includegraphics[width=9cm]{#1}
+    \caption{#3}
+    \label{#2}
+   \end{figure}
+\nocite{*}
+}
