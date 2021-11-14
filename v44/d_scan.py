@@ -5,6 +5,7 @@ import uncertainties.unumpy as unp
 from uncertainties import ufloat 
 from scipy.optimize import curve_fit
 import matplotlib.patches as patches
+from scipy.signal import find_peaks
 
 # z_scan
  
@@ -29,11 +30,14 @@ ax.axhline(y = 0.497296, linestyle="--", color="r")
 # Geometriewinkel auch aus Strahldicke errechenbar.
 d = 0.3
 D = 20
-print('Die Strahlbreite beträgt ' + str(d) +'mm.')
-print('Aus der Strahlbreite ' + str(d) +'mm'+' und der Probendicke ' + str(D)+ 'mm' )
+print('Die Strahlbreite beträgt d = ' + str(d) +'mm.')
+print('Aus der Strahlbreite d = ' + str(d) +'mm'+' und der Probendicke D = ' + str(D)+ 'mm' )
 print('ergibt sich mit arcsin(d/D) ein Geometriewinkel von ' + str(np.degrees(np.arcsin(d/D))) + '°.')
 fig.savefig('build/z_scan.pdf')
 
+# Geometriewinkel
+def geo(x):
+    return D*np.degrees(np.sin(x/2)/d)
 
 # Detektor Scan
 
@@ -82,8 +86,18 @@ messung_phi, messung_intensity = np.genfromtxt("data/reflektivitatscan.UXD", unp
 diffus_phi, diffus_intensity = np.genfromtxt("data/reflektivitatscan_2.UXD", unpack=True)
 
 # relative data
-rel_intensity = messung_intensity - diffus_intensity
-rel_phi = diffus_phi
+
+i = 4 #damit ist der Graph etwas schöner
+
+rel_intensity = messung_intensity[i:] - diffus_intensity[i:]
+
+rel_phi = diffus_phi[i:]
+
+messung_phi = messung_phi[i:]
+messung_intensity= messung_intensity[i:]
+
+diffus_phi = diffus_phi[i:]
+diffus_intensity= diffus_intensity[i:]
 
 # ideale Kurve
 alpha_si= 0.223
@@ -101,14 +115,41 @@ plt.plot(messung_phi, messung_intensity/np.max(detector_intensity), label="Messw
 plt.plot(diffus_phi, diffus_intensity/np.max(detector_intensity), label="Diffuser Scan")
 plt.plot(rel_phi, rel_intensity/np.max(detector_intensity), label="Korrigierte Messwerte")
 plt.plot(messung_phi,ideale_kurve(messung_phi), label = 'Theoriekurve glattes Si')
+plt.plot(rel_phi, (rel_intensity/np.max(detector_intensity)*geo(rel_phi)),color ='b',label = 'Geometriefaktor Korrektur')
+
+y = rel_intensity/np.max(detector_intensity)*geo(rel_phi)
+#print(y.shape) # (497,)
+#print(y)
+peaks,_ = find_peaks(y,height = 1)
+#plt.plot(y/y.shape)
+print('die peaks sind an der position '+ str(peaks))
+plt.plot(peaks/peaks[-1],y[peaks],'x')
+print(peaks)
+print(peaks/peaks[-1])
+print(y[peaks])
+
+
 plt.grid(ls= '--')
 plt.minorticks_on()
 plt.tight_layout()
-plt.ylim(top = 5)
+plt.ylim(top = 1000)
 plt.xlim(right = 1.5)
 plt.axvline( x = 0.195,linewidth = 0.9,linestyle= '--',color ='k', label = r'$\alpha_c$ für PS')
 plt.legend(loc="best") 
 plt.savefig("build/messwerte_relativ.pdf")
+
+#find peaks
+#plt.figure()
+
+#plt.show()
+#print(peaks.shape)
+#peaks = peaks[0:]
+#print(peaks.shape)
+#print(peak_pos)
+#print(type(peaks))
+#print(peak_pos)
+
+#plt.show()
 
 alpha_crit= 0.195
 
@@ -129,3 +170,15 @@ plt.grid(ls= '--')
 plt.tight_layout()
 print('Der Geometriewinkel beträgt: ' + str((0.68 + abs(-0.76))/2 )+ '°.')
 plt.savefig("build/dreieck.pdf")
+
+
+# Schichtdicke von PS abschätzen
+lambda_ = 1.53*10**(-10)
+
+def schichtdicke(minima):
+    d = lambda_*minima
+    return print('Die Schichtdicke beträgt ' + str(d) +'m.')
+
+#def minima_finden():
+ #   peaks =
+  
