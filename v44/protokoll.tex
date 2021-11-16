@@ -20,6 +20,40 @@
 
 theorie\cite{anleitung}
 
+\section{Auswertung}
+\subsection{Justierung und Kalibrierung}
+Bevor die eigentlichen Messergebnisse ausgewertet werden, finden eine Reihe von Kalibrationsmessungen statt,
+welche den Zweck erfüllen die Röntgenröhre optimal zu justieren und Zwischenergebnisse zu liefern.
+Diese Kalibrationsmessungen werden im folgenden zuerst behandelt und ausgewertet.
+
+\subsection{Der Detektorscan}
+
+Die erste Messung ist die des Detektorscans welcher in \autoref{fig:detec} dargestellt ist. 
+In diesem Plot ist die Detektorintensität in Abhängigkeit des Einfallwinkels zu sehen. 
+Die Messung wurde über eine Bereich von $ -0.3° \text{bis } 0.3° $ durchgeführt.
+Die Messwerte wurden anschließend an einen Gausfit mit der Formel 
+\begin{equation*}
+    I(\alpha) = \frac{a}{\sigma\sqrt{2\pi}} \exp\left( \frac{-\left( \alpha - \alpha_0\right)^2}{2 \sigma} \right)
+\end{equation*}
+angepasst.
+Die Fitparameter sind 
+\begin{align*}
+    a &= 107447.09636184348 +- 759.6263288761984 \\
+    \alpha_{0} &= \SI{0.0107 \pm 0.0003}{\degree} \\%\0.01075214096866885 +- 0.0003669073698664512 \\
+    \sigma &=  0.04494498531042028 +- 0.00036690737792524343
+\end{align*} 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=11cm]{build/detector_scan.pdf}
+    \caption{Detektorscan. Kalibrationsmessung welche die Intensität in Abhängigkeit des Detektorwinkels zeigt. Es gilt $\alpha_\text{f} = \alpha_\text{i}$. 
+       Erkennbar ist der gaussförmige Verlauf der Intensität. Die Halbwertsbreite ist farblich rot markiert und beträgt $\text{FWHM} = 0.102°$.}
+    \label{fig:detec}
+\end{figure}
+\FloatBarrier
+
+
 
 \nocite{*}
 \printbibliography{}

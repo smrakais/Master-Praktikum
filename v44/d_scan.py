@@ -53,6 +53,10 @@ def gauss(x, amp, mu, sigma):
 # fit and errors
 detector_params, detector_pcov = curve_fit(gauss, detector_phi, detector_intensity)
 detector_err = np.sqrt(np.diag(detector_pcov))
+print('amp =', detector_params[0], '±', detector_err[0])
+print('alpha_0 =', detector_params[1], '±', detector_err[1])
+print('sigma =', detector_params[2], '±', detector_err[2])
+
 
 # Plot
 detector_phi_new = np.linspace(detector_phi[0]-0.05, detector_phi[-1]+0.05, 10000)
@@ -74,7 +78,7 @@ print('Die maximale Detektorintensität beträgt: I = ' + str( np.max(detector_i
 #print('Die halbe maximale Detektorintensität beträgt: I = ' + str( np.max((detector_intensity))/2))
 
 # Halbwertsbreite
-print("Die Halbwertsbreite(FWHM) beträgt: " + str(round(0.062-0.004,3)) +  "°" '\n')
+print("Die Halbwertsbreite(FWHM) beträgt: " + str(round(0.062+0.04,3)) +  "°" '\n')
 
 plt.savefig("build/detector_scan.pdf")
 #plt.show()
