@@ -1,16 +1,13 @@
-from abc import abstractstaticmethod
 import matplotlib.pyplot as plt
 import numpy as np
-import uncertainties.unumpy as unp
-from uncertainties import ufloat 
 from scipy.optimize import curve_fit
 import matplotlib.patches as patches
 from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 from scipy.signal import peak_widths
 
+#########################################################################################
 # z_scan
- 
 z, z_intensity = np.genfromtxt('data/z_scan_test.UXD', unpack = True)
 
 fig, ax = plt.subplots()
@@ -28,6 +25,28 @@ ax.legend(loc ='best')
 plt.tight_layout()
 ax.axvline(x = 0.0263184, linestyle="--", color="r")
 ax.axhline(y = 0.497296, linestyle="--", color="r")
+#########################################################################################
+
+# Korrektur und Geometriewinkel
+# Geometriewinkel aus Rockingscan ablesen
+
+theta , intensity = np.genfromtxt('data/dreieck_1.UXD', unpack = 'True')
+
+plt.figure()
+#plt.xlabel(r"$\theta$ / °")
+plt.xlabel(r"$\alpha_i$ / °")#cheat
+#plt.yscale("log")
+plt.ylabel(r"Intensität ")
+plt.plot(theta, intensity, "x", label="Messwerte")
+plt.scatter(0.68,418,color= 'r') # g_winkel_1
+plt.scatter(-0.76,778,color= 'r') # g_winkel_2
+plt.legend(loc="best") 
+plt.grid(ls= '--')
+plt.tight_layout()
+print('Der Geometriewinkel beträgt durch ablesen am Graphen: ' + str((0.68 + abs(-0.76))/2 )+ '°.')
+print('\n')
+plt.savefig("build/dreieck.pdf")
+########################################################################################################
 
 # Geometriewinkel auch aus Strahldicke errechenbar.
 d = 0.3
@@ -37,10 +56,11 @@ print('Die Strahlbreite beträgt d = ' + str(d) +'mm.')
 print('Aus der Strahlbreite d = ' + str(d) +'mm'+' und der Probendicke D = ' + str(D)+ 'mm,' )
 print('ergibt sich mit arcsin(d/D) ein Geometriewinkel von ' + str(np.degrees(np.arcsin(d/D))) + '°.''\n')  
 fig.savefig('build/z_scan.pdf')
-
+########################################################################################################
 # Geometriefaktor (eigentlich ein Geometriedivisor)
 def geo(x):
     return 1/((D*np.degrees(np.sin(x)))/d)
+#########################################################################################################
 
 # Detektor Scan
 
@@ -57,7 +77,7 @@ detector_err = np.sqrt(np.diag(detector_pcov))
 print('amp =', detector_params[0], '±', detector_err[0])
 print('alpha_0 =', detector_params[1], '±', detector_err[1])
 print('sigma =', detector_params[2], '±', detector_err[2],'\n')
-
+########################################################################################################
 
 # Plot detector scan
 detector_phi_new = np.linspace(detector_phi[0]-0.05, detector_phi[-1]+0.05, 10000)
@@ -83,7 +103,7 @@ print("Die Halbwertsbreite(FWHM) beträgt: " + str(round(0.062+0.04,3)) +  "°" 
 
 plt.savefig("build/detector_scan.pdf")
 #plt.show()
-
+########################################################################################################
 
 
 # Reflektivitätsscan und ideale Kurve
@@ -117,14 +137,6 @@ alpha_si_krit= 0.223
 def ideale_kurve(messung_phi):
     R_f =(alpha_si_krit/(2*messung_phi))**4 
     return R_f
-####TEST####  JAN für ideale Kurve
-#r_lambda = 1.54e-10
-#k = 2*np.pi / r_lambda
-#n = 1 - 7.6e-6 + 1.54e-8j*141/(4*np.pi)
-## Ideale Kurve
-#def ideal(alpha):
-#    return (np.abs((k * np.sin(alpha)- k*np.sqrt(n**2-np.cos(alpha)**2))/(k * np.sin(alpha)+ k*np.sqrt(n**2-np.cos(alpha)**2))))**2
-#############
 
 # Plot
 plt.figure()
@@ -135,11 +147,8 @@ plt.plot(messung_phi, refektivitaet_messwert,color = 'k', label="Messwerte")
 plt.plot(diffus_phi, refektivitaet_diffus,color = 'r', label="Diffuser Scan")
 plt.plot(rel_phi, refektivitaet_rel,color='orange', label="Korrigierte Messwerte")
 plt.plot(messung_phi[34:],ideale_kurve(messung_phi)[34:],color='green', label = 'Theoriekurve glattes Si') # bei 27 abgeschnitten da dort der krit winkel
-####TEST#### JAN für ideale Kurve
-#plt.plot(rel_phi, ideal(np.deg2rad(rel_phi)), label="Ideale Siliziumoberfläche")
-############
 plt.plot(rel_phi, refektivitaet_rel*geo(rel_phi),linewidth = 1.3,color ='b',label = 'Geometriefaktor Korrektur')
-
+########################################################################################################
 
 # Schichtdicke von PS abschätzen
 lambda_ = 1.54*10**(-10)
@@ -147,6 +156,8 @@ lambda_ = 1.54*10**(-10)
 def schichtdicke(delta):
     d = lambda_/(2*np.sin((np.pi/180)*delta))               # der Sinus darf hier nicht wegfallen die Kleinwinkelnäherung funktioniert nicht!
     return print('Die Schichtdicke beträgt ' + str(d) +'m.')
+########################################################################################################
+
 ###################
 # Peaks finden
 #x_peak_factor = 2.5/460 # 0.0056338 für 484 ist es gut. eig müsste das 497 sein das 
@@ -160,9 +171,12 @@ def schichtdicke(delta):
 #y_new = y[low[0][2:9]]
 #plt.plot(x_new,y_new,'x')
 ###################
+
+########################################################################################################
+
 # Peaks manuell einstellen --> plt.show() liefert dir per cursor die passenden Werte. 
 x_min = np.array([0.304589, 0.345131, 0.39515, 0.440168, 0.485185, 0.544419, 0.594438, 0.644457, 0.694957, 0.745102, 0.800151])
-y_min = np.array([5.64299e-5, 2.51187e-5, 1.14976e-5, 5.93937e-6, 3.5276e-6, 1.92688e-6, 1.21014e-6, 7.18748e-7, 4.53076e-7, 3.34046e-7, 2.20286e-7]) / 5
+y_min = np.array([5.64299e-5, 2.51187e-5, 1.14976e-5, 5.93937e-6, 3.5276e-6, 1.92688e-6, 1.21014e-6, 7.18748e-7, 4.53076e-7, 3.34046e-7, 2.20286e-7]) / 5 #die 5 ist wegen der 5 sekunden messdauer
 
 # Minima Plot
 plt.plot(x_min,y_min,'x',color ='k')
@@ -190,12 +204,10 @@ plt.minorticks_on()
 plt.tight_layout()
 plt.ylim(top = 1400)
 plt.xlim(right = 1.5)
-
-#Parrat
 ########################################################################################################
+
 #Versuchsgrößen
 l = 1.54e-10 # Wellenlänge
-#ai = (np.pi/180) * np.arange(0, 2.5+0.005, 0.005) # das pi tec muss wegen de cos bei dem wellenvektor hin
 ai = np.arange(0, 2.5+0.005, 0.005)
 #print(ai)
 k = 2*np.pi / l #Wellenvektor
@@ -203,11 +215,14 @@ qz = 2*k * np.sin(ai) #Wellenvektorübertrag -> y-Werte der Theoriekurve
 
 #Parameter des Parratt-Algorithmus
 
-#Brechungsindizes
+#Dispersionen   #die werte orientieren sich an den theoriewerten
+                #with with the wave of my finger an the flick of my dick
+#d1 = 0.7e-6 #Polysterol Disperion
+#d2 = 6.7e-6 #Silizium 
+d1 = 0.6e-6 #Polysterol Disperion
+d2 = 6.8e-6 #Silizium 
 
-d1 = 0.7e-6 #Polysterol Disperion
-d2 = 6.7e-6 #Silizium 
-#
+#Brechungsindizes
 n1 = 1 #Luft
 n2 = 1 - d1 #Polysterol
 n3 = 1 - d2 #Silizium
@@ -217,6 +232,7 @@ s1 = 7.9e-10 #Polysterol
 s2 = 5.7e-10 #Silizium 
 z = 855e-10 
 ########################################################################################################
+# Parratt
 
 def parratt(z):
     kz1 = k * np.sqrt(np.abs(n1**2 - np.cos((np.pi/180) * ai)**2))
@@ -276,35 +292,22 @@ plt.axvline( x = alpha_crit_si_theo,linewidth = 0.9,linestyle= '--',color = 'pin
 print('Der Literaturwert für den kritischen Winkel von Silizium beträgt',alpha_crit_si_theo,'°.\n')
 
 #parrat line angepasst
-plt.axhline( y = 0.9 ,xmin = 0.096,xmax = 0.193 ,linewidth = 1.2,linestyle= '-') #parratt plateo
+plt.axhline( y = 0.7 ,xmin = 0.096,xmax = 0.193 ,linewidth = 1.2,linestyle= '-') #parratt plateo
 
 plt.legend(loc="best")
 
 # kritischer Winkel Rechnung
-#alpha_crit_si_rech =  
-print('')
+alpha_crit_si_rech = np.degrees(np.arccos(1-d2))
+alpha_crit_ps_rech = np.degrees(np.arccos(1-d1))
 
+
+   
+print('Der errechnete kritische Winkel von Silizium anhand des Parrart Algorithmus ist:\n ',alpha_crit_si_rech,'°.' )
+print('Der errechnete kritische Winkel von Polystyrol anhand des Parrart Algorithmus ist:\n ',alpha_crit_ps_rech,'°.\n' )
 
 ########################################################################################################
 plt.savefig("build/messwerte_relativ.pdf")
 ########################################################################################################
 
 
-# Korrektur und Geometriewinkel
-# Geometriewinkel aus Rockingscan ablesen
-
-theta , intensity = np.genfromtxt('data/dreieck_1.UXD', unpack = 'True')
-
-plt.figure()
-plt.xlabel(r"$\theta$ / °")
-#plt.yscale("log")
-plt.ylabel(r"Intensität ")
-plt.plot(theta, intensity, "x", label="Messwerte")
-plt.scatter(0.68,418,color= 'r') # g_winkel_1
-plt.scatter(-0.76,778,color= 'r') # g_winkel_2
-plt.legend(loc="best") 
-plt.grid(ls= '--')
-plt.tight_layout()
-print('Der Geometriewinkel beträgt durch ablesen am Graphen: ' + str((0.68 + abs(-0.76))/2 )+ '°.')
-print('\n')
-plt.savefig("build/dreieck.pdf")
+print('Endlich fertig mit dem Rotz!')

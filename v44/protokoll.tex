@@ -16,10 +16,6 @@
 \newpage
 
 
-\section{theorie}
-
-theorie\cite{anleitung}
-
 \section{Auswertung}
 \subsection{Justierung und Kalibrierung}
 Bevor die eigentlichen Messergebnisse ausgewertet werden, finden eine Reihe von Kalibrationsmessungen statt,
@@ -30,7 +26,7 @@ Diese Kalibrationsmessungen werden im folgenden zuerst behandelt und ausgewertet
 
 Die erste Messung ist die des Detektorscans welcher in \autoref{fig:detec} dargestellt ist. 
 In diesem Plot ist die Detektorintensität in Abhängigkeit des Einfallwinkels zu sehen. 
-Die Messung wurde über eine Bereich von $ -0.3° \text{bis } 0.3° $ durchgeführt.
+Die Messung wurde über eine Bereich von $ -0,3° \text{ bis } 0,3° $ durchgeführt.
 Die Messwerte wurden anschließend an einen Gausfit mit der Formel 
 \begin{equation*}
     I(\alpha) = \frac{a}{\sigma\sqrt{2\pi}} \exp\left( \frac{-\left( \alpha - \alpha_0\right)^2}{2 \sigma} \right)
@@ -38,22 +34,90 @@ Die Messwerte wurden anschließend an einen Gausfit mit der Formel
 angepasst.
 Die Fitparameter sind 
 \begin{align*}
-    a &= 107447.09636184348 +- 759.6263288761984 \\
-    \alpha_{0} &= \SI{0.0107 \pm 0.0003}{\degree} \\%\0.01075214096866885 +- 0.0003669073698664512 \\
-    \sigma &=  0.04494498531042028 +- 0.00036690737792524343
+    a &= 107447.10 \pm 759.63 \\
+    \alpha_{0} &= \SI{0.0107 \pm 0.0003}{\degree} \\
+    \sigma &=  0.045 \pm 0.00037
 \end{align*} 
-
-
+Anhand des Graphen lässt sich die Halbwertsbreite sowie die maximale Detektorintensität ermitteln.
+Die Halbwertsbreite beträgt $\text{FWHM} = 0.102°$ und die maximale Intensität $I_\text{max}=107447.10 \pm 759.63$.
 \begin{figure}
     \centering
     \includegraphics[width=11cm]{build/detector_scan.pdf}
-    \caption{Detektorscan. Kalibrationsmessung welche die Intensität in Abhängigkeit des Detektorwinkels zeigt. Es gilt $\alpha_\text{f} = \alpha_\text{i}$. 
-       Erkennbar ist der gaussförmige Verlauf der Intensität. Die Halbwertsbreite ist farblich rot markiert und beträgt $\text{FWHM} = 0.102°$.}
+    \caption{Verlauf des Detektorscan. Kalibrationsmessung welche die Intensität in Abhängigkeit des Detektorwinkels zeigt. 
+            Es gilt $\alpha_\text{f} = \alpha_\text{i}$. 
+            Erkennbar ist der gaussförmige Verlauf der Intensität. Die Halbwertsbreite ist farblich rot markiert und beträgt $\text{FWHM} = 0.102°$.}
     \label{fig:detec}
 \end{figure}
 \FloatBarrier
 
+\subsection{Der Z-Scan}
 
+Mit Hilfe des Z-Scans lässt sich die Strahlenbreite der Röntgenröhre näherungsweise bestimmen.
+Dazu werden die abfallende und ansteigende Flanke des Scans betrachtet. 
+Der Z-Scan ist in \autoref{fig:z} zu sehen.
+\begin{figure}
+    \centering
+    \includegraphics[width=11cm]{build/z_scan.pdf}
+    \caption{Verlauf des Z-Scans. Anhand der z-Achse lässt sich die Position der Probe im Strahlengang der Röntgenröhre identifizieren. 
+            Mit fallendem z-Wert wird die Probe immer weiter in der Strahlengang geschoben. Der grüne Kasten markiert die Strahlenbreite. 
+            Die Strahlbreite beträgt $\SI{0,3}{\milli\meter}$. }
+    \label{fig:z}
+\end{figure}
+\FloatBarrier
+Die ermittelte Strahlbreite beträgt
+\begin{equation*}
+    d =\SI{0,3}{\milli\meter}. 
+\end{equation*}
+Aus der Strahlbreite und der Probendicke $D = \SI{20}{\milli\meter}$ lässt sich der Geometriewinkel errechnen.
+\begin{align*}
+    \alpha_g &= \arcsin(\frac{d}{D})\\
+    \alpha_g &= \SI{0.86}{\degree}.
+\end{align*}
+
+\subsection{Der Rockingscan}
+
+Anhand des Rockingscans \autoref{fig:dreieck} lässt sich der Geometriewinkel durch ablesen bestimmen.
+Der Geometriewinkel beträgt
+\begin{align*}
+    \alpha_1 &= \SI{-0.76}{\degree}\\    
+    \alpha_2 &= \SI{0.68}{\degree}\\    
+    \alpha_g &= \frac{|\alpha_1|+|\alpha_2|}{2}\\
+    \alpha_g &= \SI{0.72}{\degree}.    
+\end{align*}
+\begin{figure}
+    \centering
+    \includegraphics[width=11cm]{build/dreieck.pdf}
+    \caption{Verlauf des Rockingscans. Der Rockingscan liefert durch ablesen einen Geometriewinkel von $\alpha_g = \SI{0.72}{\degree}$.}
+    \label{fig:dreieck}
+\end{figure}
+
+\subsection{Der Reflektivitätsscans und die Dispersionsprofile}
+In \autoref{fig:alles} ist die Reflektivität in Abhängigkeit des Einfallwinkels dargestellt.
+Dazu wurde die Reflektivität auf das 5 fache der Intensität normiert, da die Messdauer nach den Kalibrationsmessung 5 mal so lang gewesen ist. 
+
+Bei der Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph \autoref{fig:alles}) um die Messwerte des
+diffusen Scans (roter Graph) korrigiert. Die Messwerte des diffusen Scans werden von Messwerten abgezogen um auftretende Rückstreueffekte zu 
+eliminieren. Der entstandene Graph (orange) in ebenfalls in \autoref{fig:alles} zu sehen. 
+
+Anschließend wird mit Hilfe der \autoref{eq:TODO} der Geometriefaktor berechnet und der zuvor korrigierte Graph um den Geometriefaktor korrigiert. 
+Der korrektur um den Geometriefaktor geschieht, da bei geringen Einfallwinkeln nicht die vollständige Intensität auf die Probenoberfläche trifft. 
+Dieser Graph ist in \autoref{fig:alles} dunkel blau dargestellt. 
+Werden die Kiesing Oszillationen betrachtet und die Positionen der Minima eingezeichnet, lässt sich mit der \autoref{eq:TODO} die 
+Schichtdicke von Polystyrol berechnen.
+Die ermittelte Schichtdicke ist
+\begin{align*}
+    d_\text{ps} = \SI{8,90}{\nano\meter}.
+\end{align*}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=12cm]{build/messwerte_relativ.pdf}
+    \caption{Reflektivitätsscans und Dispersionsprofile. Farblich dargestellt sind die unterschiedlichen Graphen und kritischen Winkel.
+            Der hellblaue und der lilafarbene Graph sind mit dem Parratt-Algorithmus entstanden und repräsentieren eine glatte und eine raue Oberfläche der Probe. }
+    \label{fig:alles}
+\end{figure}
+\FloatBarrier
 
 \nocite{*}
 \printbibliography{}
