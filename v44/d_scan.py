@@ -272,14 +272,14 @@ plt.plot(ai[42:],parratt2(z)[42:],'-',color= 'purple')# Parrat (raues Si)
 ########################################################################################################
 
 # kritische Winkel Ablesen
-alpha_crit_ps= 0.195           # Polystyrol (abgelesen)
+alpha_crit_ps= 0.054          # Polystyrol (abgelesen)
 plt.axvline( x = alpha_crit_ps,linewidth = 0.9,linestyle= '--',color ='k', label = r'$\alpha_c$ für PS (gemessen)')
 print('\n')
-print('Der gemessene kritische Winkel für Polystyrol beträgt',alpha_crit_ps,'°.\n')
+print('Der abgelesene kritische Winkel für Polystyrol beträgt',alpha_crit_ps,'°.\n')
 
-alpha_crit_si= 0.054           # Silizium (abgelesen)
+alpha_crit_si=  0.195          # Silizium (abgelesen)
 plt.axvline( x = alpha_crit_si,linewidth = 0.9,linestyle= '--',color ='purple', label = r'$\alpha_c$ für Si (gemessen)')
-print('Der gemessene kritische Winkel für Silizium  beträgt',alpha_crit_si,'°.\n')
+print('Der abgelesene kritische Winkel für Silizium  beträgt',alpha_crit_si,'°.\n')
 
 # Theoriewerte Literatur
 alpha_crit_ps_theo= 0.153   # Polystyrol
@@ -301,9 +301,8 @@ alpha_crit_si_rech = np.degrees(np.arccos(1-d2))
 alpha_crit_ps_rech = np.degrees(np.arccos(1-d1))
 
 
-   
-print('Der errechnete kritische Winkel von Silizium anhand des Parrart Algorithmus ist:\n ',alpha_crit_si_rech,'°.' )
 print('Der errechnete kritische Winkel von Polystyrol anhand des Parrart Algorithmus ist:\n ',alpha_crit_ps_rech,'°.\n' )
+print('Der errechnete kritische Winkel von Silizium anhand des Parrart Algorithmus ist:\n ',alpha_crit_si_rech,'°.\n' )
 
 ########################################################################################################
 plt.savefig("build/messwerte_relativ.pdf")
