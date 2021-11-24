@@ -18,6 +18,171 @@
 \tableofcontents
 \newpage
 
+\section{Ziel}
+In diesem Versuch soll ein beschichteter Siliziumwafer mittels Röntgenreflektometrie untersucht werden. Es sollen die Dichte, Rauigkeit und Schichtdicke des Films mittels Intensitätsmessungen bestimmt werden. %Oder was anderes? Rauigkeit von der Grenzfläche?
+
+\section{Theorie}
+\label{sec:theorie}
+
+\subsection{Grundlagen der Röntgenreflexivität} %Titel ändern
+Röntgenstrahlen sind elektromagnetische Wellen im Wellenlängenbereich von etwa $\SI{5}{\pico\meter}$ bis $\SI{10}{\nano\meter}$.
+Trifft eine solche Welle auf ein Medium mit Brechungsindex $n_2$, wird diese zum Teil reflektiert und zum Teil transmittiert und gebrochen. Das ist schematisch in \ref{fig:Brechungsindex} zu sehen. 
+Der komplexe Brechungsindex berücksichtigt sowohl die Brechung als auch die Dämpfung durch Absorption und ist durch den folgenden Ausdruck definiert
+\begin{equation}
+    n = 1 - \delta + i \beta,
+\end{equation}
+wobei $\beta$ die Absorption und $\delta$ eine Korrektur beschreibt.
+Für Röntgenstrahlen ist der Realteil des Brechungsindex kleiner als 1, wodurch die Möglichkeit zur Totalreflexion besteht.
+Aus dem Snelliusschen Brechungsgesetz
+\begin{equation}
+    n_1 \cos(\alpha_i) = n_2 \cos(\alpha_f)
+\end{equation}
+und der Tatsache, dass $Re(n_2) < 1$ folgt, dass bei dem kritischen Winkel $\alpha_c$ die transmittierte Welle in einem Winkel von $\SI{0}{\degree}$ zur Grenzfläche steht und somit bei Winkeln unterhalb des kritischen Winkels Totalreflexion entsteht, d.h. es gibt keine transmittierte Welle. Dieser kritische Winkel wird näherungsweise beschrieben durch
+\begin{equation}
+    \alpha_c \approx \sqrt{2 \, \delta} \approx \lambda \, \sqrt{\frac{r_e \, \rho}{\pi}},
+\end{equation}
+wobei $r_e$ der Elektronenradius und $\rho$ die Elektronendichte des Materials ist.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{./figures/Brechungsindex.png}
+    \caption{.}
+    \label{fig:Brechungsindex}
+\end{figure}
+
+%neues Unterkapitel?
+Die Fresnelschen Formeln beschreiben quantitativ die Reflexion und Transmission einer ebenen elektromagnetischen Welle an einer ebenen Grenzfläche. %Formeln auch hinschreiben oder unnötig?
+Im Fall von Röntgenstrahlung muss nicht zwischen parallel und senkrecht polarisierter Strahlung unterschieden werden und die Fresnelkoeffizienten lauten somit
+\begin{equation}
+    r = \frac{n_1 \, \cos(\alpha_1) \, - \, n_2 \, \cos(\alpha_2)}{n_1 \, \cos(\alpha_1) \, + \, n_2 \, \cos(\alpha_2)},
+\end{equation}
+
+\begin{equation*}
+    t = \frac{2 \, n_1 \, \cos(\alpha_1)}{n_1 \, \cos(\alpha_1) \, + \, n_2 \, \cos(\alpha_2)}.
+\end{equation*}
+
+
+\subsection{Mehrschichtsysteme}
+Bei einem aus mehreren Schichten bestehenden System wird die einfallende Strahlung sowohl an der Oberfläche, als auch an den Grenzflächen der einzelnen Schichten reflektiert. Das ist schematisch in \ref{fig:Kiessig} dargestellt.
+Durch die konstruktive und destruktive Interferenz der reflektierten Strahlen entstehen Oszillationen in der detektierten Intensität. Diese sogenannten Kiessig-Oszillationen sind abhängig vom Schichtabstand $d$, weshalb dieser mithilfe der Lage der Minima in der Reflexionskurve bestimmt werden kann durch
+\begin{equation}
+    d = \frac{\lambda}{2 \, \Delta \alpha_i}.
+\end{equation}
+Dabei ist $\lambda$ die Wellenlänge und $\Delta \alpha_i$ die Differenz der Einfallswinkel an den einzelnen Schichten.
+Ein Beispiel einer solchen Reflexionskurve ist in \ref{fig:Kurve} zu sehen.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{./figures/Kiessig.png}
+    \caption{...}
+    \label{fig:Kiessig}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{./figures/Kurve.png}
+    \caption{...}
+    \label{fig:Kurve}
+\end{figure}
+
+Haben die Schichten unterschiedliche Brechungsindizes, ist die Reflektivität komplizierter. Um die Reflektivität eines solchen Systems zu berechnen, wird der Parratt-Algorithmus verwendet.
+Dieser berechnet rekursiv das Verhältnis der reflektierten und transmittierten Wellen an der i-ten Grenzfläche
+\begin{equation}
+    X_i = \frac{R_i}{T_i} = \exp(-2 \, i \, k_{z,i} \, z_i) \frac{r_{i, i+1} \, + \, X_{i+1} \, \exp(2 \, i \, k_{z,i+1} \, z_i)}{1 \, + \, r_{i,i+1} \, X_{i+1} \, \exp(2 \, i \, k_{z,i+1} \, z_i)}.
+\end{equation}
+Die Fresnelreflektivität der i-ten Grenzfläche $r_{i, i+1} = \frac{k_{z,i} - k_{z,i+1}}{k_{z,i} + k_{z,i+1}}$ wird aus der z-Komponente des Wellenvektors $k_{z,i} = k \sqrt{n^2_i - \cos^2(\alpha_i)}$ berechnet.
+
+Das System besteht aus $N$ Grenzflächen. Dabei bildet das Substrat die unterste Schicht, welche als unendlich dick angenommen wird.
+Ein Mehrschichtsystem mit unterschiedlichen Brechungsindizes ist in \ref{fig:Mehrschicht} skizziert.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{./figures/Mehrschicht.png}
+    \caption{.}
+    \label{fig:Mehrschicht}
+\end{figure}
+
+
+
+\subsection{Raue Oberflächen}
+Da reale Oberflächen eine Rauigkeit in Form von mikroskopischen Unebenheiten aufweisen und nicht glatt sind, müssen die Fresnelkoeffizienten modifiziert werden. Die reflektierte Intensität einer rauen Grenzfläche ist geringer als die einer glatten. Im Paratt-Algorithmus werden die Fresnelkoeffizienten durch die modifizierten Fresnelkomponenten ersetzt, um die Reflektivität eines Mehrschichtsystems mit rauen Grenzflächen zu bestimmen. Diese modifizierten Fresnelkoeffizienten werden folgendermaßen berechnet
+\begin{equation}
+    \tilde{r}_{i,i+1} = r_{i,i+1} \, \exp(-2 \, k_{z,i} \, k_{z,i+1} \, \sigma^2_i),
+\end{equation}
+
+\begin{equation}
+    \tilde{t}_{i,i+1} = t_{i,i+1} \, \exp((k_{z,i} \, - \, k_{z,i+1})^2) \sigma^2_i / 2.
+\end{equation}
+%"root-mean-square" Rauigkeit sigma erklären
+
+
+
+\subsection{Geometriefaktor und Geometriewinkel}
+Bei kleinen Einfallswinkeln trifft der Strahl eine größere Fläche als die Probenoberfläche, wodurch nicht die gesamte eingestrahlte Intensität reflektiert und detektiert wird (siehe \ref{fig:Geometriewinkel}).
+Erst wenn der Einfallswinkel, oder Geometriewinkel, genügend groß ist, trifft der gesamte Strahl auf die Oberfläche und wird reflektiert.
+Um die Reflektivität zu korrigieren, wird der Geometriefaktor
+\begin{equation}
+    G = \frac{D \, \sin(\alpha_i)}{d_0}
+\end{equation}
+genutzt, wobei $D$ der Durchmesser der Probenoberfläche, $\alpha_i$ der Einfallswinkel und $d_0$ die Strahlbreite ist.
+Für Einfallswinkel, die mindestens so groß wie der Geometriewinkel sind, beträgt der Geometriefaktor $G = 1$. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{./figures/Geometriewinkel.png}
+    \caption{Schematische Darstellung des auf die Probe treffenden Strahls und des Gesamtstrahls. \cite{anleitung}} %Zitat?
+    \label{fig:Geometriewinkel}
+\end{figure}
+
+
+
+\section{Durchführung}
+\label{sec:durchfuehrung}
+
+Der Versuch wird an einem D8-Labordiffraktometer (siehe \ref{fig:D8}) durchgeführt.
+Dabei wird eine Probe von einer Röntgenröhre, die mit einer Spannung von $\SI{40}{\kilo\volt}$ und einem Strom von $\SI{35}{\milli\ampere}$ betrieben wird, bestrahlt und die reflektierte Strahlung trifft auf einen Detektor. %umformulieren
+Die Probe ist ein mit einem Polymerfilm beschichteter Siliziumwafer, welcher als Substrat dient.
+Vor der Messung muss die Probe im Aufbau mittels mehrerer Scans justiert werden.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{./figures/D8.png}
+    \caption{D8-Labordiffraktometer. \cite{anleitung}}
+    \label{fig:D8}
+\end{figure}
+
+
+
+\subsection{Justage}
+\textbf{Detektorscan}
+\newline
+Zunächst wird die Probe aus dem Strahl gefahren und die Röntgenröhre auf $\SI{0}{\degree}$ bewegt. Der Detektor wird beim Detektorscan um einen kleinen Winkelbereich um die Röhre bewegt. Dabei ergibt die aufgenommene Intensität eine Gaußverteilung. Das Maximum dieser Verteilung ist die neue Nullposition des Detektors.
+
+\textbf{Z-Scan}
+\newline
+Anschließend wird die Probe im Strahl positioniert. Beim Z-Scan wird die Probe in der Höhe verschoben. Die Intensität nimmt immer weiter ab, je weiter die Probe in den Strahl fährt. Die neue z-Position der Probe ist dort, wo die halbe maximale Intensität detektiert wird, da die Probe den Strahl halb abschatten soll.
+
+\textbf{Rockingscan}
+\newline
+Da der Strahl eventuell noch nicht parallel zur Probenoberfläche verläuft, wird ein Rockingscan durchgeführt. Dieser dreht die Röntgenröhre und den Detektor mit konstanter Winkelsumme um die Probe. Das entspricht einer Drehung der Probe im Strahl. Das Ziel dieses Scans ist es, die Probe in den Drehpunkt des Labordiffraktometers zu bringen und die Winkeleichung der Röhre in Bezug auf die Probe zu verbessern.
+%Muss man auch sagen wie?
+
+%\textbf{Zweiter Z-Scan}
+Nach den drei Scans wird erneut der Z-Scan durchgeführt, damit die Probe wieder den Strahl halb abschattet.
+%\textbf{Zweiter Rockingscan}
+Ein zweiter Rockingscan wird unter einem Winkel durchgeführt, um die Probe noch exakter zu justieren.
+%\textbf{Dritter Z-Scan}
+Der letzte Z-Scan wird ebenfalls unter diesem Winkel durchgeführt und gewährleistet die endgültige halbe Abschattung. %umformulieren?
+
+
+
+\subsection{Messung}
+Die eigentliche Messung besteht aus einem Reflektivitätsscan und einem diffusen Scan.
+
+Beim Reflektivitätsscan sind der Röhren- und Detektorwinkel gleich groß. Es wird in einem Bereich von $\SI{0}{\degree}$ bis $\SI{2.5}{\degree}$ mit einer Schrittweite von $\SI{0.005}{\degree}$ und einer Messzeit von $\SI{5}{\second}$ gemessen.
+
+Bei dem diffusen Scan ist der Detektorwinkel um $\SI{0.1}{\degree}$ gegenüber dem Röhrenwinkel verschoben. Ansonsten wird die selbe Messung wiederholt. Dieser Scan ist wichtig, um die wahre Reflektivität zu erhalten. %wieso?
+
 
 \section{Auswertung}
 \subsection{Justierung und Kalibrierung}
