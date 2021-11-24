@@ -37,11 +37,12 @@ Aus dem Snelliusschen Brechungsgesetz
 \begin{equation}
     n_1 \cos(\alpha_i) = n_2 \cos(\alpha_f)
 \end{equation}
-und der Tatsache, dass $Re(n_2) < 1$ folgt, dass bei dem kritischen Winkel $\alpha_c$ die transmittierte Welle in einem Winkel von $\SI{0}{\degree}$ zur Grenzfläche steht und somit bei Winkeln unterhalb des kritischen Winkels Totalreflexion entsteht, d.h. es gibt keine transmittierte Welle. Dieser kritische Winkel wird näherungsweise beschrieben durch
+und der Tatsache, dass $Re(n_2) < 1$ folgt, dass bei dem kritischen Winkel $\alpha_c$ die transmittierte Welle in einem Winkel von $\SI{0}{\degree}$ zur Grenzfläche steht und somit bei Winkeln unterhalb des kritischen Winkels Totalreflexion entsteht, d.h. es gibt keine transmittierte Welle.
+Dieser kritische Winkel wird beschrieben durch
 \begin{equation}
-    \alpha_c \approx \sqrt{2 \, \delta} \approx \lambda \, \sqrt{\frac{r_e \, \rho}{\pi}},
+    \alpha_c = \arcsin(n), \quad \text{mit } \quad n= 1-\delta
+    \label{eq:krit}
 \end{equation}
-wobei $r_e$ der Elektronenradius und $\rho$ die Elektronendichte des Materials ist.
 
 \begin{figure}
     \centering
@@ -66,7 +67,8 @@ Im Fall von Röntgenstrahlung muss nicht zwischen parallel und senkrecht polaris
 Bei einem aus mehreren Schichten bestehenden System wird die einfallende Strahlung sowohl an der Oberfläche, als auch an den Grenzflächen der einzelnen Schichten reflektiert. Das ist schematisch in \ref{fig:Kiessig} dargestellt.
 Durch die konstruktive und destruktive Interferenz der reflektierten Strahlen entstehen Oszillationen in der detektierten Intensität. Diese sogenannten Kiessig-Oszillationen sind abhängig vom Schichtabstand $d$, weshalb dieser mithilfe der Lage der Minima in der Reflexionskurve bestimmt werden kann durch
 \begin{equation}
-    d = \frac{\lambda}{2 \, \Delta \alpha_i}.
+    d = \frac{\lambda}{2 \, \sin(\Delta \alpha_i)}.
+    \label{eq:Schichtdicke}
 \end{equation}
 Dabei ist $\lambda$ die Wellenlänge und $\Delta \alpha_i$ die Differenz der Einfallswinkel an den einzelnen Schichten.
 Ein Beispiel einer solchen Reflexionskurve ist in \ref{fig:Kurve} zu sehen.
@@ -89,6 +91,7 @@ Haben die Schichten unterschiedliche Brechungsindizes, ist die Reflektivität ko
 Dieser berechnet rekursiv das Verhältnis der reflektierten und transmittierten Wellen an der i-ten Grenzfläche
 \begin{equation}
     X_i = \frac{R_i}{T_i} = \exp(-2 \, i \, k_{z,i} \, z_i) \frac{r_{i, i+1} \, + \, X_{i+1} \, \exp(2 \, i \, k_{z,i+1} \, z_i)}{1 \, + \, r_{i,i+1} \, X_{i+1} \, \exp(2 \, i \, k_{z,i+1} \, z_i)}.
+    \label{eq:parratt}
 \end{equation}
 Die Fresnelreflektivität der i-ten Grenzfläche $r_{i, i+1} = \frac{k_{z,i} - k_{z,i+1}}{k_{z,i} + k_{z,i+1}}$ wird aus der z-Komponente des Wellenvektors $k_{z,i} = k \sqrt{n^2_i - \cos^2(\alpha_i)}$ berechnet.
 
@@ -123,6 +126,7 @@ Erst wenn der Einfallswinkel, oder Geometriewinkel, genügend groß ist, trifft 
 Um die Reflektivität zu korrigieren, wird der Geometriefaktor
 \begin{equation}
     G = \frac{D \, \sin(\alpha_i)}{d_0}
+    \label{eq:Geometriefaktor}
 \end{equation}
 genutzt, wobei $D$ der Durchmesser der Probenoberfläche, $\alpha_i$ der Einfallswinkel und $d_0$ die Strahlbreite ist.
 Für Einfallswinkel, die mindestens so groß wie der Geometriewinkel sind, beträgt der Geometriefaktor $G = 1$. 
@@ -192,10 +196,10 @@ Diese Kalibrationsmessungen werden im folgenden zuerst behandelt und ausgewertet
 
 \subsection{Der Detektorscan}
 
-Die erste Messung ist die des Detektorscans welcher in \autoref{fig:detec} dargestellt ist. 
+Die erste Messung ist die des Detektorscans, welcher in \autoref{fig:detec} dargestellt ist. 
 In diesem Plot ist die Detektorintensität in Abhängigkeit des Einfallwinkels zu sehen. 
 Die Messung wurde über eine Bereich von $ -0,3° \text{ bis } 0,3° $ durchgeführt.
-Die Messwerte wurden anschließend an einen Gausfit mit der Formel 
+Die Messwerte wurden anschließend an einen Gaußfit mit der Formel 
 \begin{equation*}
     I(\alpha) = \frac{a}{\sigma\sqrt{2\pi}} \exp\left( \frac{-\left( \alpha - \alpha_0\right)^2}{2 \sigma} \right)
 \end{equation*}
@@ -211,6 +215,10 @@ Die Halbwertsbreite beträgt $\text{FWHM} = 0.102°$ und die maximale Intensitä
 \begin{figure}
     \centering
     \includegraphics[width=11cm]{build/detector_scan.pdf}
+    \caption{Verlauf des Detektorscans. Der Graph hat einen gaußförmigen Verlauf und besitzt eine maximale Intensität 
+    von $I_\text{max}=107447.10 \pm 759.63$. Die $\alpha_i$-Achse bezeichnet den Einfallswinkel unter dem die Röntgenstrahlen
+    auf die Probe treffen. }
+    \label{fig:detec}
 \end{figure}
 \FloatBarrier
 
@@ -263,10 +271,10 @@ Bei Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph,
 diffusen Scans (roter Graph) korrigiert. Die Messwerte des diffusen Scans werden von Messwerten abgezogen um auftretende Rückstreueffekte zu 
 eliminieren. Der entstandene Graph (orange) in ebenfalls in \autoref{fig:alles} zu sehen. 
 
-Anschließend wird mit Hilfe der \autoref{eq:TODO} der Geometriefaktor berechnet und der zuvor korrigierte Graph um den Geometriefaktor korrigiert. 
+Anschließend wird mit Hilfe der \autoref{eq:Geometriefaktor} der Geometriefaktor berechnet und der zuvor korrigierte Graph um den Geometriefaktor korrigiert. 
 Die Korrektur um den Geometriefaktor geschieht, da bei geringen Einfallwinkeln nicht die vollständige Intensität auf die Probenoberfläche trifft. 
 Dieser Graph ist in \autoref{fig:alles} dunkelblau dargestellt. 
-Werden die Kiesing Oszillationen betrachtet und die Positionen der Minima eingezeichnet, lässt sich mit der \autoref{eq:TODO} die 
+Werden die Kiesing Oszillationen betrachtet und die Positionen der Minima eingezeichnet, lässt sich mit der \autoref{eq:Schichtdicke} die 
 Schichtdicke von Polystyrol berechnen.
 Die ermittelte Schichtdicke ist
 \begin{align*}
@@ -281,7 +289,7 @@ Die ermittelte Schichtdicke ist
 \end{figure}
 \FloatBarrier
 Mit Hilfe des Parratt-Algorithmus lässt sich ebenfalls die Schichtdicke bestimmen. 
-Dazu werden die unterschiedlichen Parameter siehe \autoref{eq:params} in den Parrat-Algorithmus \autoref{eq:TODO} eingesetzt.
+Dazu werden die unterschiedlichen Parameter siehe \autoref{eq:params} in den Parrat-Algorithmus \autoref{eq:parratt} eingesetzt.
 \begin{equation}\label{eq:params}    
     \begin{split}
         \lambda &= \SI{855}{\angstrom}\\
@@ -300,7 +308,7 @@ Werden die Rauigkeiten $\sigma_\text{ps} = 7,9\cdot 10^{-10}$ und $\sigma_\text{
 betrachtet ergibt sich der lilafarbene Plot in \autoref{fig:alles}.
 
 Mit Hilfe der unterschiedlichen Dispersionen von Polystyrol und Silizium lassen sich die kritischen Winkel ausrechnen,
-dazu wird \autoref{eq:TODO} verwendet.
+dazu wird \autoref{eq:krit} verwendet.
 Die kritischen Winkel sind
 \begin{align*}
     \alpha_\text{c,ps}& = \SI{0,063}{\degree}\\
