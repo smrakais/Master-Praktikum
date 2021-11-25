@@ -9,7 +9,7 @@
 \title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V44 \\ - Röntgenreflektometrie -}
 
 %\title{test}
-\date{Durchführung: 05.11.2021, Abgabe: XX.11.2021}
+\date{Durchführung: 05.11.2021, Abgabe: 25.11.2021}
 
 \begin{document}
 
@@ -26,66 +26,63 @@ Dispersion und Rauigkeit der Polysterolschicht bestimmt werden.
 \section{Theorie}
 \label{sec:theorie}
 
-\subsection{Grundlagen der Röntgenreflexivität} %Titel ändern
+\subsection{Röntgenreflexivität}
 Röntgenstrahlen sind elektromagnetische Wellen im Wellenlängenbereich von etwa $\SI{5}{\pico\meter}$ bis $\SI{10}{\nano\meter}$.
-Trifft eine solche Welle auf ein Medium mit Brechungsindex $n_2$, wird diese zum Teil reflektiert und zum Teil transmittiert und gebrochen. Das ist schematisch in \ref{fig:Brechungsindex} zu sehen. 
+Trifft eine solche Welle auf ein Medium mit Brechungsindex $n_2$, wird diese zum Teil reflektiert und zum Teil transmittiert und gebrochen. Das ist schematisch in Abb. \ref{fig:Brechungsindex} zu sehen. 
 Der komplexe Brechungsindex berücksichtigt sowohl die Brechung als auch die Dämpfung durch Absorption und ist durch den folgenden Ausdruck definiert
-\begin{equation}
+\begin{equation*}
     n = 1 - \delta + i \beta,
-\end{equation}
+\end{equation*}
 wobei $\beta$ die Absorption und $\delta$ eine Korrektur beschreibt.
 Für Röntgenstrahlen ist der Realteil des Brechungsindex kleiner als 1, wodurch die Möglichkeit zur Totalreflexion besteht.
 Aus dem Snelliusschen Brechungsgesetz
-\begin{equation}
+\begin{equation*}
     n_1 \cos(\alpha_i) = n_2 \cos(\alpha_f)
-\end{equation}
-und der Tatsache, dass $Re(n_2) < 1$ folgt, dass bei dem kritischen Winkel $\alpha_c$ die transmittierte Welle in einem Winkel von $\SI{0}{\degree}$ zur Grenzfläche steht und somit bei Winkeln unterhalb des kritischen Winkels Totalreflexion entsteht, d.h. es gibt keine transmittierte Welle.
+\end{equation*}
+und der Tatsache, dass $Re(n_2) < 1$ folgt, dass bei dem kritischen Winkel $\alpha_c$ die transmittierte Welle in einem Winkel von $\SI{0}{\degree}$ zur Grenzfläche steht und somit bei Winkeln unterhalb des kritischen Winkels Totalreflexion entsteht, d.h. es gibt keine transmittierte Welle. %komisch formuliert
 Dieser kritische Winkel wird beschrieben durch
 \begin{equation}
-    \alpha_c = \arcsin(n), \quad \text{mit } \quad n= 1-\delta
+    \alpha_c = \arcsin(n) \quad \text{mit } \quad n= 1-\delta \, .
     \label{eq:krit}
 \end{equation}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Brechungsindex.png}
-    \caption{.}
+    \caption{Eine ebene Welle trifft aus dem Vakuum mit Brechungsindex $n=1$ auf eine glatte Grenzfläche und wird dabei reflektiert und transmittiert. Der Einfallswinkel $\alpha_i$ entspricht dem Ausfallswinkel $\alpha_f$. Der Winkel $\alpha_t$ ist der Winkel der transmittierten Welle in Bezug auf die Grenzfläche. \cite{V44old}}
     \label{fig:Brechungsindex}
 \end{figure}
 
 %neues Unterkapitel?
 Die Fresnelschen Formeln beschreiben quantitativ die Reflexion und Transmission einer ebenen elektromagnetischen Welle an einer ebenen Grenzfläche. %Formeln auch hinschreiben oder unnötig?
 Im Fall von Röntgenstrahlung muss nicht zwischen parallel und senkrecht polarisierter Strahlung unterschieden werden und die Fresnelkoeffizienten lauten somit
-\begin{equation}
-    r = \frac{n_1 \, \cos(\alpha_1) \, - \, n_2 \, \cos(\alpha_2)}{n_1 \, \cos(\alpha_1) \, + \, n_2 \, \cos(\alpha_2)},
-\end{equation}
-
-\begin{equation*}
-    t = \frac{2 \, n_1 \, \cos(\alpha_1)}{n_1 \, \cos(\alpha_1) \, + \, n_2 \, \cos(\alpha_2)}.
-\end{equation*}
+\begin{align*}
+    r &= \frac{n_1 \, \cos(\alpha_1) \, - \, n_2 \, \cos(\alpha_2)}{n_1 \, \cos(\alpha_1) \, + \, n_2 \, \cos(\alpha_2)}, \\
+    t &= \frac{2 \, n_1 \, \cos(\alpha_1)}{n_1 \, \cos(\alpha_1) \, + \, n_2 \, \cos(\alpha_2)}.
+\end{align*}
 
 
 \subsection{Mehrschichtsysteme}
-Bei einem aus mehreren Schichten bestehenden System wird die einfallende Strahlung sowohl an der Oberfläche, als auch an den Grenzflächen der einzelnen Schichten reflektiert. Das ist schematisch in \ref{fig:Kiessig} dargestellt.
+Bei einem aus mehreren Schichten bestehenden System wird die einfallende Strahlung sowohl an der Oberfläche, als auch an den Grenzflächen der einzelnen Schichten reflektiert. Das ist schematisch in Abb. \ref{fig:Kiessig} dargestellt.
 Durch die konstruktive und destruktive Interferenz der reflektierten Strahlen entstehen Oszillationen in der detektierten Intensität. Diese sogenannten Kiessig-Oszillationen sind abhängig vom Schichtabstand $d$, weshalb dieser mithilfe der Lage der Minima in der Reflexionskurve bestimmt werden kann durch
 \begin{equation}
     d = \frac{\lambda}{2 \, \sin(\Delta \alpha_i)}.
     \label{eq:Schichtdicke}
 \end{equation}
 Dabei ist $\lambda$ die Wellenlänge und $\Delta \alpha_i$ die Differenz der Einfallswinkel an den einzelnen Schichten.
-Ein Beispiel einer solchen Reflexionskurve ist in \ref{fig:Kurve} zu sehen.
+Ein Beispiel einer solchen Reflexionskurve ist in Abb. \ref{fig:Kurve} zu sehen.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{./figures/Kiessig.png}
-    \caption{...}
+    \caption{Ein Röntgenstrahl trifft unter dem Winkel $\Phi$ auf eine dünne Schicht mit Dicke $d$ und wird teilweise reflektiert und teilweise transmittiert unter dem Winkel $\psi$ und wieder reflektiert. Die reflektierten Strahlen interferieren. \cite{Kiessig}}
     \label{fig:Kiessig}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Kurve.png}
-    \caption{...}
+    \caption{Die Reflektivität ist in Abhängigkeit vom Einfallswinkel $\alpha_i$ aufgetragen. Zu sehen sind die Reflexionskurven für ein Silizium-Substrat und für ein mit einer Polysterolschicht überzogenes Silizium-Substrat. Es sind außerdem die kritischen Winkel zu sehen. \cite{V44old}}
     \label{fig:Kurve}
 \end{figure}
 
@@ -95,15 +92,15 @@ Dieser berechnet rekursiv das Verhältnis der reflektierten und transmittierten 
     X_i = \frac{R_i}{T_i} = \exp(-2 \, i \, k_{z,i} \, z_i) \frac{r_{i, i+1} \, + \, X_{i+1} \, \exp(2 \, i \, k_{z,i+1} \, z_i)}{1 \, + \, r_{i,i+1} \, X_{i+1} \, \exp(2 \, i \, k_{z,i+1} \, z_i)}.
     \label{eq:parratt}
 \end{equation}
-Die Fresnelreflektivität der i-ten Grenzfläche $r_{i, i+1} = \frac{k_{z,i} - k_{z,i+1}}{k_{z,i} + k_{z,i+1}}$ wird aus der z-Komponente des Wellenvektors $k_{z,i} = k \sqrt{n^2_i - \cos^2(\alpha_i)}$ berechnet.
+Die Fresnelreflektivität der i-ten Grenzfläche $r_{i, i+1} = \frac{k_{z,i} \, - \, k_{z,i+1}}{k_{z,i} \, + \, k_{z,i+1}}$ wird aus der z-Komponente des Wellenvektors $k_{z,i} = k \sqrt{n^2_i - \cos^2(\alpha_i)}$ berechnet.
 
 Das System besteht aus $N$ Grenzflächen. Dabei bildet das Substrat die unterste Schicht, welche als unendlich dick angenommen wird.
-Ein Mehrschichtsystem mit unterschiedlichen Brechungsindizes ist in \ref{fig:Mehrschicht} skizziert.
+Ein Mehrschichtsystem mit unterschiedlichen Brechungsindizes ist in Abb. \ref{fig:Mehrschicht} skizziert.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Mehrschicht.png}
-    \caption{.}
+    \caption{Das Mehrschichtsystem mit unterschiedlichen Brechungsindizes besteht aus $N+1$ Schichten. Die letzte Schicht bildet das unendlich dicke Substrat. Das Vakuum wird als erste Schicht angenommen. An den einzelnen Grenzflächen sind die reflektierten und transmittierten Wellen angedeutet. \cite{V44old}}
     \label{fig:Mehrschicht}
 \end{figure}
 
@@ -111,20 +108,17 @@ Ein Mehrschichtsystem mit unterschiedlichen Brechungsindizes ist in \ref{fig:Meh
 
 \subsection{Raue Oberflächen}
 Da reale Oberflächen eine Rauigkeit in Form von mikroskopischen Unebenheiten aufweisen und nicht glatt sind, müssen die Fresnelkoeffizienten modifiziert werden. Die reflektierte Intensität einer rauen Grenzfläche ist geringer als die einer glatten. Im Paratt-Algorithmus werden die Fresnelkoeffizienten durch die modifizierten Fresnelkomponenten ersetzt, um die Reflektivität eines Mehrschichtsystems mit rauen Grenzflächen zu bestimmen. Diese modifizierten Fresnelkoeffizienten werden folgendermaßen berechnet
-\begin{equation}
-    \tilde{r}_{i,i+1} = r_{i,i+1} \, \exp(-2 \, k_{z,i} \, k_{z,i+1} \, \sigma^2_i),
-\end{equation}
-
-\begin{equation}
-    \tilde{t}_{i,i+1} = t_{i,i+1} \, \exp((k_{z,i} \, - \, k_{z,i+1})^2) \sigma^2_i / 2.
-\end{equation}
-%"root-mean-square" Rauigkeit sigma erklären
+\begin{align*}
+    \tilde{r}_{i,i+1} &= r_{i,i+1} \, \exp(-2 \, k_{z,i} \, k_{z,i+1} \, \sigma^2_i), \\
+    \tilde{t}_{i,i+1} &= t_{i,i+1} \, \exp((k_{z,i} \, - \, k_{z,i+1})^2 \, \sigma^2_i / 2) \, .
+\end{align*}
+%"root-mean-square" Rauigkeit sigma erklären?
 
 
 
 \subsection{Geometriefaktor und Geometriewinkel}
-Bei kleinen Einfallswinkeln trifft der Strahl eine größere Fläche als die Probenoberfläche, wodurch nicht die gesamte eingestrahlte Intensität reflektiert und detektiert wird (siehe \ref{fig:Geometriewinkel}).
-Erst wenn der Einfallswinkel, oder Geometriewinkel, genügend groß ist, trifft der gesamte Strahl auf die Oberfläche und wird reflektiert.
+Bei kleinen Einfallswinkeln trifft der Strahl eine größere Fläche als die Probenoberfläche, wodurch nicht die gesamte eingestrahlte Intensität reflektiert und detektiert wird (siehe Abb. \ref{fig:Geometriewinkel}).
+Erst wenn der Einfallswinkel genügend groß ist, trifft der gesamte Strahl auf die Oberfläche und wird reflektiert. Dieser Winkel wird dann Geometriewinkel genannt.
 Um die Reflektivität zu korrigieren, wird der Geometriefaktor
 \begin{equation}
     G = \frac{D \, \sin(\alpha_i)}{d_0}
@@ -136,7 +130,7 @@ Für Einfallswinkel, die mindestens so groß wie der Geometriewinkel sind, betr�
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Geometriewinkel.png}
-    \caption{Schematische Darstellung des auf die Probe treffenden Strahls und des Gesamtstrahls. \cite{anleitung}} %Zitat?
+    \caption{Schematische Darstellung des auf die Probe treffenden Strahls und des Gesamtstrahls. \cite{V44old}}
     \label{fig:Geometriewinkel}
 \end{figure}
 
@@ -145,28 +139,28 @@ Für Einfallswinkel, die mindestens so groß wie der Geometriewinkel sind, betr�
 \section{Durchführung}
 \label{sec:durchfuehrung}
 
-Der Versuch wird an einem D8-Labordiffraktometer (siehe \ref{fig:D8}) durchgeführt.
-Dabei wird eine Probe von einer Röntgenröhre, die mit einer Spannung von $\SI{40}{\kilo\volt}$ und einem Strom von $\SI{35}{\milli\ampere}$ betrieben wird, bestrahlt und die reflektierte Strahlung trifft auf einen Detektor. %umformulieren
+Der Versuch wird an einem D8-Labordiffraktometer (siehe Abb. \ref{fig:D8}) durchgeführt.
+Dabei wird eine Probe von einer Röntgenröhre, die mit einer Spannung von $\SI{40}{\kilo\volt}$ und einem Strom von $\SI{35}{\milli\ampere}$ betrieben wird, bestrahlt und die reflektierte Strahlung trifft auf einen Detektor. %umformulieren?
 Die Probe ist ein mit einem Polymerfilm beschichteter Siliziumwafer, welcher als Substrat dient.
 Vor der Messung muss die Probe im Aufbau mittels mehrerer Scans justiert werden.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{./figures/D8.png}
-    \caption{D8-Labordiffraktometer. \cite{anleitung}}
+    \caption{Foto eines D8-Labordiffraktometers, das eine winkelverstellbare Röntgenröhre sowie einen Detektor enthält. \cite{V44old}}
     \label{fig:D8}
 \end{figure}
 
 
 
-\subsection{Justage}
+\subsection{Justierung}
 \textbf{Detektorscan}
 \newline
 Zunächst wird die Probe aus dem Strahl gefahren und die Röntgenröhre auf $\SI{0}{\degree}$ bewegt. Der Detektor wird beim Detektorscan um einen kleinen Winkelbereich um die Röhre bewegt. Dabei ergibt die aufgenommene Intensität eine Gaußverteilung. Das Maximum dieser Verteilung ist die neue Nullposition des Detektors.
 
 \textbf{Z-Scan}
 \newline
-Anschließend wird die Probe im Strahl positioniert. Beim Z-Scan wird die Probe in der Höhe verschoben. Die Intensität nimmt immer weiter ab, je weiter die Probe in den Strahl fährt. Die neue z-Position der Probe ist dort, wo die halbe maximale Intensität detektiert wird, da die Probe den Strahl halb abschatten soll.
+Anschließend wird die Probe im Strahl positioniert. Beim Z-Scan wird die Probe in der Höhe verschoben. Die Intensität nimmt immer mehr ab, je weiter die Probe in den Strahl fährt. Die neue z-Position der Probe ist dort, wo die halbe maximale Intensität detektiert wird, da die Probe den Strahl halb abschatten soll.
 
 \textbf{Rockingscan}
 \newline
@@ -194,9 +188,9 @@ Bei dem diffusen Scan ist der Detektorwinkel um $\SI{0.1}{\degree}$ gegenüber d
 \subsection{Justierung und Kalibrierung}
 Bevor die eigentlichen Messergebnisse ausgewertet werden, finden eine Reihe von Kalibrationsmessungen statt,
 welche den Zweck erfüllen die Röntgenröhre optimal zu justieren und Zwischenergebnisse zu liefern.
-Diese Kalibrationsmessungen werden im folgenden zuerst behandelt und ausgewertet.
+Diese Kalibrationsmessungen werden im Folgenden zuerst behandelt und ausgewertet.
 
-\subsection{Der Detektorscan}
+\subsection*{Der Detektorscan}
 
 Die erste Messung ist die des Detektorscans, welcher in \autoref{fig:detec} dargestellt ist. 
 In diesem Plot ist die Detektorintensität in Abhängigkeit des Einfallwinkels zu sehen. 
@@ -210,7 +204,7 @@ Die Fitparameter sind
 \begin{align*}
     a &= 107447.10 \pm 759.63 \\
     \alpha_{0} &= \SI{0.0107 \pm 0.0003}{\degree} \\
-    \sigma &=  0.045 \pm 0.00037
+    \sigma &=  0.045 \pm 0.00037.
 \end{align*} 
 Anhand des Graphen lässt sich die Halbwertsbreite sowie die maximale Detektorintensität ermitteln.
 Die Halbwertsbreite beträgt $\text{FWHM} = 0.102°$ und die maximale Intensität $I_\text{max}=107447.10 \pm 759.63$.
@@ -224,7 +218,7 @@ Die Halbwertsbreite beträgt $\text{FWHM} = 0.102°$ und die maximale Intensitä
 \end{figure}
 \FloatBarrier
 
-\subsection{Der Z-Scan}
+\subsection*{Der Z-Scan}
 
 Mit Hilfe des Z-Scans lässt sich die Strahlenbreite der Röntgenröhre näherungsweise bestimmen.
 Dazu werden die abfallende und ansteigende Flanke des Scans betrachtet. 
@@ -242,15 +236,15 @@ Die ermittelte Strahlbreite beträgt
 \begin{equation*}
     d =\SI{0,3}{\milli\meter}. 
 \end{equation*}
-Aus der Strahlbreite und der Probendicke $D = \SI{20}{\milli\meter}$ lässt sich der Geometriewinkel errechnen.
+Aus der Strahlbreite und der Probendicke $D = \SI{20}{\milli\meter}$ lässt sich der Geometriewinkel errechnen zu
 \begin{align*}
     \alpha_g &= \arcsin(\frac{d}{D})\\
     \alpha_g &= \SI{0.86}{\degree}.
 \end{align*}
 
-\subsection{Der Rockingscan}
+\subsection*{Der Rockingscan}
 
-Anhand des Rockingscans \autoref{fig:dreieck} lässt sich der Geometriewinkel durch ablesen bestimmen.
+Anhand des Rockingscans \autoref{fig:dreieck} lässt sich der Geometriewinkel durch Ablesen bestimmen.
 Der Geometriewinkel beträgt
 \begin{align*}
     \alpha_1 &= \SI{-0.76}{\degree}\\    
@@ -261,22 +255,22 @@ Der Geometriewinkel beträgt
 \begin{figure}
     \centering
     \includegraphics[width=11cm]{build/dreieck.pdf}
-    \caption{Verlauf des Rockingscans. Der Rockingscan liefert durch ablesen einen Geometriewinkel von $\alpha_g = \SI{0.72}{\degree}$.}
+    \caption{Verlauf des Rockingscans. Der Rockingscan liefert durch Ablesen einen Geometriewinkel von $\alpha_g = \SI{0.72}{\degree}$.}
     \label{fig:dreieck}
 \end{figure}
 
 \subsection{Der Reflektivitätsscans und die Dispersionsprofile}
 In \autoref{fig:alles} ist die Reflektivität in Abhängigkeit des Einfallwinkels dargestellt.
-Dazu wurde die Reflektivität auf das 5 fache der Intensität normiert, da die Messdauer nach den Kalibrationsmessung 5 mal so lang gewesen ist. 
+Dazu wurde die Reflektivität auf das fünffache der Intensität normiert, da die Messdauer nach den Kalibrationsmessung fünf mal so lang gewesen ist. 
 
-Bei Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph, \autoref{fig:alles}) um die Messwerte des
-diffusen Scans (roter Graph) korrigiert. Die Messwerte des diffusen Scans werden von Messwerten abgezogen um auftretende Rückstreueffekte zu 
+Bei der Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph, \autoref{fig:alles}) um die Messwerte des
+diffusen Scans (roter Graph) korrigiert. Die Messwerte des diffusen Scans werden von den Messwerten abgezogen, um auftretende Rückstreueffekte zu 
 eliminieren. Der entstandene Graph (orange) in ebenfalls in \autoref{fig:alles} zu sehen. 
 
 Anschließend wird mit Hilfe der \autoref{eq:Geometriefaktor} der Geometriefaktor berechnet und der zuvor korrigierte Graph um den Geometriefaktor korrigiert. 
 Die Korrektur um den Geometriefaktor geschieht, da bei geringen Einfallwinkeln nicht die vollständige Intensität auf die Probenoberfläche trifft. 
 Dieser Graph ist in \autoref{fig:alles} dunkelblau dargestellt. 
-Werden die Kiesing Oszillationen betrachtet und die Positionen der Minima eingezeichnet, lässt sich mit der \autoref{eq:Schichtdicke} die 
+Werden die Kiesig-Oszillationen betrachtet und die Positionen der Minima eingezeichnet, lässt sich mit der \autoref{eq:Schichtdicke} die 
 Schichtdicke von Polystyrol berechnen.
 Die ermittelte Schichtdicke ist
 \begin{align*}
@@ -291,7 +285,7 @@ Die ermittelte Schichtdicke ist
 \end{figure}
 \FloatBarrier
 Mit Hilfe des Parratt-Algorithmus lässt sich ebenfalls die Schichtdicke bestimmen. 
-Dazu werden die unterschiedlichen Parameter siehe \autoref{eq:params} in den Parrat-Algorithmus \autoref{eq:parratt} eingesetzt.
+Dazu werden die unterschiedlichen Parameter (siehe \autoref{eq:params}) in den Parrat-Algorithmus \autoref{eq:parratt} eingesetzt.
 \begin{equation}\label{eq:params}    
     \begin{split}
         \lambda &= \SI{855}{\angstrom}\\
@@ -302,12 +296,12 @@ Dazu werden die unterschiedlichen Parameter siehe \autoref{eq:params} in den Par
         n_\text{si} &= 1 - \delta_\text{ps} 
     \end{split}
 \end{equation}
-Die Parameter werden durch geringe Änderungen variiert bis die entstandene hellblaue Kurve siehe \autoref{fig:alles} mit der gemessenen
+Die Parameter werden durch geringe Änderungen variiert bis die entstandene hellblaue Kurve (siehe \autoref{fig:alles}) mit der gemessenen
 Kurve näherungsweise übereinstimmt. 
 Der Parratt-Algorithmus mit diesen Parametern repräsentiert eine glatte Oberfläche.
 
 Werden die Rauigkeiten $\sigma_\text{ps} = 7,9\cdot 10^{-10}$ und $\sigma_\text{si} = 5,7\cdot 10^{-10}$
-betrachtet ergibt sich der lilafarbene Plot in \autoref{fig:alles}.
+betrachtet, ergibt sich der lilafarbene Plot in \autoref{fig:alles}.
 
 Mit Hilfe der unterschiedlichen Dispersionen von Polystyrol und Silizium lassen sich die kritischen Winkel ausrechnen,
 dazu wird \autoref{eq:krit} verwendet.
@@ -320,16 +314,16 @@ Diese Winkel sind ebenfalls in \autoref{fig:alles} eingezeichnet.
 
 \section{Diskussion}
 Der durch die Probendicke und die Strahlbreite ermittelte Geometriewinkel $\alpha_\text{g} =0,85°$ weicht um 15\%
-von der Geometriewinkel der mit am Graphen des Rockingscans $\alpha_\text{g} =0,72°$ abgelesen wurde ab. 
+von dem Geometriewinkel, der am Graphen des Rockingscans mit $\alpha_\text{g} =0,72°$ abgelesen wurde, ab. 
 Diese Abweichung ist damit zu erklären, dass die Strahlbreite anhand des Z-Scans bestimmt worden ist und die Strahlbreite
-ebenfalls durch ablesen am Graphen fehlerbehaftet ist.
+ebenfalls durch Ablesen am Graphen fehlerbehaftet ist.
 
-Wird der Graph der Messwerte und die der beiden mit dem Parratt-Algorithmus erstellen Graphen miteinander verglichen, so lässt sich 
-erkennen das diese gut übereinstimmen.
+Werden der Graph der Messwerte und die der beiden mit dem Parratt-Algorithmus erstellen Graphen miteinander verglichen, so lässt sich 
+erkennen, dass diese gut übereinstimmen.
 Die Schichtdicken betragen
 \begin{align*}
     d_\text{ps} &= \SI{855}{\angstrom}\\
-    d_\text{parrat} &= \SI{890,25}{\angstrom}.
+    d_\text{parratt} &= \SI{890,25}{\angstrom}.
 \end{align*}
 Aus den Schichtdicken ergibt sich eine Abweichung von 3,96\%.
 
@@ -339,24 +333,24 @@ Die ermittelten Dispersionen und die Literaturwerte\cite{V44old} sind
         \delta_\text{ps} &= 0,6\cdot 10^{-6}\\
         \delta_\text{si}&= 6,8\cdot 10^{-6} \\
         \delta_\text{ps,lit} &= 3,5\cdot 10^{-6}\\
-        \delta_\text{si,lit}&= 7,6\cdot 10^{-6}
+        \delta_\text{si,lit}&= 7,6\cdot 10^{-6}.
     \end{split} 
 \end{align}
-Es fällt auf die Dispersion von Polystyrol deutlich mehr von Literaturwert abweicht als die von Silizium.
+Es fällt auf, dass die Dispersion von Polystyrol deutlich mehr vom Literaturwert abweicht als die von Silizium.
 Die Abweichungen betragen bei Polystyrol 82,86\% und bei Silizium 10,53\%.
-Die geringe gemessene Dispersion von Polystyrol ist darauf zurückzuführen, dass die Kiesig-Oszillationen eine
+Die geringe gemessene Dispersion von Polystyrol ist darauf zurückzuführen, dass die Kiessig-Oszillationen eine
 sehr geringe Amplitude gezeigt haben.
 
-Die ermittelten kritischen Winkel anhand des Parratt-Algorithmus und die Literaturwerte\cite{V44old} sind
+Die anhand des Parratt-Algorithmus ermittelten kritischen Winkel und die Literaturwerte\cite{V44old} sind
 \begin{align*}
     \alpha_\text{c,ps} &= \SI{0.063}{\degree} \\
     \alpha_\text{c,ps,lit} &= \SI{0.153}{\degree} \\
     \alpha_\text{c,si} &= \SI{0.211}{\degree} \\
     \alpha_\text{c,si,lit} &= \SI{0.210}{\degree}.
 \end{align*}
-Es fällt auf das der kritische Winkel von Silizium passt sehr gut zu dem Literaturwert passt.
+Es fällt auf, dass der kritische Winkel von Silizium sehr gut zu dem Literaturwert passt.
 Bei dem Winkel von Polystyrol ist allerdings eine große Abweichung zu erkennen.
-Diese ist aber darauf zurückzuführen das sich der kritische Winkel aus der zuvor bestimmten Dispersion errechnet
+Diese ist darauf zurückzuführen, dass sich der kritische Winkel aus der zuvor bestimmten Dispersion errechnet
 und diese ebenfalls stark abweicht. 
 
 \section{Programmcode Parratt-Algorithmus}

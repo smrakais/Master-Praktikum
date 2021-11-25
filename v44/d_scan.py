@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import curve_fit
@@ -5,6 +7,7 @@ import matplotlib.patches as patches
 from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 from scipy.signal import peak_widths
+
 
 #########################################################################################
 # z_scan
@@ -155,7 +158,7 @@ lambda_ = 1.54*10**(-10)
 
 def schichtdicke(delta):
     d = lambda_/(2*np.sin((np.pi/180)*delta))               # der Sinus darf hier nicht wegfallen die Kleinwinkelnäherung funktioniert nicht!
-    return print('Die Schichtdicke beträgt ' + str(d) +'m.')
+    print('Die Schichtdicke beträgt ' + str(d) +'m.') #ich hab hier das "return" davor weggemacht
 ########################################################################################################
 
 ###################
