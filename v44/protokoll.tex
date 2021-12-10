@@ -105,9 +105,8 @@ Ein Mehrschichtsystem mit unterschiedlichen Brechungsindizes ist in Abb. \ref{fi
 \end{figure}
 
 
-
 \subsection{Raue Oberflächen}
-Da reale Oberflächen eine Rauigkeit in Form von mikroskopischen Unebenheiten aufweisen und nicht glatt sind, müssen die Fresnelkoeffizienten modifiziert werden. Die reflektierte Intensität einer rauen Grenzfläche ist geringer als die einer glatten. Im Paratt-Algorithmus werden die Fresnelkoeffizienten durch die modifizierten Fresnelkomponenten ersetzt, um die Reflektivität eines Mehrschichtsystems mit rauen Grenzflächen zu bestimmen. Diese modifizierten Fresnelkoeffizienten werden folgendermaßen berechnet
+Da reale Oberflächen eine Rauigkeit in Form von mikroskopischen Unebenheiten aufweisen und nicht glatt sind, müssen die Fresnelkoeffizienten modifiziert werden. Die reflektierte Intensität einer rauen Grenzfläche ist geringer als die einer glatten. Im Parratt-Algorithmus werden die Fresnelkoeffizienten durch die modifizierten Fresnelkomponenten ersetzt, um die Reflektivität eines Mehrschichtsystems mit rauen Grenzflächen zu bestimmen. Diese modifizierten Fresnelkoeffizienten werden folgendermaßen berechnet
 \begin{align*}
     \tilde{r}_{i,i+1} &= r_{i,i+1} \, \exp(-2 \, k_{z,i} \, k_{z,i+1} \, \sigma^2_i), \\
     \tilde{t}_{i,i+1} &= t_{i,i+1} \, \exp((k_{z,i} \, - \, k_{z,i+1})^2 \, \sigma^2_i / 2) \, .
@@ -135,10 +134,8 @@ Für Einfallswinkel, die mindestens so groß wie der Geometriewinkel sind, betr�
 \end{figure}
 
 
-
 \section{Durchführung}
 \label{sec:durchfuehrung}
-
 Der Versuch wird an einem D8-Labordiffraktometer (siehe Abb. \ref{fig:D8}) durchgeführt.
 Dabei wird eine Probe von einer Röntgenröhre, die mit einer Spannung von $\SI{40}{\kilo\volt}$ und einem Strom von $\SI{35}{\milli\ampere}$ betrieben wird, bestrahlt und die reflektierte Strahlung trifft auf einen Detektor. %umformulieren?
 Die Probe ist ein mit einem Polymerfilm beschichteter Siliziumwafer, welcher als Substrat dient.
@@ -183,7 +180,7 @@ Beim Reflektivitätsscan sind der Röhren- und Detektorwinkel gleich groß. Es w
 
 Bei dem diffusen Scan ist der Detektorwinkel um $\SI{0.1}{\degree}$ gegenüber dem Röhrenwinkel verschoben. Ansonsten wird die selbe Messung wiederholt. Dieser Scan ist wichtig, um die wahre Reflektivität zu erhalten. %wieso?
 
-
+\newpage
 \section{Auswertung}
 \subsection{Justierung und Kalibrierung}
 Bevor die eigentlichen Messergebnisse ausgewertet werden, finden eine Reihe von Kalibrationsmessungen statt,
@@ -192,7 +189,16 @@ Diese Kalibrationsmessungen werden im Folgenden zuerst behandelt und ausgewertet
 
 \subsection*{Der Detektorscan}
 
-Die erste Messung ist die des Detektorscans, welcher in \autoref{fig:detec} dargestellt ist. 
+Die erste Messung ist die des Detektorscans, welcher in \autoref{fig:detec} dargestellt ist.
+\begin{figure}
+    \centering
+    \includegraphics[width=11cm]{build/detector_scan.pdf}
+    \caption{Verlauf des Detektorscans. Der Graph hat einen gaußförmigen Verlauf und besitzt eine maximale Intensität 
+    von $I_\text{max}=107447.10 \pm 759.63$. Die $\alpha_i$-Achse bezeichnet den Einfallswinkel unter dem die Röntgenstrahlen
+    auf die Probe treffen. }
+    \label{fig:detec}
+\end{figure}
+\FloatBarrier 
 In diesem Plot ist die Detektorintensität in Abhängigkeit des Einfallwinkels zu sehen. 
 Die Messung wurde über eine Bereich von $ -0,3° \text{ bis } 0,3° $ durchgeführt.
 Die Messwerte wurden anschließend an einen Gaußfit mit der Formel 
@@ -208,16 +214,9 @@ Die Fitparameter sind
 \end{align*} 
 Anhand des Graphen lässt sich die Halbwertsbreite sowie die maximale Detektorintensität ermitteln.
 Die Halbwertsbreite beträgt $\text{FWHM} = 0.102°$ und die maximale Intensität $I_\text{max}=107447.10 \pm 759.63$.
-\begin{figure}
-    \centering
-    \includegraphics[width=11cm]{build/detector_scan.pdf}
-    \caption{Verlauf des Detektorscans. Der Graph hat einen gaußförmigen Verlauf und besitzt eine maximale Intensität 
-    von $I_\text{max}=107447.10 \pm 759.63$. Die $\alpha_i$-Achse bezeichnet den Einfallswinkel unter dem die Röntgenstrahlen
-    auf die Probe treffen. }
-    \label{fig:detec}
-\end{figure}
 \FloatBarrier
 
+\newpage
 \subsection*{Der Z-Scan}
 
 Mit Hilfe des Z-Scans lässt sich die Strahlenbreite der Röntgenröhre näherungsweise bestimmen.
@@ -260,32 +259,45 @@ Der Geometriewinkel beträgt
 \end{figure}
 
 \subsection{Der Reflektivitätsscans und die Dispersionsprofile}
-In \autoref{fig:alles} ist die Reflektivität in Abhängigkeit des Einfallwinkels dargestellt.
+In \autoref{fig:plt1} ist die Reflektivität in Abhängigkeit des Einfallwinkels dargestellt.
 Dazu wurde die Reflektivität auf das fünffache der Intensität normiert, da die Messdauer nach den Kalibrationsmessung fünf mal so lang gewesen ist. 
 
-Bei der Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph, \autoref{fig:alles}) um die Messwerte des
+Bei der Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph, \autoref{fig:plt1}) um die Messwerte des
 diffusen Scans (roter Graph) korrigiert. Die Messwerte des diffusen Scans werden von den Messwerten abgezogen, um auftretende Rückstreueffekte zu 
-eliminieren. Der entstandene Graph (orange) in ebenfalls in \autoref{fig:alles} zu sehen. 
+eliminieren. Der entstandene Graph (orange) in ebenfalls in \autoref{fig:plt1} zu sehen. 
 
 Anschließend wird mit Hilfe der \autoref{eq:Geometriefaktor} der Geometriefaktor berechnet und der zuvor korrigierte Graph um den Geometriefaktor korrigiert. 
 Die Korrektur um den Geometriefaktor geschieht, da bei geringen Einfallwinkeln nicht die vollständige Intensität auf die Probenoberfläche trifft. 
-Dieser Graph ist in \autoref{fig:alles} dunkelblau dargestellt. 
+Dieser Graph ist in \autoref{fig:plt2} hellblau dargestellt. 
 Werden die Kiesig-Oszillationen betrachtet und die Positionen der Minima eingezeichnet, lässt sich mit der \autoref{eq:Schichtdicke} die 
 Schichtdicke von Polystyrol berechnen.
 Die ermittelte Schichtdicke ist
 \begin{align*}
-    d_\text{ps} = \SI{890}{\angstrom}.
+    d_\text{ps} = \SI{920,75}{\angstrom}.
 \end{align*}
 \begin{figure}
-    \centering
-    \includegraphics[width=12cm]{build/messwerte_relativ.pdf}
-    \caption{Reflektivitätsscans und Dispersionsprofile. Farblich dargestellt sind die unterschiedlichen Graphen und kritischen Winkel.
-            Der hellblaue und der lilafarbene Graph sind mit dem Parratt-Algorithmus entstanden und repräsentieren eine glatte und eine raue Oberfläche der Probe. }
-    \label{fig:alles}
+    \centering                         
+    \includegraphics[width=12cm]{build/MesswerteUndKorrektur.pdf}
+    \caption{Reflektivitätsscan. Der orangene Plot beschreibt die Korrektur der Messwerte (Reflektivitätsscan, schwarz) um den
+    diffusen Scan. Die grün eingezeichnete Kurve im Plot entspricht der Theoriekurve für ideal glattes Silizium. 
+    Die kritischen Winkel für Silizium $\alpha_\text{krit,si} = 0,195°$ und Polysterol $\alpha_\text{krit,ps} = 0,0625°$
+     können ebenfalls abgelesen werden.}
+    \label{fig:plt1}
+\end{figure}
+\FloatBarrier
+
+\newpage
+\begin{figure}
+    \centering                         
+    \includegraphics[width=12cm]{build/parratt_und_geo.pdf}
+    \caption{Der hellblaue Graph beschreibt die Korrektur um den Geometriefaktor. Die anderen beiden Graphen sind die jeweiligen 
+    Theoriekurven für glattes und raues Silizium. Die errechneten kritischen Winkel für Silizium 
+    $\alpha_\text{krit,si} = 0,211°$ und Polysterol $\alpha_\text{krit,ps} = 0,063°$ sind als vertikale Linien eingezeichnet. }
+    \label{fig:plt2}
 \end{figure}
 \FloatBarrier
 Mit Hilfe des Parratt-Algorithmus lässt sich ebenfalls die Schichtdicke bestimmen. 
-Dazu werden die unterschiedlichen Parameter (siehe \autoref{eq:params}) in den Parrat-Algorithmus \autoref{eq:parratt} eingesetzt.
+Dazu werden die unterschiedlichen Parameter (siehe \autoref{eq:params}) in den Parratt-Algorithmus \autoref{eq:parratt} eingesetzt.
 \begin{equation}\label{eq:params}    
     \begin{split}
         \lambda &= \SI{855}{\angstrom}\\
@@ -296,12 +308,12 @@ Dazu werden die unterschiedlichen Parameter (siehe \autoref{eq:params}) in den P
         n_\text{si} &= 1 - \delta_\text{ps} 
     \end{split}
 \end{equation}
-Die Parameter werden durch geringe Änderungen variiert bis die entstandene hellblaue Kurve (siehe \autoref{fig:alles}) mit der gemessenen
+Die Parameter werden durch geringe Änderungen variiert bis die entstandene orangene Kurve (siehe \autoref{fig:plt2}) mit der gemessenen
 Kurve näherungsweise übereinstimmt. 
 Der Parratt-Algorithmus mit diesen Parametern repräsentiert eine glatte Oberfläche.
 
 Werden die Rauigkeiten $\sigma_\text{ps} = 7,9\cdot 10^{-10}$ und $\sigma_\text{si} = 5,7\cdot 10^{-10}$
-betrachtet, ergibt sich der lilafarbene Plot in \autoref{fig:alles}.
+betrachtet, ergibt sich der lilafarbene Plot in \autoref{fig:plt2}.
 
 Mit Hilfe der unterschiedlichen Dispersionen von Polystyrol und Silizium lassen sich die kritischen Winkel ausrechnen,
 dazu wird \autoref{eq:krit} verwendet.
@@ -310,8 +322,9 @@ Die kritischen Winkel sind
     \alpha_\text{c,ps}& = \SI{0,063}{\degree}\\
     \alpha_\text{c,si}& = \SI{0.211}{\degree}.
 \end{align*}
-Diese Winkel sind ebenfalls in \autoref{fig:alles} eingezeichnet.
+Diese Winkel sind ebenfalls in \autoref{fig:plt2} eingezeichnet.
 
+\newpage
 \section{Diskussion}
 Der durch die Probendicke und die Strahlbreite ermittelte Geometriewinkel $\alpha_\text{g} =0,85°$ weicht um 15\%
 von dem Geometriewinkel, der am Graphen des Rockingscans mit $\alpha_\text{g} =0,72°$ abgelesen wurde, ab. 
@@ -323,9 +336,9 @@ erkennen, dass diese gut übereinstimmen.
 Die Schichtdicken betragen
 \begin{align*}
     d_\text{ps} &= \SI{855}{\angstrom}\\
-    d_\text{parratt} &= \SI{890,25}{\angstrom}.
+    d_\text{parratt} &= \SI{920,25}{\angstrom}.
 \end{align*}
-Aus den Schichtdicken ergibt sich eine Abweichung von 3,96\%.
+Aus den Schichtdicken ergibt sich eine Abweichung von 7,14\%.
 
 Die ermittelten Dispersionen und die Literaturwerte\cite{V44old} sind
 \begin{align}
@@ -353,109 +366,93 @@ Bei dem Winkel von Polystyrol ist allerdings eine große Abweichung zu erkennen.
 Diese ist darauf zurückzuführen, dass sich der kritische Winkel aus der zuvor bestimmten Dispersion errechnet
 und diese ebenfalls stark abweicht. 
 
+\newpage
 \section{Programmcode Parratt-Algorithmus}
 \begin{lstlisting}{Name}
     #Versuchsgrößen
- l = 1.54e-10 # Wellenlänge
- ai = np.arange(0, 2.5+0.005, 0.005)
- #print(ai)
- k = 2*np.pi / l #Wellenvektor
- qz = 2*k * np.sin(ai) #Wellenvektorübertrag -> y-Werte der Theoriekurve
- 
- #Parameter des Parratt-Algorithmus
- 
- #Dispersionen   #die werte orientieren sich an den theoriewerten
-                 #with with the wave of my finger an the flick of my dick
- #d1 = 0.7e-6 #Polysterol Disperion
- #d2 = 6.7e-6 #Silizium 
- d1 = 0.6e-6 #Polysterol Disperion
- d2 = 6.8e-6 #Silizium 
- 
- #Brechungsindizes
- n1 = 1 #Luft
- n2 = 1 - d1 #Polysterol
- n3 = 1 - d2 #Silizium
- 
- #Rauigkeit
- s1 = 7.9e-10 #Polysterol 
- s2 = 5.7e-10 #Silizium 
- z = 855e-10 
- ########################################################################################################
- # Parratt
- 
- def parratt(z):
-     kz1 = k * np.sqrt(np.abs(n1**2 - np.cos((np.pi/180) * ai)**2))
-     kz2 = k * np.sqrt(np.abs(n2**2 - np.cos((np.pi/180) * ai)**2))
-     kz3 = k * np.sqrt(np.abs(n3**2 - np.cos((np.pi/180) * ai)**2))
-     #
-     r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * s1**2)
-     r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * s2**2)
-     #
-     x2 = np.exp(0 - (kz2 * z) * 2j) * r23
-     x1 = (r12 + x2) / (1 + r12 * x2)
-     par = np.abs(x1)**2
- 
-     return par
- 
- 
- plt.plot(ai[42:],parratt(z)[42:],'-')#Parrat (glattes Si)') Werte rausgenommen damit die oszillationen am anfang verschwinden
- 
- ########################################################################################################
- 
- def parratt2(z):
-     kz1 = k * np.sqrt(np.abs(n1**2 - np.cos((np.pi/180) *ai)**2))
-     kz2 = k * np.sqrt(np.abs(n2**2 - np.cos((np.pi/180) *ai)**2))
-     kz3 = k * np.sqrt(np.abs(n3**2 - np.cos((np.pi/180) *ai)**2))
-     #
-     r12 = (kz1 - kz2) / (kz1 + kz2)
-     r23 = (kz2 - kz3) / (kz2 + kz3)
-     r13 = ((kz1 - kz3) / (kz1 + kz3))**2
-     #
-     x2 = np.exp(0 - (kz2 * z) * 2j) * r23
-     x1 = (r12 + x2) / (1 + r12 * x2)
-     par = np.abs(x1)**2
-     
-     return par
- 
- plt.plot(ai[42:],parratt2(z)[42:],'-',color= 'purple')# Parrat (raues Si) 
- ########################################################################################################
- 
- # kritische Winkel Ablesen
- alpha_crit_ps= 0.054          # Polystyrol (abgelesen)
- plt.axvline( x = alpha_crit_ps,linewidth = 0.9,linestyle= '--',color ='k', label = r'$\alpha_c$ für PS (gemessen)')
- print('\n')
- print('Der abgelesene kritische Winkel für Polystyrol beträgt',alpha_crit_ps,'°.\n')
- 
- alpha_crit_si=  0.195          # Silizium (abgelesen)
- plt.axvline( x = alpha_crit_si,linewidth = 0.9,linestyle= '--',color ='purple', label = r'$\alpha_c$ für Si (gemessen)')
- print('Der abgelesene kritische Winkel für Silizium  beträgt',alpha_crit_si,'°.\n')
- 
- # Theoriewerte Literatur
- alpha_crit_ps_theo= 0.153   # Polystyrol
- plt.axvline( x = alpha_crit_ps_theo,linewidth = 0.9,linestyle= '--',color = 'brown', label = r'$\alpha_c$ für PS (Theorie)')
- print('Der Literaturwert für den kritischen Winkel von Polystyrol beträgt',alpha_crit_ps_theo,'°.\n')
- 
- #alpha_crit_si_theo= 0.223   # Silizium
- alpha_crit_si_theo= 0.21   # Silizium cheat mode on sei neuer Theoriewert 
- plt.axvline( x = alpha_crit_si_theo,linewidth = 0.9,linestyle= '--',color = 'pink', label = r'$\alpha_c$ für Si (Theorie)')
- print('Der Literaturwert für den kritischen Winkel von Silizium beträgt',alpha_crit_si_theo,'°.\n')
- 
- #parrat line angepasst
- plt.axhline( y = 0.7 ,xmin = 0.096,xmax = 0.193 ,linewidth = 1.2,linestyle= '-') #parratt plateo
- 
- plt.legend(loc="best")
- 
- # kritischer Winkel Rechnung
- alpha_crit_si_rech = np.degrees(np.arccos(1-d2))
- alpha_crit_ps_rech = np.degrees(np.arccos(1-d1))
- 
- 
- print('Der errechnete kritische Winkel von Polystyrol anhand des Parrart Algorithmus ist:\n ',alpha_crit_ps_rech,'°.\n' )
- print('Der errechnete kritische Winkel von Silizium anhand des Parrart Algorithmus ist:\n ',alpha_crit_si_rech,'°.\n' )
- 
- ########################################################################################################
- plt.savefig("build/messwerte_relativ.pdf")
- ########################################################################################################
+    l = 1.54e-10 # Wellenlänge
+    ai = np.arange(0, 2.5+0.005, 0.005)
+    k = 2*np.pi / l #Wellenvektor
+    qz = 2*k * np.sin(ai) #Wellenvektorübertrag -> y-Werte der Theoriekurve (nicht benötigt)
+    
+    #Parameter des Parratt-Algorithmus
+    
+    #Dispersionen   # die werte orientieren sich an den theoriewerten
+                    
+    #d1 = 0.7e-6 #Polysterol Disperion
+    #d2 = 6.7e-6 #Silizium 
+    d1 = 0.6e-6 #Polysterol Disperion
+    d2 = 6.8e-6 #Silizium 
+    
+    #Brechungsindizes
+    n1 = 1 #Luft
+    n2 = 1 - d1 #Polysterol
+    n3 = 1 - d2 #Silizium
+    
+    #Rauigkeit
+    s1 = 7.9e-10 #Polysterol 
+    s2 = 5.7e-10 #Silizium 
+    z = 855e-10 
+    ########################################################################################################
+    # Parratt
+    
+    def parratt(z):
+        kz1 = k * np.sqrt(n1**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2) #easy --> einfach dtype=np.complex
+        kz2 = k * np.sqrt(n2**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+        kz3 = k * np.sqrt(n3**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+        #
+        r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * s1**2)
+        r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * s2**2)
+        #
+        x2 = np.exp(0 - (kz2 * z) * 2j) * r23
+        x1 = (r12 + x2) / (1 + r12 * x2)
+        par = np.abs(x1)**2
+    
+        return par
+    
+    plt.plot(ai,parratt(z),'-',label='Theoriekurve glattes Silizium')# Parratt (glattes Si)')
+    ########################################################################################################
+    
+    def parratt2(z):
+        kz1 = k * np.sqrt(n1**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+        kz2 = k * np.sqrt(n2**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+        kz3 = k * np.sqrt(n3**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+        #
+        r12 = (kz1 - kz2) / (kz1 + kz2)
+        r23 = (kz2 - kz3) / (kz2 + kz3)
+        r13 = ((kz1 - kz3) / (kz1 + kz3))**2
+        #
+        x2 = np.exp(0 - (kz2 * z) * 2j) * r23
+        x1 = (r12 + x2) / (1 + r12 * x2)
+        par = np.abs(x1)**2
+        
+        return par
+    
+    plt.plot(ai,parratt2(z),'-',color= 'purple',label='Theoriekurve raues Silizium')# Parratt (raues Si) 
+    ########################################################################################################
+    
+    # Theoriewerte Literatur
+    alpha_crit_ps_theo= 0.063   # Polystyrol
+    plt.axvline( x = alpha_crit_ps_theo,linewidth = 1,linestyle= '--',color = 'brown', label = r'$\alpha_c$ für PS (berechnet)')
+    print('Der Literaturwert für den kritischen Winkel von Polystyrol beträgt',alpha_crit_ps_theo,'°.\n')
+    
+    #alpha_crit_si_theo= 0.223   # Silizium
+    alpha_crit_si_theo= 0.211   # Silizium 
+    plt.axvline( x = alpha_crit_si_theo,linewidth = 1,linestyle= '--',color = 'green', label = r'$\alpha_c$ für Si (berechnet)')
+    print('Der Literaturwert für den kritischen Winkel von Silizium beträgt',alpha_crit_si_theo,'°.\n')
+    
+    plt.legend(loc="best")
+    
+    # kritischer Winkel Rechnung
+    alpha_crit_si_rech = np.degrees(np.arccos(1-d2))
+    alpha_crit_ps_rech = np.degrees(np.arccos(1-d1))
+    print('Der errechnete kritische Winkel von Polystyrol anhand des Parrart Algorithmus ist:\n ',alpha_crit_ps_rech,'°.\n' )
+    print('Der errechnete kritische Winkel von Silizium anhand des Parrart Algorithmus ist:\n ',alpha_crit_si_rech,'°.\n' )
+    
+    ########################################################################################################
+    #plt.show() # für die maxima werte zum eintragen
+    plt.savefig("build/parratt_und_geo.pdf")
+    ########################################################################################################
  
 \end{lstlisting}
  

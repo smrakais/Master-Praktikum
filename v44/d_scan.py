@@ -1,4 +1,6 @@
-# coding=utf-8
+#TODO
+
+#in line 204 müssen die werte für die minima angepasst werden und mach das am besten wieder mit plt.show()
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -8,6 +10,8 @@ from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 from scipy.signal import peak_widths
 
+import math
+import cmath as cm
 
 #########################################################################################
 # z_scan
@@ -46,23 +50,24 @@ plt.scatter(-0.76,778,color= 'r') # g_winkel_2
 plt.legend(loc="best") 
 plt.grid(ls= '--')
 plt.tight_layout()
-print('Der Geometriewinkel beträgt durch ablesen am Graphen: ' + str((0.68 + abs(-0.76))/2 )+ '°.')
-print('\n')
+print('Der Geometriewinkel beträgt durch ablesen am Graphen: ' + str((0.68 + abs(-0.76))/2 )+ '°.\n')
 plt.savefig("build/dreieck.pdf")
 ########################################################################################################
 
 # Geometriewinkel auch aus Strahldicke errechenbar.
 d = 0.3
 D = 20
-print('\n')
 print('Die Strahlbreite beträgt d = ' + str(d) +'mm.')
 print('Aus der Strahlbreite d = ' + str(d) +'mm'+' und der Probendicke D = ' + str(D)+ 'mm,' )
 print('ergibt sich mit arcsin(d/D) ein Geometriewinkel von ' + str(np.degrees(np.arcsin(d/D))) + '°.''\n')  
 fig.savefig('build/z_scan.pdf')
 ########################################################################################################
-# Geometriefaktor (eigentlich ein Geometriedivisor)
+# Geometriefaktor (eigentlich ein Geometriedivisor, deswegen ist das der Kehrwert)
 def geo(x):
-    return 1/((D*np.degrees(np.sin(x)))/d)
+    if x.any()<0.72: 
+        return 1/((D*np.degrees(np.sin(x)))/d)
+    else:
+       return 1
 #########################################################################################################
 
 # Detektor Scan
@@ -105,9 +110,10 @@ print('Die maximale Detektorintensität beträgt: I = ' + str( np.max(detector_i
 print("Die Halbwertsbreite(FWHM) beträgt: " + str(round(0.062+0.04,3)) +  "°" '\n')
 
 plt.savefig("build/detector_scan.pdf")
-#plt.show()
-########################################################################################################
 
+########################################################################################################
+############################### Beginn der eigentlichen Auswertung #####################################
+########################################################################################################
 
 # Reflektivitätsscan und ideale Kurve
 # read data
@@ -128,7 +134,7 @@ diffus_intensity = diffus_intensity[i:]
 
 rel_intensity = messung_intensity - diffus_intensity
 
-#Berechnung Reflektivität /5 wegen der Messdauer von 5 sekunden imm gegensatz zu den kalibrationsmessungen
+#Berechnung Reflektivität / 5 wegen der Messdauer von 5 sekunden imm gegensatz zu den kalibrationsmessungen
 refektivitaet_messwert = messung_intensity/(np.max(detector_intensity)*5)
 refektivitaet_diffus = diffus_intensity/(np.max(detector_intensity)*5)
 refektivitaet_rel = rel_intensity/(np.max(detector_intensity)*5)
@@ -150,15 +156,36 @@ plt.plot(messung_phi, refektivitaet_messwert,color = 'k', label="Messwerte")
 plt.plot(diffus_phi, refektivitaet_diffus,color = 'r', label="Diffuser Scan")
 plt.plot(rel_phi, refektivitaet_rel,color='orange', label="Korrigierte Messwerte")
 plt.plot(messung_phi[34:],ideale_kurve(messung_phi)[34:],color='green', label = 'Theoriekurve glattes Si') # bei 27 abgeschnitten da dort der krit winkel
-plt.plot(rel_phi, refektivitaet_rel*geo(rel_phi),linewidth = 1.3,color ='b',label = 'Geometriefaktor Korrektur')
-########################################################################################################
 
+# kritische Winkel Ablesen
+alpha_crit_ps= 0.0625          # Polystyrol (abgelesen)
+plt.axvline( x = alpha_crit_ps,linewidth = 0.9,linestyle= '--',color ='k', label = r'$\alpha_c$ für PS (abgelesen)')
+print('\n')
+print('Der abgelesene kritische Winkel für Polystyrol beträgt',alpha_crit_ps,'°.\n')
+
+alpha_crit_si=  0.195          # Silizium (abgelesen)
+plt.axvline( x = alpha_crit_si,linewidth = 0.9,linestyle= '--',color ='purple', label = r'$\alpha_c$ für Si (abgelesen)')
+print('Der abgelesene kritische Winkel für Silizium  beträgt',alpha_crit_si,'°.\n')
+
+plt.legend(loc='best')
+plt.grid(ls= '--')
+plt.minorticks_on()
+plt.tight_layout()
+plt.xlim(right = 1.5)
+plt.savefig('build/MesswerteUndKorrektur.pdf')
+
+
+plt.clf()
+plt.figure() #TODO
+
+
+########################################################################################################
 # Schichtdicke von PS abschätzen
 lambda_ = 1.54*10**(-10)
 
 def schichtdicke(delta):
-    d = lambda_/(2*np.sin((np.pi/180)*delta))               # der Sinus darf hier nicht wegfallen die Kleinwinkelnäherung funktioniert nicht!
-    print('Die Schichtdicke beträgt ' + str(d) +'m.') #ich hab hier das "return" davor weggemacht
+    d = lambda_/(2*np.sin((np.pi/180)*delta))# der Sinus darf hier nicht wegfallen die Kleinwinkelnäherung funktioniert nicht!
+    print('Die Schichtdicke beträgt ' + str(d) +'m.\n') #ich hab hier das "return" davor weggemacht
 ########################################################################################################
 
 ###################
@@ -178,9 +205,12 @@ def schichtdicke(delta):
 ########################################################################################################
 
 # Peaks manuell einstellen --> plt.show() liefert dir per cursor die passenden Werte. 
-x_min = np.array([0.304589, 0.345131, 0.39515, 0.440168, 0.485185, 0.544419, 0.594438, 0.644457, 0.694957, 0.745102, 0.800151])
-y_min = np.array([5.64299e-5, 2.51187e-5, 1.14976e-5, 5.93937e-6, 3.5276e-6, 1.92688e-6, 1.21014e-6, 7.18748e-7, 4.53076e-7, 3.34046e-7, 2.20286e-7]) / 5 #die 5 ist wegen der 5 sekunden messdauer
+x_min = np.array([0.26615, 0.303459, 0.349215, 0.393094, 0.440259, 0.486015, 0.544208, 0.595361, 0.645342, 0.695087, 0.745302])
+y_min = np.array([0.0370451, 1.3248e-2, 6.07244e-3, 3.4129e-3, 1.98739e-3, 1.27582e-3, 7.6075e-4, 5.21143e-4, 3.43569e-4, 2.22521e-4, 1.69055e-4]) 
 
+# Korrektur um geometrischen Faktor Plot
+plt.plot(rel_phi, refektivitaet_rel*geo(rel_phi),linewidth = 1.3,label = 'Geometriefaktor Korrektur')
+#print(type(rel_phi))
 # Minima Plot
 plt.plot(x_min,y_min,'x',color ='k')
 
@@ -202,24 +232,27 @@ print('Der Mittelwert von alpha_i ist '+ str(delta) +'°.')
 # Ausgabe Schichtdicke
 schichtdicke(delta)
 
+plt.xlabel(r"$\alpha_{i}$ / °")
+plt.yscale("log")
+plt.ylabel(r"Reflektivität")
 plt.grid(ls= '--')
 plt.minorticks_on()
 plt.tight_layout()
-plt.ylim(top = 1400)
-plt.xlim(right = 1.5)
+plt.ylim(top = 1400) #TODO
+plt.xlim(0,1.5)
+#plt.xlim(right = 1.5) #TODO
 ########################################################################################################
 
 #Versuchsgrößen
 l = 1.54e-10 # Wellenlänge
 ai = np.arange(0, 2.5+0.005, 0.005)
-#print(ai)
 k = 2*np.pi / l #Wellenvektor
-qz = 2*k * np.sin(ai) #Wellenvektorübertrag -> y-Werte der Theoriekurve
+qz = 2*k * np.sin(ai) #Wellenvektorübertrag -> y-Werte der Theoriekurve (nicht benötigt)
 
 #Parameter des Parratt-Algorithmus
 
-#Dispersionen   #die werte orientieren sich an den theoriewerten
-                #with with the wave of my finger an the flick of my dick
+#Dispersionen   # die werte orientieren sich an den theoriewerten
+                
 #d1 = 0.7e-6 #Polysterol Disperion
 #d2 = 6.7e-6 #Silizium 
 d1 = 0.6e-6 #Polysterol Disperion
@@ -238,9 +271,9 @@ z = 855e-10
 # Parratt
 
 def parratt(z):
-    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos((np.pi/180) * ai)**2))
-    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos((np.pi/180) * ai)**2))
-    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos((np.pi/180) * ai)**2))
+    kz1 = k * np.sqrt(n1**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2) #easy --> einfach dtype=np.complex
+    kz2 = k * np.sqrt(n2**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+    kz3 = k * np.sqrt(n3**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
     #
     r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * s1**2)
     r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * s2**2)
@@ -251,15 +284,13 @@ def parratt(z):
 
     return par
 
-
-plt.plot(ai[42:],parratt(z)[42:],'-')#Parrat (glattes Si)') Werte rausgenommen damit die oszillationen am anfang verschwinden
-
+plt.plot(ai,parratt(z),'-',label='Theoriekurve glattes Silizium')# Parratt (glattes Si)')
 ########################################################################################################
 
 def parratt2(z):
-    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos((np.pi/180) *ai)**2))
-    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos((np.pi/180) *ai)**2))
-    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos((np.pi/180) *ai)**2))
+    kz1 = k * np.sqrt(n1**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+    kz2 = k * np.sqrt(n2**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
+    kz3 = k * np.sqrt(n3**2 - np.cos((np.pi/180) *ai,dtype=np.complex)**2)
     #
     r12 = (kz1 - kz2) / (kz1 + kz2)
     r23 = (kz2 - kz3) / (kz2 + kz3)
@@ -271,44 +302,30 @@ def parratt2(z):
     
     return par
 
-plt.plot(ai[42:],parratt2(z)[42:],'-',color= 'purple')# Parrat (raues Si) 
+plt.plot(ai,parratt2(z),'-',color= 'purple',label='Theoriekurve raues Silizium')# Parratt (raues Si) 
 ########################################################################################################
 
-# kritische Winkel Ablesen
-alpha_crit_ps= 0.054          # Polystyrol (abgelesen)
-plt.axvline( x = alpha_crit_ps,linewidth = 0.9,linestyle= '--',color ='k', label = r'$\alpha_c$ für PS (gemessen)')
-print('\n')
-print('Der abgelesene kritische Winkel für Polystyrol beträgt',alpha_crit_ps,'°.\n')
-
-alpha_crit_si=  0.195          # Silizium (abgelesen)
-plt.axvline( x = alpha_crit_si,linewidth = 0.9,linestyle= '--',color ='purple', label = r'$\alpha_c$ für Si (gemessen)')
-print('Der abgelesene kritische Winkel für Silizium  beträgt',alpha_crit_si,'°.\n')
-
 # Theoriewerte Literatur
-alpha_crit_ps_theo= 0.153   # Polystyrol
-plt.axvline( x = alpha_crit_ps_theo,linewidth = 0.9,linestyle= '--',color = 'brown', label = r'$\alpha_c$ für PS (Theorie)')
+alpha_crit_ps_theo= 0.063   # Polystyrol
+plt.axvline( x = alpha_crit_ps_theo,linewidth = 1,linestyle= '--',color = 'brown', label = r'$\alpha_c$ für PS (berechnet)')
 print('Der Literaturwert für den kritischen Winkel von Polystyrol beträgt',alpha_crit_ps_theo,'°.\n')
 
 #alpha_crit_si_theo= 0.223   # Silizium
-alpha_crit_si_theo= 0.21   # Silizium cheat mode on sei neuer Theoriewert 
-plt.axvline( x = alpha_crit_si_theo,linewidth = 0.9,linestyle= '--',color = 'pink', label = r'$\alpha_c$ für Si (Theorie)')
+alpha_crit_si_theo= 0.211   # Silizium cheat mode on sei neuer Theoriewert 
+plt.axvline( x = alpha_crit_si_theo,linewidth = 1,linestyle= '--',color = 'green', label = r'$\alpha_c$ für Si (berechnet)')
 print('Der Literaturwert für den kritischen Winkel von Silizium beträgt',alpha_crit_si_theo,'°.\n')
-
-#parrat line angepasst
-plt.axhline( y = 0.7 ,xmin = 0.096,xmax = 0.193 ,linewidth = 1.2,linestyle= '-') #parratt plateo
 
 plt.legend(loc="best")
 
 # kritischer Winkel Rechnung
 alpha_crit_si_rech = np.degrees(np.arccos(1-d2))
 alpha_crit_ps_rech = np.degrees(np.arccos(1-d1))
-
-
 print('Der errechnete kritische Winkel von Polystyrol anhand des Parrart Algorithmus ist:\n ',alpha_crit_ps_rech,'°.\n' )
 print('Der errechnete kritische Winkel von Silizium anhand des Parrart Algorithmus ist:\n ',alpha_crit_si_rech,'°.\n' )
 
 ########################################################################################################
-plt.savefig("build/messwerte_relativ.pdf")
+#plt.show() # für die maxima werte zum eintragen
+plt.savefig("build/parratt_und_geo.pdf")
 ########################################################################################################
 
 
