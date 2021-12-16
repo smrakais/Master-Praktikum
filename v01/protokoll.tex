@@ -21,7 +21,113 @@
 
 
 \section{Auswertung}
+Im folgenden Kapitel werden die gesammelten Messdaten sowie die Justierung der Koinzidenz und 
+die Kalibrierung des Multichannel Analyzers ausgewertet.
 
+
+\subsection{Justierung der Koinzidenz}
+Um während der eigentlichen Messung in einer möglichst großen Ereignisrate zu messen, wird
+für verschiedene Verzögerungsdauern die Zählrate am Ende der Koinzidenz betrachtet.
+Dazu wird jeweils eine der Verzögerungleitungen in ihren Wert verändert und die resultierende Zählrate pro 10 Sekunden
+wird aufgenommen.
+Aus diesen Messwerten lässt sich anschließend ein Graph \autoref{fig:koinzidenz} plotten, 
+welcher die Ereignisraten den zugehörigen Verzögerungen zuordnet.
+Die Halbwertsbreite ergibt sich zu $\text{FWHM} = \SI{58}{\nano\second}$.
+Das Plateau gibt die maximale Ereignisrate an. 
+Diese liegt in unserem Experiment bei (gemittelt) $\SI{112,41}{\frac{1}{10 \second}}$ .
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build_new/plateau.pdf}
+    \caption{Gemessene Signalrate in Abhängigkeit der Verzögerungen.}
+    \label{fig:koinzidenz}
+\end{figure}
+\FloatBarrier
+Die dazugehörigen Messwerte sind in \autoref{tab:Koinzidenz} zu finden.
+%\input{build/tabKoinzidenz.tex} %OLD
+\input{build_new/tabKoinzidenz_new.tex} %FELIX
+\input{build_new/tabKalibration_new.tex} %FELIX
+\FloatBarrier
+
+\subsection{Kalibrierung des Multichannel Analyzers}
+Um den MCA\footnote{Im folgenden wird anstelle von Multichannel Analyzer, MCA verwendet.} zu kalibrieren, werden
+mit Hilfe eines Doppelimpulsgeneratiors Impulse mit unterschiedlichen Längen auf dem MCA geschickt und von diesem verarbeitet.
+Dadurch kann am Computer jeweils pro Impuls der jeweilige Kanal abgelesen werden.
+Mit Hilfe dieser Wertepaare vgl.\autoref{tab:Kalibration} kann im folgenden eine lineare Regression der Werte erfolgen und somit 
+kann jedem Kanal des MCA eine Zeit zugeordnet werden. 
+Im \autoref{fig:kalibration} ist die lineare Regression der Messwert zu sehen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build_new/kal.pdf}
+    \caption{Graphische Darstellung der linearen Regression.}
+    \label{fig:kalibration}
+\end{figure}
+\FloatBarrier
+Die Regression liefert die Werte
+\begin{equation}\label{eq:Regression}    
+    \begin{split}
+        m &= \num{0,04515(8)}\frac{\si{\micro\second}}{\text{Kanal}} \\
+        b &= \SI{-0,041(10)}{\micro\second} \, .
+    \end{split}
+\end{equation}
+\subsection{Bestimmung des Untergrunds}
+Um den Untergrund zu bestimmen muss zunächst berechnet 
+werden, wie viele Myonen im Mittel den Tank durchquert 
+haben. 
+\begin{equation}
+  \overline{N} = \frac{N_{\symup{start}}}{T_{\symup{gesamt}}} \, .
+\end{equation}
+$N_\text{Start}$ steht hierbei für die Myonen, welche einen
+Startimpuls ausgelöst haben.
+Während der Suchzeit $T_{s}$ tun dies im Mittel
+$n= \overline{N} \cdot T_{s}$ Myonen.
+Anschließend wird mit Hilfe der Poissonverteilung die Anzahl
+der Fehlmessungen bestimmt also genau der Fall betrachtet falls zwei 
+Myonen unmittelbar hintereinander den Detektor passieren 
+sollten. Es folgt mit 
+$N_{\symup{start}} = \num{3.0619(17)e6}$, $T_S = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
+= \SI{147182}{\second}$.
+\begin{equation}
+    N_{\symup{fehl}} = \overline{N} \cdot T_S \cdot \symup e^{- \overline{N} \cdot T_S}
+    \cdot N_{\symup{start}} = \num{1273.4(15)} \, .
+\end{equation}
+Da sich dieser Fehler auf alle Kanäle gleichermaßen 
+auswirkt, ergibt sich eine Untergrundrate von 
+\begin{equation}
+    U = \frac{N_{\symup{fehl}}}{\text{Anzahl Kanäle}} = \num{2.8298(32)} \, 
+\end{equation}
+mit 450 befüllten Kanälen.
+
+\subsection{Bestimmung der Lebensdauer}
+Im letzten Abschnitt wird die Lebensdauer der Myonen bestimmt.
+Durch die Kalibration des MCA lässt sich jedem Kanal eine Zeit zuordnen, sodass 
+mit den unterschiedlichen Ereignisraten der Graph in \autoref{fig:fit} ensteht.
+Die Exponentalfunktion mit der die Messdaten gefittet worden sind lautet
+\begin{equation}
+    f(t) = N_0 \cdot \symup e^{-\lambda \, t} + U_{\symup{fit}} \, .
+    \label{fit}
+\end{equation}
+Hierbei steht $U_\text{fit}$ für die Untergrundrate.
+Die Parameter des Fits sind
+\begin{align}
+    N_0 &= \num{242.5(16)} \ \text{pro Kanal} \\
+    \lambda &= \SI{0.451(8)}{\per\micro\second} \label{dauer} \\
+    U_{\symup{fit}} &= \num{1.8(13)} \ \text{pro Kanal} \label{Untergrund} \, .
+\end{align}
+Der inverse Abklingkoeffizient liefert schließlich die Lebensdauer des Myons.q
+Diese ist 
+\begin{equation}
+    \tau = \SI{2.22(4)}{\micro\second} \, .
+\end{equation}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build_new/fit.pdf}
+    \caption{Gefittete Ereignisrate in Abhängigkeit der Zeit.}
+    \label{fig:fit}
+\end{figure}
+
+\nocite{*}
+\printbibliography{}
+\end{document}
 %\begin{figure}
 %    \centering
 %    \includegraphics[width=0.7\linewidth]{./figures/xxx.xxx}
@@ -38,8 +144,4 @@
 %        n_\text{ps} &= 1 - \delta_\text{ps} \\
 %        n_\text{si} &= 1 - \delta_\text{ps} 
 %    \end{split}
-%\end{equation}
- 
-\nocite{*}
-\printbibliography{}
-\end{document}
+%\end{equation} 
