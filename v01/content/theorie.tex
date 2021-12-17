@@ -2,21 +2,83 @@
 Das Ziel dieses Versuchs ist die Bestimmung der Lebensdauer kosmischer Myonen.
 
 \section{Theorie}
-%Subsections noch ändern
 
-\subsection{Myonen}
+\subsection{Kosmische Myonen}
+%Frage 1:
 %Eigenschaften
-Im Standardmodell der Teilchenphysik ... keine Lust mehr lol
-%Entstehung in Air Showern
+Im Standardmodell der Teilchenphysik werden Fermionen in Quarks und Leptonen unterteilt. Es gibt drei Generationen, die jeweils aus einem geladenen Lepton, dem zugehörigen Neutrino und zwei Quarks bestehen. Myonen sind geladene Leptonen der zweiten Generation mit folgenden Eigenschaften
+\begin{itemize}
+    \item Masse m_{$\mu$} $= \SI{105.6}{\mega\electronvolt}$
+    \item Elektrische Ladung C $= 1$ e
+    \item Spin S $= \frac{1}{2} \hbar$
+    \item Leptonenzahl L_{$\mu$} $= 1$.
+\end{itemize}
 
-\subsection{Myonzerfall} %unnötig?
+%Myonzerfall
+Myonen besitzen eine endliche Lebensdauer. Ihr Zerfall ist ausschließlich unter Emission zweier Neutrinos möglich, da die Leptonenzahl erhalten sein muss:
+\begin{equation*}
+    \mu^- \rightarrow e^- + \bar{\nu_{e}} + \nu_{\mu} \, .
+\end{equation*}
+
+%Ursprung kosmische Myonen & Höhe
+Kosmische Myonen stammen unter anderem aus Pionzerfällen. Pionen entstehen durch Wechselwirkung energiereicher Protonen mit den Atomkernen der Luftmoleküle. Diese Pionen werden typischerweise in einer Höhe von $\SI{15}{\kilometre}$ erzeugt und zerfallen schnell, wodurch die kosmischen Myonen ebenfalls in $\SI{15}{\kilometre}$ Höhe entstehen. \cite{Grupen}
+
+%Frage 3:
+%Klassische und relativistische Reichweite
+Kosmische Myonen bewegen sich mit relativistischer Geschwindigkeit, wodurch es ihnen möglich ist, die Erde zu erreichen. Die klassische Reichweite eines Myons mit einer Energie von $E_{\mu} = \SI{10}{\giga\electronvolt}$ beträgt $s_{kl} = \SI{656}{\meter}$, während die relativistische Reichweite $s_{rel} = \gamma \cdot s_{kl} \approx \SI{6.3}{\kilometer}$ beträgt. Dabei ist $\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}$ und zur Berechnung wurden der Zusammenhang $E(v) = \gamma \, m_0 \, c^2$ und eine Lebensdauer von $\tau = \SI{2.2e-6}{\second}$ genutzt. Für energiereichere Myonen mit einer Geschwindigkeit von $v = \num{0.9998} c$ beträgt die relativistische Reichweite sogar $s_{rel} \approx \SI{33}{\kilometer}$.
 
 
+%Frage 2:
 \subsection{Lebensdauer von Teilchen}
+Der Zerfall eines instabilen Teilchens ist ein statistischer Prozess. Die Wahrscheinlichkeit $dW$ für einen Zerfall ist proportional zum Zeitintervall $dt$:
+\begin{equation*}
+    dW = \lambda \, dt \, .
+\end{equation*}
+Die Zahl der im Intervall $dt$ zerfallenen Teilchen $dN$ entspricht
+\begin{equation*}
+    dN = - N \, dW \, .
+\end{equation*}
+Durch Integration kann eine Verteilungsfunktion der Lebensdauer bestimmt werden:
+\begin{equation}
+    \frac{dN(t)}{N_0} = \lambda \, \exp(- \lambda t) \, dt \, .
+    \label{eq:verteilung}
+\end{equation}
+Die charakteristische Lebensdauer $\tau$ eines Teilchens wird durch Bildung des Erwartungswerts dieser Verteilungsfunktion bestimmt:
+\begin{equation}
+    \tau = \frac{1}{\lambda} \, .
+    \label{eq:tau}
+\end{equation}
+Dabei ist $\lambda$ die sogenannte Zerfallskonstante.
 
 
 \subsection{Detektion kosmischer Myonen}
-%Zwei Pulse, Rest in Durchführung/Aufbau erklären
+
+Kosmische Myonen können auf der Erdoberfläche mithilfe eines Szintillations-Detektors nachgewiesen werden. 
 
 \subsubsection{Szintillatoren}
-\subsubsection{Photomultiplier}
+%Frage 5:
+%Was ist ein Szintillator und welche Arten gibt es? In welchen Eigenschaften unterscheiden sie sich und welche Vor- und Nachteile ergeben sich daraus für diesen Versuch?
+
+\subsubsection{Messmethode}
+%Frage 8:
+%Nach welcher Methode wird die Lebensdauer kosmischer Myonen im Rahmen dieses Versuches bestimmt? Wie ist das grundlegende Messprinzip schaltungstechnisch verwirklicht; welche Aufgaben übernehmen dabei die einzelnen Bauteile?
+Im Szintillatortank geben sie Energie an Moleküle des Szintillatormaterials ab, wodurch diese in angeregte Zustände übergehen. Bei dem Übergang in den Grundzustand werden Photonen emittiert. Mithilfe der an beiden Enden des Tanks angekoppelten Photomultipliern wird durch diesen Lichtblitz  ein elektrisches Signal erzeugt. Ein Teil der Myonen kann im Szintillatorvolumen bis zum Stillstand abgebremst werden und zerfällt somit im Detektor. Die daraus entstehenden Elektronen erzeugen ebenfalls einen Lichtblitz. Der zeitliche Abstand dieser beiden Signale entspricht der Lebensdauer eines Myons und kann mithilfe einer elektronischen Vorrichtung gemessen werden.
+
+%Frage 4:
+%Welche Ereignisrate erwarten Sie auf der Erdoberfläche? Den Szintillatortank kön- nen Sie als liegenden Zylinder mit h = 2r und V = 50 l nähern
+Auf der Erdoberfläche wird pro Minute und Quadratzentimeter ein Myon erwartet. Im Szintillatortank, der ein Volumen von $\SI{50}{\litre}$ hat, wird also eine Ereignisrate von $\SI{1}{\per\minute}$ erwartet. %WERT ÄNDERN
+
+
+
+%\subsection{Vialkanalanalysator}
+%Frage 7:
+%Wie funktioniert ein Vielkanalanalysator und welche Größen werden in diesem Versuch im Spektrum gegeneinander aufgetragen? Formulieren Sie eine Erwartungs- haltung, wie das entstehende Spektrum aussieht.
+
+\subsection{Rauschunterdrückung}
+%Frage 6:
+%Welche Maßnahmen zur Rauschunterdrückung werden vorgenommen? Schätzen Sie die verbleibende Untergrundrate U ab. Nehmen Sie dazu an, dass die Wahrscheinlichkeit, dass ein weiteres Myon während der Suchzeit Ts eintritt und damit ein Stoppsignal auslöst, poissonverteilt ist.
+Die Photokathoden können ohne den Einfall eines Photons spontan Elektronen emittieren, wodurch ein Spannungsimpuls erzeugt wird. Um dieses Rauschen zu unterdrücken, müssen Maßnahmen vorgenommen werden.
+
+Die herauszufilternen Impulse sind typischerweise kleiner als die durch Photonen erzeugten Impulse. Daher werden Diskriminatoren an die Photomultiplier angeschlossen, die alle Impulse unterhalb einer Schwelle herausfiltern und für die restlichen einen Rechteckpuls ausgeben.
+
+Es sind zwei Photomultiplier nötig, damit keine Signalpulse herausgefiltert werden für den Fall, dass die Schwelle zu hoch gewählt ist. Diese werden durch Verzögerungsleitungen aneinander angepasst, da es schaltungstechnische Unterschiede gibt. Die Photomultiplier mit den Diskriminatoren werden an eine Koinzidenzschaltung angeschlossen. Diese sendet ein Signal aus, wenn die Impulse innerhalb einer Zeit $\Delta t$ eintreffen. Das bedeutet, dass beide Photomultiplier das selbe Myon detektiert haben. Dass beide Photokathoden in der Zeit $\Delta t$ ein Elektron emittieren ist unwahrscheinlich.
