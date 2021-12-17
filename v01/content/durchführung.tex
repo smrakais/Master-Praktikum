@@ -1,17 +1,17 @@
 \section{Durchführung}
 
 \subsection{Aufbau}
-In diesem Versuch wird die Lebensdauer kosmischer Myonen mithilfe dem in Abb. \ref{fig:Aufbau} gezeigten Aufbau bestimmt. Ein Foto des Aufbaus ist in Abb. \ref{fig:Aufbau_Foto} zu sehen. Die einzelnen Bauteile werden im Folgenden kurz beschrieben.
+In diesem Versuch wird die Lebensdauer kosmischer Myonen mithilfe dem in \autoref{fig:Aufbau} gezeigten Aufbau bestimmt. Ein Foto des Aufbaus ist in \autoref{fig:Aufbau_Foto} zu sehen. Die einzelnen Bauteile werden im Folgenden kurz beschrieben.
 \begin{itemize}
-    \item Szintillator:
-    \item Photomultiplier
-    \item Verzögerungsleitung 
-    \item Diskriminator
-    \item Koinzidenzschaltung
-    \item AND-Gatter
-    \item Monostabile Kippstufe (Univibrator)
-    \item Zeit-Amplituden-Converter (TAC)
-    \item Vielkanalanalysator
+    \item Der Szintillator ist ein mit Tuolol gefüllter Edelstahltank mit einem Fassungsvermögen von $\SI{50}{\litre}$. Myonen regen wegen ihrer hohen kinetischen Energie die Szintillatormoleküle an, wodurch ein Photon emittiert wird. Beim Zerfall eines Myons im Detektor regt das entstandene Elektron ebenfalls Szintillatormoleküle an.
+    \item Die beiden Photomultiplier bestehen im Wesentlichen aus einer Photokathode und einem Sekundärelektronenvervielfacher, durch den das Signal verstärkt wird. Es wird also Lichteinwirkung in ein elektrisches Signal umgewandelt.
+    \item Die Verzögerungsleitungen bestehen aus Kabeln, die einzeln dazu geschaltet werden können. Der Sinn dieser Leitungen ist es, die verschiedenen Eigenschaften der Photomultiplier ausgleichen zu können.
+    \item Der Diskriminator legt eine Schwelle fest, ab der Spannungsimpulse durchgelassen werden. Die Länge der ausgegebenen Rechteckimpulse kann variiert werden.
+    \item Mithilfe der Koinzidenzschaltung wird nach Ereignissen gefiltert, die "gleichzeitig" auftreten. 
+    \item Für die Dauer eines Impulses, der am AND-Gatter ankommt, liegt an diesem ein HIGH an. %noch was?
+    \item Die monostabile Kippstufe (Univibrator) gewährleistet, dass ein neuer Startimpuls auch als solcher erkannt wird, indem sie durch den Stop-Impuls wieder zurückkippt. Hier wird eine Suchzeit eingestellt, damit sichergestellt ist, dass die Zeitmessung zurückgesetzt wird, falls kein Stop-Signal eintrifft. %noch was?
+    \item Der Zeit-Amplituden-Converter (TAC) bestimmt die Zeit zwischen dem Start- und Stop-Signal und wandelt diese in ein Spannungssignal um, das proportional zur Dauer ist.
+    \item Der Vielkanalanalysator speichert die Spannungssignale ihrer Höhe entsprechend in einem Kanal.
 \end{itemize}
 
 \begin{figure}

@@ -18,6 +18,138 @@
 \newpage
 
 \section{Ziel}
+Das Ziel dieses Versuchs ist die Bestimmung der Lebensdauer kosmischer Myonen.
+
+\section{Theorie}
+
+\subsection{Kosmische Myonen}
+%Frage 1:
+%Eigenschaften
+Im Standardmodell der Teilchenphysik werden Fermionen in Quarks und Leptonen unterteilt. Es gibt drei Generationen, die jeweils aus einem geladenen Lepton, dem zugehörigen Neutrino und zwei Quarks bestehen. Myonen sind geladene Leptonen der zweiten Generation mit folgenden Eigenschaften
+\begin{itemize}
+    \item Masse m_{$\mu$} $= \SI{105.6}{\mega\electronvolt}$
+    \item Elektrische Ladung C $= 1$ e
+    \item Spin S $= \frac{1}{2} \hbar$
+    \item Leptonenzahl L_{$\mu$} $= 1$.
+\end{itemize}
+
+%Myonzerfall
+Myonen besitzen eine endliche Lebensdauer. Ihr Zerfall ist ausschließlich unter Emission zweier Neutrinos möglich, da die Leptonenzahl erhalten sein muss:
+\begin{equation*}
+    \mu^- \rightarrow e^- + \bar{\nu_{e}} + \nu_{\mu} \, .
+\end{equation*}
+
+%Ursprung kosmische Myonen & Höhe
+Kosmische Myonen stammen unter anderem aus Pionzerfällen. Pionen entstehen durch Wechselwirkung energiereicher Protonen mit den Atomkernen der Luftmoleküle. Diese Pionen werden typischerweise in einer Höhe von $\SI{15}{\kilometre}$ erzeugt und zerfallen schnell, wodurch die kosmischen Myonen ebenfalls in $\SI{15}{\kilometre}$ Höhe entstehen. \cite{Grupen}
+
+%Frage 3:
+%Klassische und relativistische Reichweite
+Kosmische Myonen bewegen sich mit relativistischer Geschwindigkeit, wodurch es ihnen möglich ist, die Erde zu erreichen. Die klassische Reichweite eines Myons mit einer Energie von $E_{\mu} = \SI{10}{\giga\electronvolt}$ beträgt $s_{kl} = \SI{656}{\meter}$, während die relativistische Reichweite $s_{rel} = \gamma \cdot s_{kl} \approx \SI{6.3}{\kilometer}$ beträgt. Dabei ist $\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}$ und zur Berechnung wurden der Zusammenhang $E(v) = \gamma \, m_0 \, c^2$ und eine Lebensdauer von $\tau = \SI{2.2e-6}{\second}$ genutzt. Für energiereichere Myonen mit einer Geschwindigkeit von $v = \num{0.9998} c$ beträgt die relativistische Reichweite sogar $s_{rel} \approx \SI{33}{\kilometer}$.
+
+
+%Frage 2:
+\subsection{Lebensdauer von Teilchen}
+Der Zerfall eines instabilen Teilchens ist ein statistischer Prozess. Die Wahrscheinlichkeit $dW$ für einen Zerfall ist proportional zum Zeitintervall $dt$:
+\begin{equation*}
+    dW = \lambda \, dt \, .
+\end{equation*}
+Die Zahl der im Intervall $dt$ zerfallenen Teilchen $dN$ entspricht
+\begin{equation*}
+    dN = - N \, dW \, .
+\end{equation*}
+Durch Integration kann eine Verteilungsfunktion der Lebensdauer bestimmt werden:
+\begin{equation}
+    \frac{dN(t)}{N_0} = \lambda \, \exp(- \lambda t) \, dt \, .
+    \label{eq:verteilung}
+\end{equation}
+Die charakteristische Lebensdauer $\tau$ eines Teilchens wird durch Bildung des Erwartungswerts dieser Verteilungsfunktion bestimmt:
+\begin{equation}
+    \tau = \frac{1}{\lambda} \, .
+    \label{eq:tau}
+\end{equation}
+Dabei ist $\lambda$ die sogenannte Zerfallskonstante.
+
+
+\subsection{Detektion kosmischer Myonen}
+Kosmische Myonen können auf der Erdoberfläche mithilfe eines Szintillations-Detektors nachgewiesen werden. 
+%\subsubsection{Szintillatoren}
+%Frage 5:
+%Was ist ein Szintillator und welche Arten gibt es? In welchen Eigenschaften unterscheiden sie sich und welche Vor- und Nachteile ergeben sich daraus für diesen Versuch?
+
+\subsubsection{Messmethode}
+%Frage 8:
+%Nach welcher Methode wird die Lebensdauer kosmischer Myonen im Rahmen dieses Versuches bestimmt? Wie ist das grundlegende Messprinzip schaltungstechnisch verwirklicht; welche Aufgaben übernehmen dabei die einzelnen Bauteile?
+Im Szintillatortank geben sie Energie an Moleküle des Szintillatormaterials ab, wodurch diese in angeregte Zustände übergehen. Bei dem Übergang in den Grundzustand werden Photonen emittiert. Mithilfe der an beiden Enden des Tanks angekoppelten Photomultipliern wird durch diesen Lichtblitz  ein elektrisches Signal erzeugt. Ein Teil der Myonen kann im Szintillatorvolumen bis zum Stillstand abgebremst werden und zerfällt somit im Detektor. Die daraus entstehenden Elektronen erzeugen ebenfalls einen Lichtblitz. Der zeitliche Abstand dieser beiden Signale entspricht der Lebensdauer eines Myons und kann mithilfe einer elektronischen Vorrichtung gemessen werden.
+
+%Frage 4:
+%Welche Ereignisrate erwarten Sie auf der Erdoberfläche? Den Szintillatortank kön- nen Sie als liegenden Zylinder mit h = 2r und V = 50 l nähern
+Auf der Erdoberfläche wird pro Minute und Quadratzentimeter ein Myon erwartet. Im Szintillatortank, der ein Volumen von $\SI{50}{\litre}$ hat, wird also eine Ereignisrate von $\SI{1}{\per\minute}$ erwartet. %WERT ÄNDERN
+
+%\subsection{Vialkanalanalysator}
+%Frage 7:
+%Wie funktioniert ein Vielkanalanalysator und welche Größen werden in diesem Versuch im Spektrum gegeneinander aufgetragen? Formulieren Sie eine Erwartungs- haltung, wie das entstehende Spektrum aussieht.
+
+\subsection{Rauschunterdrückung}
+%Frage 6:
+%Welche Maßnahmen zur Rauschunterdrückung werden vorgenommen? Schätzen Sie die verbleibende Untergrundrate U ab. Nehmen Sie dazu an, dass die Wahrscheinlichkeit, dass ein weiteres Myon während der Suchzeit Ts eintritt und damit ein Stoppsignal auslöst, poissonverteilt ist.
+Die Photokathoden können ohne den Einfall eines Photons spontan Elektronen emittieren, wodurch ein Spannungsimpuls erzeugt wird. Um dieses Rauschen zu unterdrücken, müssen Maßnahmen vorgenommen werden.
+
+Die herauszufilternen Impulse sind typischerweise kleiner als die durch Photonen erzeugten Impulse. Daher werden Diskriminatoren an die Photomultiplier angeschlossen, die alle Impulse unterhalb einer Schwelle herausfiltern und für die restlichen einen Rechteckpuls ausgeben.
+
+Es sind zwei Photomultiplier nötig, damit keine Signalpulse herausgefiltert werden für den Fall, dass die Schwelle zu hoch gewählt ist. Diese werden durch Verzögerungsleitungen aneinander angepasst, da es schaltungstechnische Unterschiede gibt. Die Photomultiplier mit den Diskriminatoren werden an eine Koinzidenzschaltung angeschlossen. Diese sendet ein Signal aus, wenn die Impulse innerhalb einer Zeit $\Delta t$ eintreffen. Das bedeutet, dass beide Photomultiplier das selbe Myon detektiert haben. Dass beide Photokathoden in der Zeit $\Delta t$ ein Elektron emittieren ist unwahrscheinlich.
+
+
+
+
+
+
+\section{Durchführung}
+
+\subsection{Aufbau}
+In diesem Versuch wird die Lebensdauer kosmischer Myonen mithilfe dem in \autoref{fig:Aufbau} gezeigten Aufbau bestimmt. Ein Foto des Aufbaus ist in \autoref{fig:Aufbau_Foto} zu sehen. Die einzelnen Bauteile werden im Folgenden kurz beschrieben.
+\begin{itemize}
+    \item Der Szintillator ist ein mit Tuolol gefüllter Edelstahltank mit einem Fassungsvermögen von $\SI{50}{\litre}$. Myonen regen wegen ihrer hohen kinetischen Energie die Szintillatormoleküle an, wodurch ein Photon emittiert wird. Beim Zerfall eines Myons im Detektor regt das entstandene Elektron ebenfalls Szintillatormoleküle an.
+    \item Die beiden Photomultiplier bestehen im Wesentlichen aus einer Photokathode und einem Sekundärelektronenvervielfacher, durch den das Signal verstärkt wird. Es wird also Lichteinwirkung in ein elektrisches Signal umgewandelt.
+    \item Die Verzögerungsleitungen bestehen aus Kabeln, die einzeln dazu geschaltet werden können. Der Sinn dieser Leitungen ist es, die verschiedenen Eigenschaften der Photomultiplier ausgleichen zu können.
+    \item Der Diskriminator legt eine Schwelle fest, ab der Spannungsimpulse durchgelassen werden. Die Länge der ausgegebenen Rechteckimpulse kann variiert werden.
+    \item Mithilfe der Koinzidenzschaltung wird nach Ereignissen gefiltert, die "gleichzeitig" auftreten. 
+    \item Für die Dauer eines Impulses, der am AND-Gatter ankommt, liegt an diesem ein HIGH an. %noch was?
+    \item Die monostabile Kippstufe (Univibrator) gewährleistet, dass ein neuer Startimpuls auch als solcher erkannt wird, indem sie durch den Stop-Impuls wieder zurückkippt. Hier wird eine Suchzeit eingestellt, damit sichergestellt ist, dass die Zeitmessung zurückgesetzt wird, falls kein Stop-Signal eintrifft. %noch was?
+    \item Der Zeit-Amplituden-Converter (TAC) bestimmt die Zeit zwischen dem Start- und Stop-Signal und wandelt diese in ein Spannungssignal um, das proportional zur Dauer ist.
+    \item Der Vielkanalanalysator speichert die Spannungssignale ihrer Höhe entsprechend in einem Kanal.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/Aufbau.png}
+    \caption{Blockschaltbild der Versuchsvorrichtung. \cite{V01}}
+    \label{fig:Aufbau}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/Aufbau_Foto.jpg}
+    \caption{Foto des Versuchsaufbaus.}
+    \label{fig:Aufbau_Foto}
+\end{figure}
+
+\subsection{Kalibrierung und Verkabelung}
+Zunächst werden die am Szintillationstank angebrachten Photomultiplier an ein Oszilloskop angeschlossen, um sicherzustellen, dass sie funktionieren.
+Anschließend werden die Photomultiplier über die Verzögerungsleitungen mit den Diskriminatoren verkabelt. Es wird noch keine Verzögerung eingestellt. Das Ergebnis wird ebenfalls am Oszilloskop sichtbar gemacht. An den Diskriminatoren wird die Pulsweite mithilfe der am Oszilloskop abgebildeten Pulse auf jeweils $\Delta t = \SI{10}{\nano\second}$ gestellt.
+Als nächstes werden die Ausgänge der Diskriminatoren an einen Impulszähler angeschlossen. Die Schwelle der Diskriminatoren wird so angepasst, dass an beiden Ausgängen ca. $\num{30}$ Pulse pro Sekunde gemessen werden.
+Im nächsten Schritt wird die Koinzidenz in die Schaltung integriert und der Ausgang an den Impulszähler angeschlossen. Die Verzögerungen werden systematisch nacheinander variiert. Dabei wird für jede Verzögerung die Impulsrate aufgenommen. Es ist ein deutliches Maximum, bzw. ein Plateau in der Verteilung, der Impulsrate zu sehen. Die Verzögerung wird auf diesen Wert eingestellt.
+Die restliche Schaltung wird verkabelt. 
+Am Monoflop wird eine Suchzeit $T_s$ eingestellt, die am auch TAC entsprechend eingestellt wird.
+
+Der Teil vor der Koinzidenzschaltung wird abgeklemmt. Stattdessen wird ein Doppelimpulsgenerator an die Koinzidenz angeschlossen.
+Die Pulsabstände werden zwischen $\SI{0.3}{\micro\second}$ und $\SI{9.9}{\micro\second}$ variiert und die entsprechende Kanalnummer des Vielkanalanalysators aufgenommen.
+
+\subsection{Messung}
+An die Koinzidenzschaltung werden erneut die zuvor abgeklemmten Photomultiplier angeschlossen. Die Aufzeichung des Vielkanalanalysators wird gleichzeitig mit dem Impulszähler gestartet und etwa $\num{20}$ bis $\SI{30}{\hour}$ laufen gelassen. %wie lange genau? Weiß man das? 
+
+
+
+
 
 
 \section{Auswertung}
@@ -49,10 +181,10 @@ Die dazugehörigen Messwerte sind in \autoref{tab:Koinzidenz} zu finden.
 \FloatBarrier
 
 \subsection{Kalibrierung des Multichannel Analyzers}
-Um den MCA\footnote{Im folgenden wird anstelle von Multichannel Analyzer, MCA verwendet.} zu kalibrieren, werden
-mit Hilfe eines Doppelimpulsgeneratiors Impulse mit unterschiedlichen Längen auf dem MCA geschickt und von diesem verarbeitet.
+Um den MCA\footnote{Im Folgenden wird anstelle von Multichannel Analyzer, MCA verwendet.} zu kalibrieren, werden
+mit Hilfe eines Doppelimpulsgenerators Impulse mit unterschiedlichen Längen auf den MCA geschickt und von diesem verarbeitet.
 Dadurch kann am Computer jeweils pro Impuls der jeweilige Kanal abgelesen werden.
-Mit Hilfe dieser Wertepaare vgl.\autoref{tab:Kalibration} kann im folgenden eine lineare Regression der Werte erfolgen und somit 
+Mit Hilfe dieser Wertepaare vgl.\autoref{tab:Kalibration} kann im Folgenden eine lineare Regression der Werte erfolgen und somit 
 kann jedem Kanal des MCA eine Zeit zugeordnet werden. 
 Im \autoref{fig:kalibration} ist die lineare Regression der Messwert zu sehen.
 \begin{figure}
@@ -70,8 +202,8 @@ Die Regression liefert die Werte
     \end{split}
 \end{equation}
 \subsection{Bestimmung des Untergrunds}
-Um den Untergrund zu bestimmen muss zunächst berechnet 
-werden, wie viele Myonen im Mittel den Tank durchquert 
+Um den Untergrund zu bestimmen, muss zunächst berechnet 
+werden wie viele Myonen im Mittel den Tank durchquert 
 haben. 
 \begin{equation}
   \overline{N} = \frac{N_{\symup{start}}}{T_{\symup{gesamt}}} \, .
@@ -81,7 +213,7 @@ Startimpuls ausgelöst haben.
 Während der Suchzeit $T_{s}$ tun dies im Mittel
 $n= \overline{N} \cdot T_{s}$ Myonen.
 Anschließend wird mit Hilfe der Poissonverteilung die Anzahl
-der Fehlmessungen bestimmt also genau der Fall betrachtet falls zwei 
+der Fehlmessungen bestimmt, also genau der Fall betrachtet falls zwei 
 Myonen unmittelbar hintereinander den Detektor passieren 
 sollten. Es folgt mit 
 $N_{\symup{start}} = \num{3.0619(17)e6}$, $T_S = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
@@ -100,8 +232,8 @@ mit 450 befüllten Kanälen.
 \subsection{Bestimmung der Lebensdauer}
 Im letzten Abschnitt wird die Lebensdauer der Myonen bestimmt.
 Durch die Kalibration des MCA lässt sich jedem Kanal eine Zeit zuordnen, sodass 
-mit den unterschiedlichen Ereignisraten der Graph in \autoref{fig:fit} ensteht.
-Die Exponentalfunktion mit der die Messdaten gefittet worden sind lautet
+mit den unterschiedlichen Ereignisraten der Graph in \autoref{fig:fit} entsteht.
+Die Exponentialfunktion mit der die Messdaten gefittet worden sind, lautet
 \begin{equation}
     f(t) = N_0 \cdot \symup e^{-\lambda \, t} + U_{\symup{fit}} \, .
     \label{fit}
@@ -130,10 +262,10 @@ Diese ist
 Die im Experiment ermittelte Lebensdauer des Myons $\tau = \SI{2.22(4)}{\micro\second}$
 kommt dem Literaturwert $\tau = \SI{2.197}{\micro\second}$ \cite{lebensdauer} sehr nah.
 Es ergibt sich eine Abweichung von 1,04\%.
-Damit kann der ermittelte Wert als Plausibel angenommen werden.
-Der geringe Abweichung ist wahrscheinlich auf die hohe Ereignisrate zurückzuführen.
+Damit kann der ermittelte Wert als plausibel angenommen werden.
+Die geringe Abweichung ist wahrscheinlich auf die hohe Ereignisrate zurückzuführen.
 Andere kleinere Fehlerquellen sind beispielsweise die Justierung der Suchzeit am Monoflop per Hand oder
-das einstellen des Diskriminators mit Hilfe eines Schraubendrehers. 
+das Einstellen des Diskriminators mit Hilfe eines Schraubendrehers. 
 
 \nocite{*}
 \printbibliography{}
