@@ -5,7 +5,7 @@
 \lstset{language=Perl}
 \AtBeginDocument{\pagenumbering{arabic}}
 
-\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V01 \\ - Lebensdauer von Myonen -}
+\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V01 \\ - Lebensdauer kosmischer Myonen -}
 
 %\title{test}
 \date{Durchführung: 06.12.2021, Abgabe: 17.12.2021}
@@ -101,7 +101,7 @@ Auf der Erdoberfläche wird pro Minute und Quadratzentimeter ein Myon erwartet. 
 %Frage 7:
 %Wie funktioniert ein Vielkanalanalysator und welche Größen werden in diesem Versuch im Spektrum gegeneinander aufgetragen? Formulieren Sie eine Erwartungs- haltung, wie das entstehende Spektrum aussieht.
 
-\subsection{Rauschunterdrückung}
+\subsubsection{Rauschunterdrückung}
 %Frage 6:
 %Welche Maßnahmen zur Rauschunterdrückung werden vorgenommen? Schätzen Sie die verbleibende Untergrundrate U ab. Nehmen Sie dazu an, dass die Wahrscheinlichkeit, dass ein weiteres Myon während der Suchzeit Ts eintritt und damit ein Stoppsignal auslöst, poissonverteilt ist.
 Die Photokathoden können ohne den Einfall eines Photons spontan Elektronen emittieren, wodurch ein Spannungsimpuls erzeugt wird. Um dieses Rauschen zu unterdrücken, müssen Maßnahmen vorgenommen werden.
@@ -109,10 +109,6 @@ Die Photokathoden können ohne den Einfall eines Photons spontan Elektronen emit
 Die herauszufilternen Impulse sind typischerweise kleiner als die durch Photonen erzeugten Impulse. Daher werden Diskriminatoren an die Photomultiplier angeschlossen, die alle Impulse unterhalb einer Schwelle herausfiltern und für die restlichen einen Rechteckpuls ausgeben.
 
 Es sind zwei Photomultiplier nötig, damit keine Signalpulse herausgefiltert werden für den Fall, dass die Schwelle zu hoch gewählt ist. Diese werden durch Verzögerungsleitungen aneinander angepasst, da es schaltungstechnische Unterschiede gibt. Die Photomultiplier mit den Diskriminatoren werden an eine Koinzidenzschaltung angeschlossen. Diese sendet ein Signal aus, wenn die Impulse innerhalb einer Zeit $\Delta t$ eintreffen. Das bedeutet, dass beide Photomultiplier das selbe Myon detektiert haben. Dass beide Photokathoden in der Zeit $\Delta t$ ein Elektron emittieren ist unwahrscheinlich.
-
-
-
-
 
 
 \section{Durchführung}
@@ -130,20 +126,21 @@ In diesem Versuch wird die Lebensdauer kosmischer Myonen mithilfe dem in \autore
     \item Der Zeit-Amplituden-Converter (TAC) bestimmt die Zeit zwischen dem Start- und Stop-Signal und wandelt diese in ein Spannungssignal um, das proportional zur Dauer ist.
     \item Der Vielkanalanalysator speichert die Spannungssignale ihrer Höhe entsprechend in einem Kanal.
 \end{itemize}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\linewidth]{figures/Aufbau.png}
-    \caption{Blockschaltbild der Versuchsvorrichtung. \cite{V01}}
-    \label{fig:Aufbau}
-\end{figure}
-
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{figures/Aufbau_Foto.jpg}
     \caption{Foto des Versuchsaufbaus.}
     \label{fig:Aufbau_Foto}
 \end{figure}
+\FloatBarrier
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/Aufbau.png}
+    \caption{Blockschaltbild der Versuchsvorrichtung. \cite{V01}}
+    \label{fig:Aufbau}
+\end{figure}
+\FloatBarrier
+
 
 \subsection{Kalibrierung und Verkabelung}
 Zunächst werden die am Szintillationstank angebrachten Photomultiplier an ein Oszilloskop angeschlossen, um sicherzustellen, dass sie funktionieren.
@@ -159,11 +156,7 @@ Die Pulsabstände werden zwischen $\SI{0.3}{\micro\second}$ und $\SI{9.9}{\micro
 \subsection{Messung}
 An die Koinzidenzschaltung werden erneut die zuvor abgeklemmten Photomultiplier angeschlossen. Die Aufzeichung des Vielkanalanalysators wird gleichzeitig mit dem Impulszähler gestartet und etwa $\num{20}$ bis $\SI{30}{\hour}$ laufen gelassen. %wie lange genau? Weiß man das? 
 
-
-
-
-
-
+\newpage
 \section{Auswertung}
 Im folgenden Kapitel werden die gesammelten Messdaten sowie die Justierung der Koinzidenz und 
 die Kalibrierung des Multichannel Analyzers ausgewertet.
