@@ -1,0 +1,11 @@
+#0 bis -10 Grad drehen; Anzahl der Nulldurchgänge:
+32
+34
+34
+40
+33
+38
+34
+33
+35
+34
