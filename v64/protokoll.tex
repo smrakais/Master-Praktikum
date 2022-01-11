@@ -21,6 +21,30 @@
 
 
 \section{Auswertung}
+Im folgenden Abschnitt werden die erhaltenen Messwerte ausgewertet und die Ergebnisse diskutiert.
+\subsection{Bestimmung des maximalen Kontrasts}
+Um bei den eigentlichen Interferenzmessungen das bestmögliche Ergebnis zu erzielen ist die
+Einstellung des optimalen Kontrasts notwendig.
+Der Kontrast definiert als 
+\begin{equation}
+    K = \frac{U_\text{Max}-U_\text{Min}}{U_\text{Max}+U_\text{Min}}.
+\end{equation}
+Hierbei steht $U$ für die jeweilig gemessene Maximal- und Minimalspannung.
+Um den größtmöglichen Kontrast zu bestimmten, wird der erste Polfilter über einen Bereich von 0 bis 180° 
+variiert und mit Hilfe der drehbaren Schraube am Glasbehälter eine maximale und eine minimale Spannung am 
+Multimeter eingestellt. 
+Die aufgenommenen Messwerte und sich ergebenen Kontraste sind in \autoref{tab:Kontrast} dargestellt.
+\input{build/tabKontrast.tex} 
+\FloatBarrier
+Mit Hilfe der Messwert lässt sich eine Zusammenhang zwischen dem Kontrast und den Drehwinkel graphisch darstellen.
+Dieser Plot ist in \autoref{fig:kontrast} dargestellt
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build/Kontrast.pdf}
+    \caption{Winkelabhängikeit des Kontrasts.}
+    \label{fig:kontrast}
+\end{figure}
+
 
 %\begin{figure}
 %    \centering
