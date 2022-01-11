@@ -7,10 +7,14 @@ from scipy import constants as const
 from uncertainties import unumpy as unp
 from uncertainties.unumpy import (nominal_values as noms,
                                   std_devs as stds)
+from scipy.stats import stats
 from uncertainties import ufloat
 from scipy.optimize import curve_fit
 
+
 Druck,M1,M2,M3 = np.genfromtxt("data/Druck.txt", unpack = True)
+#Druck,M1,M2,M3 = np.genfromtxt("data/Druck_altprotokoll.txt", unpack = True)
+
 Druck_all = Druck
 ###### je nachdem kann man die Rechung vllt auch mit einem Datensatz machen, der aus einem Mittelwert aller anderen Datensätze besteht
 N_mean_noms = np.array([np.nanmean(np.array([M1[i],M2[i],M3[i]])) for i in range(len(M2))])
@@ -20,7 +24,7 @@ N_mean = unp.uarray(N_mean_noms, N_mean_stds)
 df = pd.DataFrame({"Druck":Druck,"N_mean":N_mean, "M1":M1, "M2":M2, "M3":M3})
 
 L = ufloat(100e-3,0.1e-3)
-T_measured = np.array([20.8,23.3,22.4,22.2,21.9,21.7,22.7]) + 273.15    #########evtl anpassen
+T_measured =19.4 +273.15 # np.array([20.8,23.3,22.4,22.2,21.9,21.7,22.7]) + 273.15    #########evtl anpassen
 T = ufloat(np.mean(T_measured), np.std(T_measured))
 
 print('temperatur in Kelvin',T,'\n')
@@ -84,6 +88,9 @@ n = np.array([
         Miriam_n(df.dropna(subset=['Druck', 'M3'])["Druck"], df.dropna(subset=['Druck', 'M3'])["M3"])[2],
         ])
 
+brech_1=n[0]
+brech_2=n[1]
+brech_3=n[2]
 
 n_atm_miriam = np.array([
         Miriam_n(df.dropna(subset=['Druck', 'M1'])["Druck"], df.dropna(subset=['Druck', 'M1'])["M1"])[3],
@@ -137,3 +144,41 @@ ax.legend(loc = "upper left")
 ax.set_xlabel(r"Druck / mbar")
 ax.set_ylabel(r"Brechungsindex")
 plt.savefig("Plots/Brechungsindex.pdf", bbox_inches = "tight", dpi = 300)
+
+###########
+# Tabelle
+##########
+
+from texutils.table import TexTable
+
+t1 = TexTable([Druck, M1, brech_1], [r"Druck / mbar", r" M1",r"n1"], 
+            label='tab:luft_1',
+            caption='Drücke, Maxima und Brechungsindexe der ersten Messreihe.')
+t1.set_row_rounding(0, 0) #reihe und rundung
+t1.set_row_rounding(1, 0)
+t1.set_row_rounding(2, 8)
+
+t1.write_file('build/tabLuft_1.tex')
+print('Die Tabelle des Brechungsindexes 1 von Luft wurde erzeugt!\n')
+##################################################################################################
+
+t2 = TexTable([Druck, M1, brech_2], [r"Druck / mbar", r" M1",r"n1"], 
+            label='tab:luft_2',
+            caption='Drücke, Maxima und Brechungsindexe der ersten Messreihe.')
+t2.set_row_rounding(0, 0) #reihe und rundung
+t2.set_row_rounding(1, 0)
+t2.set_row_rounding(2, 8)
+
+t2.write_file('build/tabLuft_2.tex')
+print('Die Tabelle des Brechungsindexes 2 von Luft wurde erzeugt!\n')
+##################################################################################################
+
+t3 = TexTable([Druck, M1, brech_3], [r"Druck / mbar", r" M1",r"n1"], 
+            label='tab:luft_3',
+            caption='Drücke, Maxima und Brechungsindexe der ersten Messreihe.')
+t3.set_row_rounding(0, 0) #reihe und rundung
+t3.set_row_rounding(1, 0)
+t3.set_row_rounding(2, 8)
+
+t3.write_file('build/tabLuft_3.tex')
+print('Die Tabelle des Brechungsindexes 3 von Luft wurde erzeugt!\n')
