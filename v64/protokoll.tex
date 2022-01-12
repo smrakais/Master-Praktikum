@@ -36,15 +36,60 @@ Multimeter eingestellt.
 Die aufgenommenen Messwerte und sich ergebenen Kontraste sind in \autoref{tab:Kontrast} dargestellt.
 \input{build/tabKontrast.tex} 
 \FloatBarrier
-Mit Hilfe der Messwert lässt sich eine Zusammenhang zwischen dem Kontrast und den Drehwinkel graphisch darstellen.
-Dieser Plot ist in \autoref{fig:kontrast} dargestellt
+Mit Hilfe der Messwerte lässt sich eine Zusammenhang zwischen dem Kontrast und den Drehwinkel graphisch darstellen.
+Dieser Plot ist in \autoref{fig:kontrast} dargestellt.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{build/Kontrast.pdf}
     \caption{Winkelabhängikeit des Kontrasts.}
     \label{fig:kontrast}
 \end{figure}
+\FloatBarrier
+Der Kontrast hängt mit dem Polarisationswinkel $\theta$  über
+\begin{equation}
+    K(\theta) = \abs{ \alpha \sin{( \beta \theta
+    + \gamma)}} + \delta
+    \label{kontrast}
+\end{equation}
+zusammen. 
+Die Fitparameter haben die Werte
+\begin{align}
+    \begin{split}
+      \alpha &= \num{-0.89(6)}\\
+      \beta  &= \num{2.008(29)}\\
+      \gamma &= \SI{-0.18(5)}{\degree} \\
+      \delta &= \num{0.020(30)}
+    \end{split}
+    \label{fitparameter}
+\end{align}
 
+\section{Bestimmung des Brechungsindexes von Glas}
+Der Brechungsindex von Glas wird mit Hilfe der Differenzspannungsmethode bestimmt.
+Dazu trifft der Laserstrahl auf einen um 45° gedrehten PBSC und anschließend in 2 Dioden.
+In dem PBSC wird die Polarisatonsrichtung der überlappenden Laserstrahlen um 45° gedreht sodass
+beide Laserstrahlen entweder p- oder s-polarisiert sind.
+\footnote{Es spielt keine Rolle ob beide p-polarisiert oder beide s-polarisiert sind, die Hauptsache ist das sie eine 
+einheitliche Polarisation aufweisen.}
+Das detektierte Signal wird mit einer Operationsverärkerschaltung verarbeitet und auf einem
+Oszilloskop abgebildet.
+Mit der Differenzspannungsmethode ist es möglich ein wesentlich rauschärmeres Signal zu bekommen.
+
+Der Brechungsindex lässt sich bestimmen indem der Rotationswinkel an der Stellschraube des Glasbehälters
+über einen Bereich von 10° verändert wird und die dabei auftretenden Maxima/Nulldurchgänge am
+Oszilloskop gezählt werden.
+In \autoref{tab:Maxima} sind die Anzahlen der aufgetretenden Maxima dargestellt.
+\input{build/tabMaxima_Glas.tex}
+\FloatBarrier
+Im Mittel sind demnach 34,7 Maxima aufgetreten.\\
+Mit der Formel
+\begin{equation}
+    n = \left( 1 - \frac{\lambda{M}}{2T\theta_0\theta} \right)^{-1}
+  \label{brech_glas}
+\end{equation}
+ergibt sich ein Brechungsindex von $1,566 \pm 0,021$.\\
+Hierbei ist $T=\SI{1}{\milli\meter}$ die Dicke des Glases, $\lambda=\SI{632,990}{\nano\meter}$ die 
+Wellenlänge des Lasers, $M$ die Anzahl der Maxima, $\theta_0$ der Verkippungswinkel der Gläser im Glashalter und
+$\theta$ der Drehwinkel über einen Bereich von 10°.
 
 %\begin{figure}
 %    \centering
