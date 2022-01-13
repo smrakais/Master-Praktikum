@@ -55,7 +55,7 @@ Damit zwei Wellen nun interferieren können, müssen sie gleich polarisiert sein
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\linewidth]{./figures/s_p_polarisation.png}
+    \includegraphics[width=0.5\linewidth]{./figures/s_p_polarisation.png}
     \caption{Bei linearer Polarisation sind der p- und s-polarisierte Anteil definiert durch ihre Ausrichtung gegenüber der Einfallsebene. \cite{psPol}}
     \label{fig:sppolarisation}
 \end{figure}
@@ -144,7 +144,7 @@ Die Interferenzmaxima sind gegeben durch
 \end{equation*}
 Der vom Drehwinkel abhängige Brechungsindex ist dann
 \begin{equation}
-    n(\theta) = \frac{1}{1-\frac{M \, \lambda_0}{2 \, \phi_0 \, \phi \, D}} \, .
+    n(\theta) = \frac{1}{1-\frac{M \, \lambda_0}{2 \, \theta_0 \, \theta \, D}} \, .
     \label{eq:n_theta}
 \end{equation}
 
@@ -167,14 +167,14 @@ Der Aufbau sowie der Strahlengang sind in \autoref{fig:aufbau} zu sehen.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/aufbau.png}
-    \caption{Der Aufbau des Sagnac-Interferometers. Der Strahlengang ist durch die Linien dargestellt und die Ausbreitungsrichtung der Wellen durch Pfeile gekennzeichnet. \cite{V64}}
+    \caption{Der Aufbau des Sagnac-Interferometers. Der Strahlengang ist durch die Linien dargestellt und die Ausbreitungsrichtung der Wellen durch Pfeile gekennzeichnet. \cite{anleitung}}
     \label{fig:aufbau}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/aufbau_foto.jpeg}
-    \caption{Fotos des Aufbaus, mit dem der Versuch durchgeführt wurde.}
+    \caption{Foto des Aufbaus, mit dem der Versuch durchgeführt wurde.}
     \label{fig:fotos}
 \end{figure}
 
@@ -229,7 +229,7 @@ Der Glashalter wird gedreht, während die Anzahl der Nulldurchgänge mit einem Z
 
 In diesem Teil des Versuchs wird ebenfalls die Differenzspannungsmethode verwendet.
 Um den Brechungsindex von Luft zu bestimmen, wird eine Gaszelle mit einer Länge von $L = 100 \pm 0.1 \si{\milli\meter}$ in den Strahlengang eingebaut. Ein Strahl läuft durch die Gaszelle, der andere verläuft frei. %umformulieren?
-Die Zelle wird zunächst evakuiert. Anschließend wird Luft wieder langsam eingeleitet und die Anzahl der Maxima und Minima wird in Abhängigkeit des Drucks gemessen. Dazu wird die Anzahl jeweils nach $50 mbar$ abgelesen. Das Ganze wird drei mal wiederholt. %ging mit "\SI{50}{\milli\bar}" nicht?
+Die Zelle wird zunächst evakuiert. Anschließend wird Luft wieder langsam eingeleitet und die Anzahl der Maxima und Minima wird in Abhängigkeit des Drucks gemessen. Dazu wird die Anzahl jeweils nach 50 mbar abgelesen. Das Ganze wird drei mal wiederholt. %ging mit "\SI{50}{\milli\bar}" nicht?
 Die Temperatur im Versuchsraum wird gemessen. Diese beträgt $\SI{19.4}{\celsius}$.
 
 
@@ -241,9 +241,9 @@ Im folgenden Abschnitt werden die erhaltenen Messwerte ausgewertet und die Ergeb
 Um bei den eigentlichen Interferenzmessungen das bestmögliche Ergebnis zu erzielen, ist die
 Einstellung des optimalen Kontrasts notwendig.
 Der Kontrast ist definiert als 
-\begin{equation}
+\begin{equation*}
     K = \frac{U_\text{Max}-U_\text{Min}}{U_\text{Max}+U_\text{Min}}.
-\end{equation}
+\end{equation*}
 Hierbei steht $U$ für die jeweilig gemessene Maximal- und Minimalspannung.
 Um den größtmöglichen Kontrast zu bestimmten, wird der erste Polfilter über einen Bereich von 0 bis 180° 
 variiert und mit Hilfe der drehbaren Schraube am Glasbehälter eine maximale und eine minimale Spannung am 
@@ -265,14 +265,14 @@ Dieser Plot ist in \autoref{fig:kontrast} dargestellt.
 \end{figure}
 \FloatBarrier
 Der Kontrast hängt mit dem Polarisationswinkel $\theta$  über
-\begin{equation}
+\begin{equation*}
     K(\theta) = \abs{ \alpha \sin{( \beta \theta
     + \gamma)}} + \delta
-    \label{eqn:kontrast}
-\end{equation}
+    \label{eqn:kontrast_}
+\end{equation*}
 zusammen. 
 Die Fitparameter haben die Werte
-\begin{align}
+\begin{align*}
     \begin{split}
       \alpha &= \num{-0.89(6)}\\
       \beta  &= \num{2.008(29)}\\
@@ -280,7 +280,7 @@ Die Fitparameter haben die Werte
       \delta &= \num{0.020(30)}
     \end{split}
     \label{eqn:fitparameter}
-\end{align}
+\end{align*}
 
 \subsection{Bestimmung des Brechungsindex von Glas}
 Der Brechungsindex von Glas wird mit Hilfe der Differenzspannungsmethode bestimmt.
@@ -338,10 +338,10 @@ Der Plot ist in \autoref{fig:luft} zu sehen.
 \end{figure}
 \FloatBarrier
 Die Fitfunktion lautet 
-\begin{equation}
+\begin{equation*}
     f(x, a, b) = a \cdot \frac{x}{T \cdot R} + b \, .
     \label{eqn:fit}
-\end{equation}
+\end{equation*}
 Diese lässt sich aus dem Lorentz-Lorenz Gesetz ableiten.
 Hierbei ist $R$ die ideale Gaskonstante, $x$ der Druck und $T=\SI{19.4}{\celsius}$ die gemessene Umgebungstemperatur.
 %TODO fitparameter intragen und sagen danns man die dann wieder einsetzt 
@@ -363,6 +363,8 @@ Die Fitparameter besitzen die Werte in \autoref{tab:fit}.
 Mit Hilfe der Fitparameter lässt sich anschließend der Brechungsindex bei
 bei $\SI{15}{\celsius}$ und 1013\,mbar berechnen.\\
 Der Brechungsindex für Luft ist $n=1.0002844 \pm 0.0000012$.
+
+\newpage
 
 \section{Diskussion}
 Betrachtet man den Graphen in \autoref{fig:kontrast}, so lässt sich gut die Abhängigkeit des Kontrast vom 
