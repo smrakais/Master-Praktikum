@@ -153,7 +153,7 @@ from texutils.table import TexTable
 
 t1 = TexTable([Druck, M1, brech_1], [r"Druck / mbar", r" M1",r"n1"], 
             label='tab:luft_1',
-            caption='Drücke, Maxima und Brechungsindexe der ersten Messreihe.')
+            caption='Drücke, Maxima und Brechungsindizes der ersten Messreihe.')
 t1.set_row_rounding(0, 0) #reihe und rundung
 t1.set_row_rounding(1, 0)
 t1.set_row_rounding(2, 8)
@@ -162,9 +162,9 @@ t1.write_file('build/tabLuft_1.tex')
 print('Die Tabelle des Brechungsindexes 1 von Luft wurde erzeugt!\n')
 ##################################################################################################
 
-t2 = TexTable([Druck, M1, brech_2], [r"Druck / mbar", r" M1",r"n1"], 
+t2 = TexTable([Druck, M2, brech_2], [r"Druck / mbar", r" M2",r"n2"], 
             label='tab:luft_2',
-            caption='Drücke, Maxima und Brechungsindexe der ersten Messreihe.')
+            caption='Drücke, Maxima und Brechungsindizes der zweiten Messreihe.')
 t2.set_row_rounding(0, 0) #reihe und rundung
 t2.set_row_rounding(1, 0)
 t2.set_row_rounding(2, 8)
@@ -173,9 +173,9 @@ t2.write_file('build/tabLuft_2.tex')
 print('Die Tabelle des Brechungsindexes 2 von Luft wurde erzeugt!\n')
 ##################################################################################################
 
-t3 = TexTable([Druck, M1, brech_3], [r"Druck / mbar", r" M1",r"n1"], 
+t3 = TexTable([Druck, M3, brech_3], [r"Druck / mbar", r" M3",r"n3"], 
             label='tab:luft_3',
-            caption='Drücke, Maxima und Brechungsindexe der ersten Messreihe.')
+            caption='Drücke, Maxima und Brechungsindizes der dritten Messreihe.')
 t3.set_row_rounding(0, 0) #reihe und rundung
 t3.set_row_rounding(1, 0)
 t3.set_row_rounding(2, 8)
