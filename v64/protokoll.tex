@@ -215,8 +215,6 @@ Der Vorteil dieser Methode ist es, dass mögliches Rauschen gefiltert wird, die 
 
 Der Glashalter wird gedreht, während die Anzahl der Nulldurchgänge mit einem Zählwerk, auf das die Differenzspannung gegeben wird, gezählt wird. Die Messung wird zehn mal wiederholt.
 \\
-
-
 \textbf{Brechungsindex von Luft}
 
 In diesem Teil des Versuchs wird ebenfalls die Differenzspannungsmethode verwendet.
@@ -228,6 +226,7 @@ Die Temperatur im Versuchsraum wird gemessen. Diese beträgt $\SI{19.4}{\celsius
 
 
 
+\newpage
 \section{Auswertung}
 Im folgenden Abschnitt werden die erhaltenen Messwerte ausgewertet und die Ergebnisse diskutiert.
 \subsection{Bestimmung des maximalen Kontrasts}
@@ -294,10 +293,10 @@ In \autoref{tab:Maxima} sind die Anzahlen der aufgetretenden Maxima dargestellt.
 \FloatBarrier
 Im Mittel sind demnach 34,7 Maxima aufgetreten.\\
 Mit der Formel
-\begin{equation}
+\begin{equation*}
     n = \left( 1 - \frac{\lambda{M}}{2T\theta_0\theta} \right)^{-1}
   \label{eqn:brech_glas}
-\end{equation}
+\end{equation*}
 ergibt sich ein Brechungsindex von $1,566 \pm 0,021$.\\
 Hierbei ist $T=\SI{1}{\milli\meter}$ die Dicke des Glases, $\lambda=\SI{632,990}{\nano\meter}$ die 
 Wellenlänge des Lasers, $M$ die Anzahl der Maxima, $\theta_0$ der Verkippungswinkel der Gläser im Glashalter und
@@ -310,10 +309,10 @@ Pumpe angeschlossen ist. Die Kammer wird evakuiert und anschließend wird in 50\
 wieder hinein gelassen.
 Dadurch lassen sich wieder mit Hilfe des Oszilloskops oder der Zählautomatik die Maxima/Nulldurchgänge zählen.
 Der Brechungsindex für die unterschiedlichen Drücke berechnet sich nach der Formel
-\begin{equation}
+\begin{equation*}
 	n = \frac{M \lambda_{0}}{L} +1.
 	\label{eqn:brechungsindex_gas}
-\end{equation}
+\end{equation*}
 Die verschiedenen Drücke, Maxima und Brechungsindexe sind in \autoref{tab:luft_1},\autoref{tab:luft_2} und \autoref{tab:luft_3}
 dargestellt.
 \input{build/tabLuft_1.tex}
@@ -338,25 +337,46 @@ Die Fitfunktion lautet
 diese lässt sich aus den Lorentz-Lorenz Gesetz ableiten.
 Hierbei ist $R$ die ideale Gaskonstante, $x$ der Druck und $T=\SI{19,4}{\celsius}$ die gemessene Umgebungstemperatur.
 %TODO fitparameter intragen und sagen danns man die dann wieder einsetzt 
+Die Fitparameter besitzten die Werte in \autoref{tab:fit}.
+\begin{table}
+    \centering
+    \caption{Ermittelte Regressionsparameter $a$ und $b$.}
+    \label{tab:fit}
+    \begin{tabular}{c c c}
+        \bottomrule
+    \text{Messung} & $a \:/\: \si{ 10^{-4}\milli\bar}$ & $b$ \\
+        \midrule
+    1 & 6,463684482 \pm 0,03817077 & 0.99999093 \pm 0.000000093 \\
+    2 & 6,865063548 \pm 0,04836478 & 1.00000269 \pm 0,000000118 \\
+    3 & 6,472966905 \pm 0,03832592 & 1.00000852 \pm 0,000000094 \\
+        \toprule
+    \end{tabular}
+\end{table}
+Mit Hilfe der Fitparameter lässt sich anschließend der Brechungsindex bei
+bei $\SI{15}{\celsius}$ und 1013\,mbar berechnen.\\
+Der Brechungsindex für Luft ist $n=1.0002844 \pm 0.0000012$.
 
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.7\linewidth]{./figures/xxx.xxx}
-%    \caption{xxx}
-%    \label{fig:xxx}
-%\end{figure}
-%
-%\begin{equation}\label{eq:xxx}    
-%    \begin{split}
-%        \lambda &= \SI{855}{\angstrom}\\
-%        \delta_\text{ps} &= 0,6\cdot 10^{-6}\\
-%        \delta_\text{si}&= 6,8\cdot 10^{-6} \\
-%        n_\text{luft} &= 1 \\
-%        n_\text{ps} &= 1 - \delta_\text{ps} \\
-%        n_\text{si} &= 1 - \delta_\text{ps} 
-%    \end{split}
-%\end{equation}
- 
+\section{Diskussion}
+Betrachtet man den Graphen in \autoref{fig:kontrast} so lässt sich gut die Abhängigkeit des Kontrast von 
+Polarisationswinkel erkennen.
+Hätten wir in unserem Experiment für weitere Polarisationswinkel die Messpunkte eingetragen, wäre der
+Zusammenhang über \autoref{eq:kontrast} noch besser zu erkennen.
+Bei ca. $\frac{\pi}{4}$ und bei $\frac{2*\pi}{3}$ lassen sich die beiden Maxima des Kontrastes erkennen,
+was mit den theoretischen Überlegungen übereinstimmt.
+Werden dagegen die Randwerte  $0$,$\frac{\pi}{2}$ und $\pi$ betrachtet so verschwindet dort der Kontrast,
+was ebenfalls Sinn ergibt, da dann die beiden Laserstrahlen eine unterschiedliche lineare Polarisation
+aufweisen.
+
+Der Brechungsindex von Glas wurde in  unserem Experiment als $1,566 \pm 0,021$ bestimmt.
+Dieser Wert stimmt mit dem theoretischen Wert für Glas $n_\text{lit,Glas} = 1,5 $ überein.
+Allerdings kann keine Aussage darüber getroffen werden um welche Art von Glas es sich handelt.
+Demnach kann die Übereinstimmung nur von größenordungstechnischer Natur sein.
+
+Der bestimmte Wert des Brechungsindexes von Luft ist $n=1.0002844 \pm 0.0000012$
+dieser Wert weicht von Literaturwert $n_\text{lit, Luft}=1,000272$  um ... ab.
+
+
+
 \nocite{*}
 \printbibliography{}
 \end{document}
