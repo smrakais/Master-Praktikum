@@ -5,10 +5,9 @@
 \lstset{language=Perl}
 \AtBeginDocument{\pagenumbering{arabic}}
 
-\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} VXX \\ - xxx -}
+\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V64 \\ - moderne Interferometrie -}
 
-%\title{test}
-\date{Durchführung: xx.xx.2021, Abgabe: xx.xx.2021}
+\date{Durchführung: 10.01.2022, Abgabe:14.01.2022 }
 
 \begin{document}
 
@@ -36,6 +35,10 @@ Multimeter eingestellt.
 Die aufgenommenen Messwerte und sich ergebenen Kontraste sind in \autoref{tab:Kontrast} dargestellt.
 \input{build/tabKontrast.tex} 
 \FloatBarrier
+Die Messwerte lassen vermuten, dass im Bereich zwischen 120° und 135° der maximale Kontrast liegen wird.
+Weitere Einzelmessungen haben bestätigt, dass der maximale Kontrast $K=0.919$ bei 130° liegt.
+Dieser Winkel wurde für alle weiteren Messungen am Polfilter eingestellt und beibehalten. 
+
 Mit Hilfe der Messwerte lässt sich eine Zusammenhang zwischen dem Kontrast und den Drehwinkel graphisch darstellen.
 Dieser Plot ist in \autoref{fig:kontrast} dargestellt.
 \begin{figure}
@@ -49,7 +52,7 @@ Der Kontrast hängt mit dem Polarisationswinkel $\theta$  über
 \begin{equation}
     K(\theta) = \abs{ \alpha \sin{( \beta \theta
     + \gamma)}} + \delta
-    \label{kontrast}
+    \label{eqn:kontrast}
 \end{equation}
 zusammen. 
 Die Fitparameter haben die Werte
@@ -60,7 +63,7 @@ Die Fitparameter haben die Werte
       \gamma &= \SI{-0.18(5)}{\degree} \\
       \delta &= \num{0.020(30)}
     \end{split}
-    \label{fitparameter}
+    \label{eqn:fitparameter}
 \end{align}
 
 \section{Bestimmung des Brechungsindexes von Glas}
@@ -84,12 +87,48 @@ Im Mittel sind demnach 34,7 Maxima aufgetreten.\\
 Mit der Formel
 \begin{equation}
     n = \left( 1 - \frac{\lambda{M}}{2T\theta_0\theta} \right)^{-1}
-  \label{brech_glas}
+  \label{eqn:brech_glas}
 \end{equation}
 ergibt sich ein Brechungsindex von $1,566 \pm 0,021$.\\
 Hierbei ist $T=\SI{1}{\milli\meter}$ die Dicke des Glases, $\lambda=\SI{632,990}{\nano\meter}$ die 
 Wellenlänge des Lasers, $M$ die Anzahl der Maxima, $\theta_0$ der Verkippungswinkel der Gläser im Glashalter und
 $\theta$ der Drehwinkel über einen Bereich von 10°.
+
+\section{Bestimmung des Brechungsindexes von Luft}
+Als letzten Schritt wird im Experiment der Brechungsindex von Luft bestimmt.
+Dazu wird in den Strahlengang eines Laserstrahls eine längliche Druckkammer eingeführt, welche an einer
+Pumpe angeschlossen ist. Die Kammer wird evakuiert und anschließend wird in 50\,mbar Schritten der Druck
+wieder hinein gelassen.
+Dadurch lassen sich wieder mit Hilfe des Oszilloskops oder der Zählautomatik die Maxima/Nulldurchgänge zählen.
+Der Brechungsindex für die unterschiedlichen Drücke berechnet sich nach der Formel
+\begin{equation}
+	n = \frac{M \lambda_{0}}{L} +1.
+	\label{eqn:brechungsindex_gas}
+\end{equation}
+Die verschiedenen Drücke, Maxima und Brechungsindexe sind in \autoref{tab:luft_1},\autoref{tab:luft_2} und \autoref{tab:luft_3}
+dargestellt.
+\input{build/tabLuft_1.tex}
+\input{build/tabLuft_2.tex}
+\input{build/tabLuft_3.tex}
+\FloatBarrier
+Um den Brechungsindex bei $\SI{15}{\celsius}$ und 1013\,mbar auszurechnen, werden zuvor die Brechungsindexe
+in Abhängigkeit der Drücke graphisch dargestellt und eine Regressionsgerade durch die Messwerte gelegt.
+Der Plot ist in \autoref{fig:luft} zu sehen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Plots/Brechungsindex.pdf}
+    \caption{Brechungsindexe in Abhängigkeit des Druckes in der Druckkammer.}
+    \label{fig:luft}
+\end{figure}
+\FloatBarrier
+Die Fitfunktion lautet 
+\begin{equation}
+    f(x, a, b) = a \cdot \frac{x}{T \cdot R} + b
+    \label{eqn:fit}
+\end{equation}
+diese lässt sich aus den Lorentz-Lorenz Gesetz ableiten.
+Hierbei ist $R$ die ideale Gaskonstante, $x$ der Druck und $T=\SI{19,4}{\celsius}$ die gemessene Umgebungstemperatur.
+%TODO fitparameter intragen und sagen danns man die dann wieder einsetzt 
 
 %\begin{figure}
 %    \centering
