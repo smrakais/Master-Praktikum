@@ -5,9 +5,9 @@
 \lstset{language=Perl}
 \AtBeginDocument{\pagenumbering{arabic}}
 
-\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V64 \\ - moderne Interferometrie -}
+\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V64 \\ - Moderne Interferometrie -}
 
-\date{Durchführung: 10.01.2022, Abgabe:14.01.2022 }
+\date{Durchführung: 10.01.2022, Abgabe:13.01.2022}
 
 \begin{document}
 
@@ -17,7 +17,7 @@
 \newpage
 
 \section{Ziel}
-Das Ziel dieses Versuchs ist es die Funktionsweise eines Sagnac-Interferometers zu verstehen. Der Strahlengang soll justiert werden und es sollen der Kontrast des Interferometers, der Brechungsindex von Glas sowie der Brechungsindex von Luft bestimmt werden.
+Das Ziel dieses Versuchs ist es die Funktionsweise eines Sagnac-Interferometers zu verstehen. Der Strahlengang soll justiert werden und es sollen der Kontrast des Interferenzbildes des Interferometers, der Brechungsindex von Glas sowie der Brechungsindex von Luft bestimmt werden.
 %Vorteile von Sagnac hier erwähnen?
 
 \section{Theorie}
@@ -27,10 +27,8 @@ Das Ziel dieses Versuchs ist es die Funktionsweise eines Sagnac-Interferometers 
 \subsection{Interferenz und Kohärenz}
 %Interferenz:
 Überlagern sich zwei Wellen, kann es zu Interferenz kommen. Eine Bedingung dafür ist, dass die Wellen die selbe Wellenlänge besitzen.
-%Superpositionsprinzip:
-\dots
 %konstruktive und destruktive Interferenz:
-\dots
+Bei destruktiver Interferenz löschen sich die Wellen gegenseitig aus, während bei konstruktiver Interferenz die Intensität der Welle verstärkt wird.
 Die Interferenz ist stabil, wenn die Wellen kohärent sind.
 
 %Kohärenz:
@@ -39,9 +37,9 @@ Der Begriff der Kohärenz beschreibt die Tatsache, dass die Wellen untereinander
 Die Wellenlänge der sich überlagernden Wellen ist während der Kohärenzzeit gleich. Diese ist die Zeit, in der sich eine Welle nicht ändert.
 Laserlicht hat eine hohe Kohärenzzeit, weswegen es in optischen Versuchen bevorzugt wird.
 %Zeitliche Kohärenz:
-\dots
+Es wird von zeitlicher Kohärenz gesprochen, wenn die Phasenbeziehung entlang einer Zeitachse fest ist.
 %Räumliche Kohärenz:
-\dots
+Bei räumlicher Kohärenz liegt eine feste Phasenbeziehung entlang einer Raumachse vor.
 %Kohärenzgrad:
 Der Kohärenzgrad beschreibt die Interferenzfähigkeit zweier Wellen.
 
@@ -58,7 +56,7 @@ Damit zwei Wellen nun interferieren können, müssen sie gleich polarisiert sein
 \begin{figure}
     \centering
     \includegraphics[width=0.6\linewidth]{./figures/s_p_polarisation.png}
-    \caption{s- und p-Polarisation. Quelle: https://www.edmundoptics.de/knowledge-center/application-notes/optics/introduction-to-polarization/}
+    \caption{Bei linearer Polarisation sind der p- und s-polarisierte Anteil definiert durch ihre Ausrichtung gegenüber der Einfallsebene. \cite{psPol}}
     \label{fig:sppolarisation}
 \end{figure}
 
@@ -70,15 +68,32 @@ Der Kontrast ist ein Maß für die Qualität des Interferenzbildes eines Interfe
     K = \frac{I_{max}-I_{min}}{I_{max}+I_{min}} \, .
     \label{eq:kontrast}
 \end{equation}
-Der Kontrast kann minimal Null sein. Das ist der Fall, wenn ein Interferenzmaximum und -minimum nicht unterscheidbar sind, die Qualität also schlecht ist.
+Der Kontrast kann minimal Null sein. Das ist der Fall, wenn das Interferenzmaximum und -minimum nicht unterscheidbar sind, die Qualität also schlecht ist.
 Maximal kann der Kontrast Eins sein. In diesem Fall ist das Minimum perfekt ausgelöscht.
 
-Da der Kontrast über die Intensität definiert ist und diese Abhängig vom Polarisationswinkel ist, kann folgende Proportionalität angegeben werden
-\begin{equation*}
-    K(\phi) \propto = | 2 \cos{(\phi)} \sin{(\phi)} | = |\sin{(2\phi)}| \, .
-\end{equation*}
-%Diese folgt aus \autoref{eq:intensitaet}. %noch hinzufügen
+%Einschub Intensität
+Die Intensität ist proportional zur zeitlichen Mittelung des Quadrats der elektrischen Feldstärke. Für die Wellen lässt sich diese durch
+\begin{align*}
+    \vec{E_1} &= \vec{E_0} \, cos(\phi) \, cos(\omega t) \\
+    \vec{E_2} &= \vec{E_0} \, sin(\phi) \, cos(\omega t + \delta)
+\end{align*}
+angeben, wobei $\phi$ der Polarisationswinkel, $\omega$ die Kreisfrequenz und $\delta$ die Phasenverschiebung ist.
+Die Intensität ist dann also
+\begin{align*}
+    I \, &\propto \, \langle \, |\vec{E_1}+\vec{E_2}|^2 \, \rangle \\
+      &\propto \, \langle \, E^2_1 + E^2_2 + 2 \vec{E_1} \cdot \vec{E_2} \, \rangle \, .
+\end{align*}
+Die Intensität der Interferenzmaxima ($\delta = 2n\pi$ mit $n \in \mathbb{Z}$) bzw. -minima ($\delta = n\pi$ mit $n \in \mathbb{Z}$) ergibt sich zu 
+\begin{equation}
+    I \propto I_{ges} \, (1 \pm 2 cos(\phi) sin(\phi)) \, ,
+    \label{eq:intensitaet}
+\end{equation}
+wobei das Plus für Maxima und das Minus für Minima gilt.
 
+Da der Kontrast über die Intensität definiert ist und diese abhängig vom Polarisationswinkel ist, kann mit \autoref{eq:kontrast} und \autoref{eq:intensitaet} folgende Proportionalität angegeben werden
+\begin{equation*}
+    K(\phi) \propto | 2 \cos{(\phi)} \sin{(\phi)} | = |\sin{(2\phi)}| \, .
+\end{equation*}
 
 
 \subsection{Brechungsindizes von Luft und Glas}
@@ -88,15 +103,13 @@ Um den Brechungsindex eines Mediums zu bestimmen, werden die Strahlen im Interfe
 
 Ein Strahl, der eine evakuierte Kammer der Länge $L$ durchläuft, hat zu einem durch Luft laufenden Strahl eine relative Phasenverschiebung von %bzw: ein mit Gas gefüllter Körper erzeugt diese Phasenverschiebung ?
 \begin{equation*}
-    \Delta \delta = \frac{2 \pi L}{\lambda_{0}} (n-1) .
+    \Delta \delta = \frac{2 \pi L}{\lambda_{0}} (n-1) \, .
 \end{equation*}
 Dabei ist $\lambda_0$ die Wellenlänge im Vakuum und $n$ der Brechungsindex von Luft.
-
 Die Phasenverschiebung hängt mit der Anzahl der Maxima über folgende Formel zusammen 
 \begin{equation*}
-    M = \frac{\Delta \delta}{2 \pi} . 
+    M = \frac{\Delta \delta}{2 \pi} \, . 
 \end{equation*}
-
 Aus diesen Zusammenhängen ergibt sich für den Brechungsindex die Gleichung
 \begin{equation}
     n = \frac{M \lambda_0}{L} + 1 \, .
@@ -120,21 +133,20 @@ Dabei ist $A$ die Molreflektivität, $R$ die universelle Gaskonstante und $T$ di
 
 Auch für die Bestimmung des Brechungsindex von Glas sind die Teilstrahlen geometrisch getrennt. Läuft einer der Strahlen durch eine planparallele Platte, entsteht eine relative Phasenverschiebung von
 \begin{equation*}
-    \Delta \delta = \frac{2 \pi D}{\lambda_0} \left[ \frac{n-1}{2n} \phi^2 + {\mathcal{O}}(\phi^4) \right] \, .
+    \Delta \delta = \frac{2 \pi D}{\lambda_0} \left[ \frac{n-1}{2n} \theta^2 + {\mathcal{O}}(\theta^4) \right] \, .
 \end{equation*}
-In diesem Versuch werden zwei Glasplatten, durch die je ein Teilstrahl läuft, verwendet. Diese sind konstant um $\phi_0 = 20 \degree$ verkippt %stimmt die Zahl?
-und werden um den Winkel $\phi$ gedreht.
+Dabei ist $D$ die Dicke der Platte und $\theta$ der Drehwinkel dieser Platte.
+
+In diesem Versuch werden zwei Glasplatten, durch die je ein Teilstrahl läuft, verwendet. Diese sind konstant um $\theta_0 = 20 \degree$ zueinander verkippt und werden um den Winkel $\theta$ gedreht.
 Die Interferenzmaxima sind gegeben durch
 \begin{equation*}
-    M = \frac{D}{\lambda_0} \frac{n-1}{2n} \left[ \left( \phi + \frac{\phi_0}{2} \right)^2 - \left( \phi - \frac{\phi_0}{2} \right)^2 \right] \, .
+    M = \frac{D}{\lambda_0} \frac{n-1}{2n} \left[ \left( \theta + \frac{\theta_0}{2} \right)^2 - \left( \theta - \frac{\theta_0}{2} \right)^2 \right] \, .
 \end{equation*}
-
 Der vom Drehwinkel abhängige Brechungsindex ist dann
 \begin{equation}
-    n(\phi) = \frac{1}{1-\frac{M \lambda_0}{2 \phi_0 \phi D}} \, .
-    \label{eq:n_phi}
+    n(\theta) = \frac{1}{1-\frac{M \, \lambda_0}{2 \, \phi_0 \, \phi \, D}} \, .
+    \label{eq:n_theta}
 \end{equation}
-Hier ist \dots
 
 
 
@@ -146,24 +158,23 @@ Hier ist \dots
 Bei einem Sagnac-Interferometer wird das Licht eines Lasers durch einen sogenannten Polarizing Beam Splitter Cube (PBSC) in zwei Strahlen aufgeteilt, die mittels Spiegeln in entgegengesetzter Richtung im Kreis geführt werden und am PBSC wieder aufeinander treffen. Durch die gegenläufige Richtung der Strahlen wird ein zeitlich besonders stabiles Interferenzbild erzeugt.
 
 Das Licht des hier verwendeten Helium-Neon-Lasers mit einer Wellenlänge von $\lambda = \SI{632.99}{\nano\meter}$ wird mit zwei Spiegeln durch einen linearen Polarisationsfilter in das Interferometer gelenkt.
-
 Der Lichtstrahl trifft zunächst auf den PBSC. Dieser besteht aus zwei Prismen und hat diagonal eine dielektrische Schicht. Dort wird p-polarisiertes Licht transmittiert und s-polarisiertes Licht reflektiert.
 Die beiden Strahlen überlappen beim Durchgang durch das Interferometer, werden am PBSC wieder zu einem Strahl vereint und treffen danach entweder durch einen zweiten Polarisationsfilter auf einen Schirm oder durch einen zweiten PBSC auf zwei Photodioden.
 
 Der Aufbau sowie der Strahlengang sind in \autoref{fig:aufbau} zu sehen.
-\autoref{fig:fotos} zeigt Fotos des Aufbaus.
+\autoref{fig:fotos} zeigt ein Foto des Aufbaus.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/aufbau.png}
-    \caption{Der Aufbau. \cite{Anleitung}}
+    \caption{Der Aufbau des Sagnac-Interferometers. Der Strahlengang ist durch die Linien dargestellt und die Ausbreitungsrichtung der Wellen durch Pfeile gekennzeichnet. \cite{V64}}
     \label{fig:aufbau}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/aufbau_foto.jpeg}
-    \caption{Fotos des Aufbaus.}
+    \caption{Fotos des Aufbaus, mit dem der Versuch durchgeführt wurde.}
     \label{fig:fotos}
 \end{figure}
 
@@ -171,7 +182,6 @@ Der Aufbau sowie der Strahlengang sind in \autoref{fig:aufbau} zu sehen.
 Zunächst wird der Strahlengang im Interferometer durch Ausrichtung der Bodenplatten der Spiegel sowie Einstellen der Feinjustierschrauben ausgerichtet. Dazu werden zunächst die Spiegel M1 und M2 abwechselnd so ausgerichtet, dass der vom PBSC transmittierte Strahl (dieser ist p-polarisiert) mittig auf Spiegel $M_A$ fällt. Dazu werden die Justageplatten benutzt und der reflektierte (s-polarisierte) Strahl wird abgeschirmt. Anschließend wird der reflektierte Strahl auf die selbe Weise auf Spiegel $M_C$ ausgerichtet. Die von $M_A$ und $M_C$ kommenden Strahlen, die auf Spiegel $M_B$ treffen sollen, werden ebenfalls mit Hilfe der Justageplatten justiert. Schließlich wird Spiegel $M_B$ ausgerichtet und die Strahlen treffen sich im PBSC.
 
 Damit die nun überlappenden, noch senkrecht zueinander polarisierten Strahlen interferieren können, wird ein Polarisationsfilter hinter dem Interferometer eingesetzt. Dieser wird auf $45 \degree$ gestellt, sodass die Strahlen in derselben Polarisationsebene liegen und ein Muster aus Interferenzstreifen entsteht.% (siehe \autoref{fig:streifen}).
-
 %\begin{figure}
 %    \centering
 %    \subfigure[Streifen.]{\includegraphics[width=2cm]{figures/streifen.jpeg}}
@@ -179,21 +189,19 @@ Damit die nun überlappenden, noch senkrecht zueinander polarisierten Strahlen i
 %    \caption{Interferenzmuster auf dem Schirm. Links noch mit Streifen, rechts nach weiterer Justierung.}
 %    \label{fig:streifen}
 %\end{figure}
-
 Die Streifen entstehen dadurch, dass die Strahlen nicht perfekt ausgerichtet sind und unter einem Winkel auf den Schirm treffen. Die Spiegel werden nachjustiert, sodass die Streifen verschwinden und die Strahlen somit über die gesamte Länge parallel ausgerichtet sind.
 
 Nun werden die überlappenden Strahlen in zwei horizontal zueinander versetzte Strahlen getrennt, indem Spiegel M2 bewegt wird und der transmittierte Strahl somit durch ein äußeres Loch der Justageplatte fällt. Die getrennten Strahlen fallen am Ende wieder zu einem Strahl zusammen. Auftretende Interferenzstreifen werden durch Nachjustierung entfernt.
 
-In den Strahlengang werden zwei Glasplatten der Dicke $T = \SI{1}{\milli\meter}$ eingesetzt, die zueinander um $10 \degree$ verkippt sind. Diese werden in einen Rotationshalter eingebaut, sodass sie gedreht werden können. Die Platten werden jeweils von einem der beiden Strahlen getroffen.
-
-Der hinter dem Interferometer platzierte Polarisationsfilter wird entfernt und der Strahl trifft stattdessen auf einen zweiten PBSC, der die Polarisation erneut trennt und auf zwei Dioden projiziert. %noch was?
-
+In den Strahlengang werden zwei Glasplatten der Dicke $D = \SI{1}{\milli\meter}$ eingesetzt, die zueinander um $20 \degree$ verkippt sind. %jeweils 10 Grad?
+Diese werden in einen Rotationshalter eingebaut, sodass sie gedreht werden können. Die Platten werden jeweils von einem der beiden Strahlen getroffen.
+Der hinter dem Interferometer platzierte Polarisationsfilter wird entfernt und der Strahl trifft stattdessen auf einen zweiten PBSC, der die Polarisationen erneut trennt und auf zwei Dioden projiziert. %noch was?
 Auf das Interferometer wird schließlich eine Haube gesetzt, damit Luftschwankungen den Versuch nicht beeinflussen.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{figures/aufbau2.png}
-    \caption{Der Strahlengang im Interferometer nach Aufteilen der beiden Strahlen. Der transmittierte Strahl ist in blau dargestellt, der reflektierte in rot. \cite{irgendeineseite}} %Quelle???
+    \caption{Der Strahlengang im Interferometer nach Aufteilen der beiden Strahlen. Der transmittierte Strahl ist in blau dargestellt, der reflektierte in rot. \cite{teachspin}}
     \label{fig:strahlengang}
 \end{figure}
 
@@ -202,26 +210,26 @@ Auf das Interferometer wird schließlich eine Haube gesetzt, damit Luftschwankun
 
 Um den Kontrast des Interferometers zu bestimmen, wird der Winkel des Polarisationsfilters zwischen $0 \degree$ und $180 \degree$ in $15 \degree$-Schritten variiert und dabei jeweils die Diodenspannung des Interferenzmaximums und des Interferenzminimums aufgenommen. Die Maxima und Minima werden durch Drehung der Glasplatten gefunden.
 
-Anschließend wird der Polarisationsfilter auf den Winkel eingestellt, bei dem der Kontrast am höchsten, also die Qualität des Interferometers am besten, ist. Hier beträgt dieser Winkel $\phi = 130 \degree$.
+Anschließend wird der Polarisationsfilter auf den Winkel eingestellt, bei dem der Kontrast am höchsten, also die Qualität des Interferometers am besten ist. Hier beträgt dieser Winkel $\phi = 130 \degree$.
 \\
 
 
 \textbf{Brechungsindex von Glas}
 
 Der Brechungsindex des verwendeten Glases soll bestimmt werden.
-Hierbei wird die Differenzspannungsmethode verwendet. Beide Dioden messen also die Spannung und die Differenz wird mit Hilfe eines Operationsverstärkers gebildet. %oder wie heißt das?
-Die Anzahl der Nulldurchgänge entspricht der Anzahl der Interferenzmaxima und -minima. %oder?
-Der Vorteil dieser Methode ist es, dass mögliches Rauschen gefiltert wird, die Steigung um den Nulldurchgang größer ist und \dots %was noch?
+Hierbei wird die Differenzspannungsmethode verwendet. Beide Dioden messen also die Spannung und die Differenz wird mit Hilfe eines Operationsverstärkers gebildet.
+Die Anzahl der Nulldurchgänge entspricht der Anzahl der Interferenzmaxima.
+Der Vorteil dieser Methode ist es, dass mögliches Rauschen gefiltert wird und die Steigung um den Nulldurchgang größer ist. %was noch?
 
 Der Glashalter wird gedreht, während die Anzahl der Nulldurchgänge mit einem Zählwerk, auf das die Differenzspannung gegeben wird, gezählt wird. Die Messung wird zehn mal wiederholt.
 \\
+
+
 \textbf{Brechungsindex von Luft}
 
 In diesem Teil des Versuchs wird ebenfalls die Differenzspannungsmethode verwendet.
-
-Um den Brechungsindex von Luft zu bestimmen, wird eine Gaszelle mit einer Länge von $100 \pm 0.1 \si{\milli\meter}$ in den Strahlengang eingebaut. Ein Strahl läuft durch die Gaszelle, der andere verläuft frei. %umformulieren
-Die Zelle wird zunächst evakuiert. Anschließend wird Luft wieder langsam eingeleitet und die Anzahl der Maxima und Minima wird in Abhängigkeit des Drucks gemessen. Dazu wird die Anzahl in $50 mbar$-Schritten abgelesen. Das Ganze wird drei mal wiederholt. %ging mit "\SI{50}{\milli\bar}" nicht?
-
+Um den Brechungsindex von Luft zu bestimmen, wird eine Gaszelle mit einer Länge von $L = 100 \pm 0.1 \si{\milli\meter}$ in den Strahlengang eingebaut. Ein Strahl läuft durch die Gaszelle, der andere verläuft frei. %umformulieren?
+Die Zelle wird zunächst evakuiert. Anschließend wird Luft wieder langsam eingeleitet und die Anzahl der Maxima und Minima wird in Abhängigkeit des Drucks gemessen. Dazu wird die Anzahl jeweils nach $50 mbar$ abgelesen. Das Ganze wird drei mal wiederholt. %ging mit "\SI{50}{\milli\bar}" nicht?
 Die Temperatur im Versuchsraum wird gemessen. Diese beträgt $\SI{19.4}{\celsius}$.
 
 
@@ -230,9 +238,9 @@ Die Temperatur im Versuchsraum wird gemessen. Diese beträgt $\SI{19.4}{\celsius
 \section{Auswertung}
 Im folgenden Abschnitt werden die erhaltenen Messwerte ausgewertet und die Ergebnisse diskutiert.
 \subsection{Bestimmung des maximalen Kontrasts}
-Um bei den eigentlichen Interferenzmessungen das bestmögliche Ergebnis zu erzielen ist die
+Um bei den eigentlichen Interferenzmessungen das bestmögliche Ergebnis zu erzielen, ist die
 Einstellung des optimalen Kontrasts notwendig.
-Der Kontrast definiert als 
+Der Kontrast ist definiert als 
 \begin{equation}
     K = \frac{U_\text{Max}-U_\text{Min}}{U_\text{Max}+U_\text{Min}}.
 \end{equation}
@@ -247,7 +255,7 @@ Die Messwerte lassen vermuten, dass im Bereich zwischen 120° und 135° der maxi
 Weitere Einzelmessungen haben bestätigt, dass der maximale Kontrast $K=0.919$ bei 130° liegt.
 Dieser Winkel wurde für alle weiteren Messungen am Polfilter eingestellt und beibehalten. 
 
-Mit Hilfe der Messwerte lässt sich eine Zusammenhang zwischen dem Kontrast und den Drehwinkel graphisch darstellen.
+Mit Hilfe der Messwerte lässt sich ein Zusammenhang zwischen dem Kontrast und dem Drehwinkel graphisch darstellen.
 Dieser Plot ist in \autoref{fig:kontrast} dargestellt.
 \begin{figure}
     \centering
@@ -276,29 +284,29 @@ Die Fitparameter haben die Werte
 
 \section{Bestimmung des Brechungsindexes von Glas}
 Der Brechungsindex von Glas wird mit Hilfe der Differenzspannungsmethode bestimmt.
-Dazu trifft der Laserstrahl auf einen um 45° gedrehten PBSC und anschließend in 2 Dioden.
-In dem PBSC wird die Polarisatonsrichtung der überlappenden Laserstrahlen um 45° gedreht sodass
+Dazu trifft der Laserstrahl auf einen um 45° gedrehten PBSC und anschließend in zwei Dioden.
+In dem PBSC wird die Polarisatonsrichtung der überlappenden Laserstrahlen um 45° gedreht, sodass
 beide Laserstrahlen entweder p- oder s-polarisiert sind.
-\footnote{Es spielt keine Rolle ob beide p-polarisiert oder beide s-polarisiert sind, die Hauptsache ist das sie eine 
+\footnote{Es spielt keine Rolle ob beide p-polarisiert oder beide s-polarisiert sind, die Hauptsache ist, dass sie eine 
 einheitliche Polarisation aufweisen.}
-Das detektierte Signal wird mit einer Operationsverärkerschaltung verarbeitet und auf einem
+Das detektierte Signal wird mit einer Operationsverstärkerschaltung verarbeitet und auf einem
 Oszilloskop abgebildet.
 Mit der Differenzspannungsmethode ist es möglich ein wesentlich rauschärmeres Signal zu bekommen.
 
-Der Brechungsindex lässt sich bestimmen indem der Rotationswinkel an der Stellschraube des Glasbehälters
+Der Brechungsindex lässt sich bestimmen, indem der Rotationswinkel an der Stellschraube des Glasbehälters %Glashalters?
 über einen Bereich von 10° verändert wird und die dabei auftretenden Maxima/Nulldurchgänge am
 Oszilloskop gezählt werden.
-In \autoref{tab:Maxima} sind die Anzahlen der aufgetretenden Maxima dargestellt.
+In \autoref{tab:Maxima} sind die Anzahlen der aufgetretenen Maxima dargestellt.
 \input{build/tabMaxima_Glas.tex}
 \FloatBarrier
 Im Mittel sind demnach 34,7 Maxima aufgetreten.\\
-Mit der Formel
-\begin{equation*}
-    n = \left( 1 - \frac{\lambda{M}}{2T\theta_0\theta} \right)^{-1}
-  \label{eqn:brech_glas}
-\end{equation*}
+Mit \autoref{eq:n_theta}
+%\begin{equation*}
+%    n = \left( 1 - \frac{\lambda{M}}{2D\theta_0\theta} \right)^{-1}
+%  \label{eqn:brech_glas}
+%\end{equation*}
 ergibt sich ein Brechungsindex von $1,566 \pm 0,021$.\\
-Hierbei ist $T=\SI{1}{\milli\meter}$ die Dicke des Glases, $\lambda=\SI{632,990}{\nano\meter}$ die 
+Hierbei ist $D=\SI{1}{\milli\meter}$ die Dicke des Glases, $\lambda=\SI{632,990}{\nano\meter}$ die 
 Wellenlänge des Lasers, $M$ die Anzahl der Maxima, $\theta_0$ der Verkippungswinkel der Gläser im Glashalter und
 $\theta$ der Drehwinkel über einen Bereich von 10°.
 
@@ -308,36 +316,36 @@ Dazu wird in den Strahlengang eines Laserstrahls eine längliche Druckkammer ein
 Pumpe angeschlossen ist. Die Kammer wird evakuiert und anschließend wird in 50\,mbar Schritten der Druck
 wieder hinein gelassen.
 Dadurch lassen sich wieder mit Hilfe des Oszilloskops oder der Zählautomatik die Maxima/Nulldurchgänge zählen.
-Der Brechungsindex für die unterschiedlichen Drücke berechnet sich nach der Formel
-\begin{equation*}
-	n = \frac{M \lambda_{0}}{L} +1.
-	\label{eqn:brechungsindex_gas}
-\end{equation*}
-Die verschiedenen Drücke, Maxima und Brechungsindexe sind in \autoref{tab:luft_1},\autoref{tab:luft_2} und \autoref{tab:luft_3}
+Der Brechungsindex für die unterschiedlichen Drücke berechnet sich nach \autoref{eq:brechungsindex}.
+%\begin{equation*}
+%	n = \frac{M \lambda_{0}}{L} +1.
+%	\label{eqn:brechungsindex_gas}
+%\end{equation*}
+Die verschiedenen Drücke, Maxima und Brechungsindizes sind in \autoref{tab:luft_1},\autoref{tab:luft_2} und \autoref{tab:luft_3}
 dargestellt.
 \input{build/tabLuft_1.tex}
 \input{build/tabLuft_2.tex}
 \input{build/tabLuft_3.tex}
 \FloatBarrier
-Um den Brechungsindex bei $\SI{15}{\celsius}$ und 1013\,mbar auszurechnen, werden zuvor die Brechungsindexe
+Um den Brechungsindex bei $\SI{15}{\celsius}$ und 1013\,mbar auszurechnen, werden zuvor die Brechungsindizes
 in Abhängigkeit der Drücke graphisch dargestellt und eine Regressionsgerade durch die Messwerte gelegt.
 Der Plot ist in \autoref{fig:luft} zu sehen.
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Plots/Brechungsindex.pdf}
-    \caption{Brechungsindexe in Abhängigkeit des Druckes in der Druckkammer.}
+    \caption{Brechungsindizes in Abhängigkeit des Druckes in der Druckkammer.}
     \label{fig:luft}
 \end{figure}
 \FloatBarrier
 Die Fitfunktion lautet 
 \begin{equation}
-    f(x, a, b) = a \cdot \frac{x}{T \cdot R} + b
+    f(x, a, b) = a \cdot \frac{x}{T \cdot R} + b \, .
     \label{eqn:fit}
 \end{equation}
-diese lässt sich aus den Lorentz-Lorenz Gesetz ableiten.
-Hierbei ist $R$ die ideale Gaskonstante, $x$ der Druck und $T=\SI{19,4}{\celsius}$ die gemessene Umgebungstemperatur.
+Diese lässt sich aus dem Lorentz-Lorenz Gesetz ableiten.
+Hierbei ist $R$ die ideale Gaskonstante, $x$ der Druck und $T=\SI{19.4}{\celsius}$ die gemessene Umgebungstemperatur.
 %TODO fitparameter intragen und sagen danns man die dann wieder einsetzt 
-Die Fitparameter besitzten die Werte in \autoref{tab:fit}.
+Die Fitparameter besitzen die Werte in \autoref{tab:fit}.
 \begin{table}
     \centering
     \caption{Ermittelte Regressionsparameter $a$ und $b$.}
@@ -357,27 +365,27 @@ bei $\SI{15}{\celsius}$ und 1013\,mbar berechnen.\\
 Der Brechungsindex für Luft ist $n=1.0002844 \pm 0.0000012$.
 
 \section{Diskussion}
-Betrachtet man den Graphen in \autoref{fig:kontrast} so lässt sich gut die Abhängigkeit des Kontrast von 
+Betrachtet man den Graphen in \autoref{fig:kontrast}, so lässt sich gut die Abhängigkeit des Kontrast vom 
 Polarisationswinkel erkennen.
 Hätten wir in unserem Experiment für weitere Polarisationswinkel die Messpunkte eingetragen, wäre der
 Zusammenhang über \autoref{eq:kontrast} noch besser zu erkennen.
-Bei ca. $\frac{\pi}{4}$ und bei $\frac{2*\pi}{3}$ lassen sich die beiden Maxima des Kontrastes erkennen,
+Bei ca. $\frac{\pi}{4}$ und bei $\frac{2\pi}{3}$ lassen sich die beiden Maxima des Kontrastes erkennen,
 was mit den theoretischen Überlegungen übereinstimmt.
-Werden dagegen die Randwerte  $0$,$\frac{\pi}{2}$ und $\pi$ betrachtet so verschwindet dort der Kontrast,
+Werden dagegen die Randwerte  $0$, $\frac{\pi}{2}$ und $\pi$ betrachtet, so verschwindet dort der Kontrast,
 was ebenfalls Sinn ergibt, da dann die beiden Laserstrahlen eine unterschiedliche lineare Polarisation
 aufweisen.
 
-Der Brechungsindex von Glas wurde in  unserem Experiment als $1,566 \pm 0,021$ bestimmt.
+Der Brechungsindex von Glas wurde in unserem Experiment als $1,566 \pm 0,021$ bestimmt.
 Dieser Wert stimmt mit dem theoretischen Wert für Glas $n_\text{lit,Glas} = 1,5 $ überein.
-Allerdings kann keine Aussage darüber getroffen werden um welche Art von Glas es sich handelt.
-Demnach kann die Übereinstimmung nur von größenordungstechnischer Natur sein.
+Allerdings kann keine Aussage darüber getroffen werden, um welche Art von Glas es sich handelt.
+Demnach kann die Übereinstimmung nur von größenordungstechnischer Natur sein. %komisches Wort :D
 
-Der bestimmte Wert des Brechungsindexes von Luft ist $n=1.0002844 \pm 0.0000012$.
-Dieser Wert weicht von Literaturwert $n_\text{lit, Luft}=1,000272$\quote{spektrum} um 0,02\,\% ab.
+Der bestimmte Wert des Brechungsindex von Luft ist $n=1.0002844 \pm 0.0000012$.
+Dieser Wert weicht vom Literaturwert $n_\text{lit, Luft}=1,000272$\quote{spektrum} um 0,02\,\% ab.
 Der bestimmte Brechungsindex stimmt also sehr gut mit dem tatsächlichen Wert überein.
-Trotzdem gibt es anzumerken, dass das Sagnac-Interferometer zwar sehr präzise ist aber dadurch auch sehr 
-empfindlich. Während des Versuch ist des darum nötig eine Abdeckung z.B. aus Plexiglas über den Strahlengang
-zu legen, da sonst geringe Luftzirkulationen ausreichen um die Messergebisse gravierend zu ändern. 
+Trotzdem ist anzumerken, dass das Sagnac-Interferometer zwar sehr präzise ist, aber dadurch auch sehr 
+empfindlich. Während des Versuchs ist des darum nötig eine Abdeckung, z.B. aus Plexiglas, über den Strahlengang
+zu legen, da sonst geringe Luftzirkulationen ausreichen, um die Messergebisse gravierend zu ändern. 
 
 
 
