@@ -127,6 +127,11 @@ plt.clf()
 print("M_0 T_1 in mV: ", M0_T1)
 print("M_0 T2 in mV: ", M0_T2*10**(3))
 #   ----------------------------------------------------------------------------
+###################################
+######## Code von Jan-Peter #######
+###################################
+
+
 ## Viskosität und Diffusion bestimmen
 #tau_d, peak_d, x_1, x_2 = np.genfromtxt("Auswertung/Daten/d.txt", unpack=True)
 #tau_d = tau_d * 10**(-3)    # in Sekunden

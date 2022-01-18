@@ -1,5 +1,5 @@
-$\tau$ in ms    $M$ in V    $M/2$ in V   x1 in ms    x2 in ms
-
+#$\tau$ in ms    $M$ in V    $M/2$ in V   x1 in ms    x2 in ms
+#
 0.1     1.075   537.5   0.164     0.250
 1       1.075   537.5   1.963     2.050
 2       1.075   537.5   3.960     4.050
