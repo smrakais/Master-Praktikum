@@ -1,14 +1,14 @@
+from cmath import tau
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import scipy.signal as scs
-# import uncertainties.unumpy as unp
+import uncertainties.unumpy as unp
 from scipy.optimize import curve_fit
 from uncertainties import ufloat
 from scipy.constants import constants
 from scipy.stats import sem
 from texutils.table import TexTable
-
 
 # Use latex fonts and text
 plt.rc('text', usetex=True)
@@ -50,7 +50,7 @@ plt.clf()
 # Tabelle
 ##########
 tau_t1, peak_t1 = np.genfromtxt("data/t1.txt", unpack=True)
-
+#print(type(tau_t1))
 t = TexTable([tau_t1,peak_t1], [r"\tau / ms", r"$M_\text{z}(t)$ / mV"], 
             label='tab:t1',
             caption='Messwerte zur Bestimmung von $T_{1}$.')
@@ -126,11 +126,51 @@ plt.clf()
 
 print("M_0 T_1 in mV: ", M0_T1)
 print("M_0 T2 in mV: ", M0_T2*10**(3))
-#   ----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------
 ###################################
 ######## Code von Jan-Peter #######
 ###################################
 
+## soll das so ? TODO einheitencheck
+
+t_echo, h_echo, h_echo_halb, x1, x2 = np.genfromtxt("data/diffusion.txt", unpack=True)
+
+def echo_func(t, d, m0, m1):
+    return m0 * np.exp(-2*t/T2.n) * np.exp(-t**3/d) + m1
+
+params3, pcov3 = curve_fit(echo_func, t_echo, h_echo)#, p0=[1.7e-6,1.4,3e-2])
+err3 = np.sqrt(np.diag(pcov3))
+
+t_echo_new = np.linspace(t_echo[0], t_echo[-1], 10000)
+plt.figure()
+plt.xlabel(r"$\tau^3 / \si{\milli\second}^3$")
+plt.ylabel(r"$\ln\left(M(\tau)\right) - 2\tau/T_2$")
+plt.plot(t_echo**3, np.log(h_echo)-2*t_echo/T2.n, "x", label="Datenpunkte")
+plt.plot(t_echo_new**3, np.log(echo_func(t_echo_new, *params3))-2*t_echo_new/T2.n, label="Ausgleichskurve")
+plt.legend(loc="best")
+plt.grid()
+plt.tight_layout()
+plt.savefig("build/echo.pdf")
+plt.clf()
+#-----------------------------------------------------------------------------------------------------
+## oder so?
+def echo_func(t, d, m0, m1):
+    return m0 * np.exp(-2*t/T2.n) * np.exp(-t**3/d) + m1
+
+params3, pcov3 = curve_fit(echo_func, t_echo, h_echo,p0=[1.7,1.4,0])
+err3 = np.sqrt(np.diag(pcov3))
+
+plt.figure()
+plt.xlabel(r"$\tau / \si{\milli\second}$")
+plt.ylabel(r"$M(\tau)$ /  V")
+plt.plot(t_echo,h_echo, "x", label="Datenpunkte")
+plt.plot(t_echo_new, echo_func(t_echo_new, *params3), label="Ausgleichskurve")
+plt.legend(loc="best")
+plt.grid()
+plt.tight_layout()
+plt.savefig("build/echo_2.pdf")
+
+#-----------------------------------------------------------------------------------------------------
 
 ## Viskosität und Diffusion bestimmen
 #tau_d, peak_d, x_1, x_2 = np.genfromtxt("Auswertung/Daten/d.txt", unpack=True)
