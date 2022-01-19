@@ -1,0 +1,29 @@
+F: 21.71873 MHz
+Phase: -64 Grad
+
+Shims:
+x = -1.0
+y = -4.2
+z = +4.1
+z^2 = -2.24
+
+bei Diffusionsmessung: z = -10
+
+Pulslängen:
+90 Grad: 2.5 micro s 
+180 Grad: 5.08 micro s
+
+Temperatur in der Spule:
+vor Justage: 21.2
+vor T1: 20.2
+nach T1: 21.6
+vor Diffusionsmessung: 21.6
+
+
+Abgespeicherte Messwerte:
+e_7: T2 Messung mit tau = 10ms, "MG" on (csv)
+e_9: T2 Messung "MG" on (png)
+e_10: T2 Messung "MG" off (png)
+e_11: T2 Messung "MG" off (csv)
+e_12: Diffusionsmessung, "MG" on, tau = 100 micro s (csv)
+e_13: Diffusionsmessung, "MG" on, tau = 100 micro s (png)
