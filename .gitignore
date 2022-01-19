@@ -130,3 +130,6 @@ dmypy.json
 
 */build/*
 .vscode
+
+# Für Karina (special K.)
+*.DS_Store
