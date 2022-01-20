@@ -1,4 +1,5 @@
 from cmath import tau
+from itertools import tee
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -58,9 +59,8 @@ t.set_row_rounding(0, 0) #reihe und rundung
 t.set_row_rounding(1, 1)
 t.write_file('build/tabT1.tex')
 print('Die Tabelle von T1 wurde erzeugt!\n')
-
-
 # ------------------------------------------------------------------------------
+
 #T_2 bestimmen
 meiboom_gill = pd.read_csv("data/e_7.csv", header=[0, 1])
 carr_purcell = pd.read_csv("data/e_11.csv", header=[0, 1])
@@ -80,10 +80,6 @@ plt.clf()
 
 meiboom_gill = meiboom_gill[4:]
 carr_purcell = carr_purcell[4:]
-
-# print(carr_purcell.head())
-# print(meiboom_gill.head())
-
 
 def find_peaks(data):
     x = data["1"].values.reshape(-1)
@@ -127,50 +123,184 @@ plt.clf()
 print("M_0 T_1 in mV: ", M0_T1)
 print("M_0 T2 in mV: ", M0_T2*10**(3))
 #-----------------------------------------------------------------------------------------------------
-###################################
-######## Code von Jan-Peter #######
-###################################
 
-## soll das so ? TODO einheitencheck
-
+####################################
+# PROBE DAS DIE ABHÄNGIGKEIT STIMMT
+####################################
 t_echo, h_echo, h_echo_halb, x1, x2 = np.genfromtxt("data/diffusion.txt", unpack=True)
 
-def echo_func(t, d, m0, m1):
-    return m0 * np.exp(-2*t/T2.n) * np.exp(-t**3/d) + m1
+# einheiten
+t_echo *=1e-3 # in sekunden
+h_echo *=1e-3 # in volt
+T2.n # in sekunden
 
-params3, pcov3 = curve_fit(echo_func, t_echo, h_echo)#, p0=[1.7e-6,1.4,3e-2])
-err3 = np.sqrt(np.diag(pcov3))
-
-t_echo_new = np.linspace(t_echo[0], t_echo[-1], 10000)
 plt.figure()
 plt.xlabel(r"$\tau^3 / \si{\milli\second}^3$")
 plt.ylabel(r"$\ln\left(M(\tau)\right) - 2\tau/T_2$")
-plt.plot(t_echo**3, np.log(h_echo)-2*t_echo/T2.n, "x", label="Datenpunkte")
-plt.plot(t_echo_new**3, np.log(echo_func(t_echo_new, *params3))-2*t_echo_new/T2.n, label="Ausgleichskurve")
+plt.plot(t_echo**3, np.log(h_echo)-2*t_echo/T2.n, "x", label="Messwerte")
 plt.legend(loc="best")
 plt.grid()
 plt.tight_layout()
-plt.savefig("build/echo.pdf")
+plt.savefig("build/echo_check.pdf")
 plt.clf()
 #-----------------------------------------------------------------------------------------------------
-## oder so?
-def echo_func(t, d, m0, m1):
-    return m0 * np.exp(-2*t/T2.n) * np.exp(-t**3/d) + m1
+#######################
+# FIT DER ZU MACHEN IST         FUNZT NET VGL UNTEN
+#######################
 
-params3, pcov3 = curve_fit(echo_func, t_echo, h_echo,p0=[1.7,1.4,0])
-err3 = np.sqrt(np.diag(pcov3))
+#       t_echo, h_echo, h_echo_halb, x1, x2 = np.genfromtxt("data/diffusion.txt", unpack=True)
+#       
+#       # einheiten
+#       t_echo *=1e-3 # in sekunden
+#       h_echo *=1e-3 # in volt
+#       T2.n # in sekunden
+#       print('\n',T2.n,' in sekunden','\n')
+#       print('\n',t_echo,' in sekunden','\n')
+#       print('\n',h_echo,' in volt','\n')
+#       
+#       t_echo_new = np.linspace(t_echo[0], t_echo[-1], 10000)
+#       
+#       def echo_func(t, d, m0, m1):
+#           return m0 * np.exp(-(2*t)/T2.n) * np.exp(-(t**3)/d) + m1
+#       
+#       params3, pcov3 = curve_fit(echo_func, t_echo, h_echo)#,p0=[2,1000,0])
+#       err3 = np.sqrt(np.diag(pcov3))
+#       ###########################################################################
+#       ### UNSERE MESSWERTE SIND KACKE DESHALB MACHT ER BEI UNS EINE GERADE DRAUS
+#       ### VGL. MAMPFZWERG --> SARAH KRIEG UND MARCEL KARZEL, GITHUB REPO
+#       ###########################################################################
+#       fig, ax = plt.subplots()
+#       plt.xlabel(r"$\tau / \si{\second}$")
+#       plt.ylabel(r"$M(\tau)$ /  V")
+#       plt.plot(t_echo,h_echo, "x", label="Datenpunkte")
+#       plt.plot(t_echo_new, echo_func(t_echo_new, *params3), label="Ausgleichskurve")
+#       plt.legend(loc="best")
+#       #ax.set_xscale('log')
+#       plt.grid()
+#       plt.tight_layout()
+#       plt.savefig("build/echo_2.pdf")
+#       plt.clf()
+#-----------------------------------------------------------------------------------------------------
+#  
+####    HIER KOMMT DIE PISSE DIE ENDLICH FUNKTIONIERT
+t, U, h_echo_halb, x1, x2 = np.genfromtxt("data/diffusion.txt", unpack=True)
 
-plt.figure()
-plt.xlabel(r"$\tau / \si{\milli\second}$")
+T2 = T2.n
+T2 *=10**3
+
+g = 2.67*10**8
+G2 = 0.079 
+
+def fit(t, a, b, c):
+    return a*np.exp(-(2*t)/T2)*np.exp(-t**3/b)+c
+
+params, cov = curve_fit(fit, t, U)
+err = np.sqrt(np.diag(abs(cov)))
+
+a = ufloat(params[0], err[0])
+b = ufloat(params[1], err[1])
+c = ufloat(params[2], err[2])
+
+print('\n')
+print('M_1 in mV = '   ,a)
+print('T_D in ms^3 = ',b)
+print('M_1 in mV = ',c  )
+
+plt.plot(t, U, 'rx', label=r'Messwerte')
+plt.plot(t, fit(t, *params), 'b-', label='Ausgleichsrechnung')
+plt.minorticks_on()
+plt.xlabel(r'$\tau \, / \, ms$')
 plt.ylabel(r"$M(\tau)$ /  V")
-plt.plot(t_echo,h_echo, "x", label="Datenpunkte")
-plt.plot(t_echo_new, echo_func(t_echo_new, *params3), label="Ausgleichskurve")
-plt.legend(loc="best")
+plt.legend(loc='best')
+plt.grid()
+
+plt.tight_layout()
+plt.savefig('build/echo_2.pdf')
+plt.clf()
+print('--------------------------------------------------------------------- \n')
+
+###############################
+# HIER KOMMT DIE FOURIER TRAFO
+###############################
+ 
+#Laden der Daten aus der Datei "echo_gradient.csv" 
+#Die erste Spalte enthält die Zeiten in Sekunden, die zweite Spalte  
+#den Realteil und die dritte Spalte den Imaginärteil 
+
+#data = np.loadtxt("data/e_12.csv", delimiter=",", skiprows=3, unpack= True)
+times, real, imag = np.genfromtxt("data/e_12.csv", delimiter=",", unpack= True) 
+#times = data[0] 
+#real = data[1] 
+#imag = data[2]
+
+#Suchen des Echo-Maximums und alle Daten davor abschneiden 
+start = np.argmax(real)
+#print(start) 
+
+times = times[start:]
+#print('hallo ich printe times ',times)
+#print('hallo ich printe den datentyp von times ',type(times))
+
+real = real[start:] 
+#print(real)
+imag = imag[start:] 
+#print(imag)
+#Phasenkorrektur - der Imaginärteil bei t=0 muss = 0 sein 
+phase = np.arctan2(imag[0], real[0]) 
+#print(phase)
+#Daten in komplexes Array mit Phasenkorrektur speichern 
+compsignal = (real*np.cos(phase)+imag*np.sin(phase))+ (-real*np.sin(phase)+imag*np.cos(phase))*1j
+#print(compsignal)
+#Offsetkorrektur, ziehe den Mittelwert der letzten 512 Punkte von allen Punkten ab 
+compsignal = compsignal - compsignal[-512:-1].mean() 
+#print(compsignal)
+#Der erste Punkt einer FFT muss halbiert werden 
+compsignal[0] = compsignal[0]/2.0 
+#Anwenden einer Fensterfunktion (siehe z. Bsp. #https://de.wikipedia.org/wiki/Fensterfunktion ) 
+#Hier wird eine Gaußfunktion mit sigma = 100 Hz verwendet 
+apodisation = 100.0*2*np.pi 
+compsignal = compsignal*np.exp(-1.0/2.0*((times-times[0])*apodisation)**2) 
+#Durchführen der Fourier-Transformation 
+fftdata = np.fft.fftshift(np.fft.fft(compsignal)) 
+
+#print(fftdata) 
+
+#Generieren der Frequenzachse 
+freqs = np.fft.fftshift(np.fft.fftfreq(len(compsignal), times[1]-times[0]))
+
+#print(freqs) 
+
+#Speichern des Ergebnisses als txt 
+np.savetxt("echo_gradient_fft.txt", np.array([freqs, np.real(fftdata), np.imag(fftdata)]).transpose()) 
+
+#Erstellen eines Plots
+plt.figure()
+#skalieren 
+plt.axis([-8000,10000,-1,36])
+
+plt.minorticks_on()
+plt.xlabel(r"$f / \si{\kilo\hertz}")
+plt.ylabel(r"Anzahl")
 plt.grid()
 plt.tight_layout()
-plt.savefig("build/echo_2.pdf")
 
-#-----------------------------------------------------------------------------------------------------
+plt.plot(freqs, np.real(fftdata),label='Fouriertransformation') 
+plt.legend(loc="best")
+
+
+plt.savefig("build/echo_gradient.pdf")
+
+
+print('Die Fouriertransormation wurde durchgeführt!')
+print('---------------------------------------------------------------------\n')
+
+d_f= 9000 + 6000 # abgelesen am Graphen (Nullstellen)
+G = (2*np.pi*d_f)/(2.67*10**8*4.2*10**-3)
+print('Der Probeninnendurchmesser ist 4,2mm. ')
+print('Die ermittelte Gradientenstärke G ist: ',G)
+
+
+#TODO alsnächstes muss noch die difusionskonstante bestimmt werden vgl mampfzwerg  s 11
 
 ## Viskosität und Diffusion bestimmen
 #tau_d, peak_d, x_1, x_2 = np.genfromtxt("Auswertung/Daten/d.txt", unpack=True)
