@@ -19,9 +19,227 @@
 
 \section{Ziel}
 
-
+\newpage
 \section{Auswertung}
+Im folgenden Abschnitt werden die gesammelten Messdaten ausgewertet und analysiert.
+\subsection{Justage}
+Bevor mit den eigentlichen Messungen begonnen werden kann, müssen einige Justierungen vorgenommen werden.
+Die Shim-Parameter sind in \autoref{tab:shim} dargestellt und gelten für die Bestimmung
+von $T_1$ und $T_2$.
+\begin{table}
+  \centering
+  \caption{Verwendetete Shim-Parameter.}
+  \label{tab:shim}
+  \begin{tabular}{c c c c}
+    \toprule
+    x & y & z & $\symup{z^2}$ \\
+    \midrule
+    -1.0 & -4.2 & +4.1 & -2.24 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+Der Imaginärteil der Schwingung verschwindet für eine eingestellte Phase von $\phi=-64°$.
+Für eine Frequenz von $f=\SI{21,7 }{\mega\hertz}$, weisen beide Signale Real- und Imaginärteil
+keine Oszillationen mehr auf.
 
+
+\subsection{Bestimmung der Spin-Gitter Relaxationszeit T1 }
+Für die Messung der Spin-Gitter Relaxationszeit $T_1$ wird die $90°$
+Pulslänge ($\tau_\text{90}$) auf $\SI{2,5}{\micro\second}$ und die $180°$ Pulslänge ($\tau_\text{180}$) auf
+$\SI{5,08}{\micro\second}$ gestellt.
+Die Messwerte sind in \autoref{tab:t1}  und der Plot in \autoref{fig:T1}zu finden.
+Mit Hilfe der Funktion
+\begin{equation*}
+  M\left(\tau\right) = M_0 \left(1-2\exp(-\frac{\tau}{T_1})\right)
+\end{equation*}
+findet eine Ausgleichsrechnung statt.
+Der Fit liefert die Fitparameter 
+\begin{align*}
+    M_0 &= \SI{1086 \pm 7}{\mV}\\% \label{eqn:M0_T1} \\
+    T_1 &= \SI{2,565 \pm 0,034 }{\second}.% \label{eqn:T1}.
+\end{align*}
+\input{build/tabT1.tex}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build/T1.pdf}
+    \caption{Plot für die Bestimmung der Spin-Gitter Relaxationszeit.}
+    \label{fig:T1}
+\end{figure}
+\FloatBarrier
+\subsection{Bestimmung der Spin-Spin Relaxationszeit T2}
+\subsubsection{Die Meiboom-Gill-Methode}
+In diesem Versuchsteil wird mittels der Meiboom-Gill-Methode 
+die Spin-Gitter Relaxationszeit $T_2$ bestimmt.
+Der Graph welcher mit der Meiboom-Gill-Methode entstanden ist, ist in \autoref{fig:mei}
+zu sehen.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{build/MG.pdf}
+  \caption{Signalverlauf unter der Anwendung der Meiboom-Gill-Methode.}
+  \label{fig:mei}
+\end{figure}
+Um im nächsten Schritt die die Relaxationszeit $T_2$ zu bestimmen werden die 
+einzelnen Peaks in \autoref{fig:mei} in einen neuen Graphen in Abhängigkeit der Zeit aufgetragen.
+Die dieser Graph ist in \autoref{fig:mei_fit} zu sehen.
+Mit Hilfe der Funktion
+\begin{equation*}
+  M\left(t\right) = M_0 \exp(-\frac{t}{T_2})
+\end{equation*} 
+wird der Graph gefittet.
+Der Fit liefert die Fitparameter 
+\begin{align*}
+    M_0 &= \SI{1025 \pm 5}{\mV}\\ % \label{eqn:M0_T2} \\
+    T_2 &= \SI{1,696 \pm 0,019 }{\second}.% \label{eqn:T2}.
+\end{align*}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{build/peaks.pdf}
+  \caption{Darstellung der einzelnen Peak der Meiboom-Gill-Methode.}
+  \label{fig:mei_fit}
+\end{figure}
+\FloatBarrier
+\subsubsection{Die Carr-Purcell-Methode}
+Eine andere Methode um die Relaxationszeit $T_2$ zu bestimmen, ist die Carr-Purcell-Methode.
+Allerdings muss bei dieser darauf geachtet werden, dass die Pulslänge des 180° Pulses exakt
+eingestellt wird.
+Dies ist aber experimentell in unserem Versuch nicht realisierbar und würde zu großen
+Abweichungen führen.
+In \autoref{fig:carr} ist der Vollständigkeit, der Graph der Carr-Purcell-Methode abgebildet.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build/carr_purcell.pdf}
+    \caption{Graph der Carr-Purcell-Methode.}
+    \label{fig:carr}
+\end{figure} 
+
+\subsection{Bestimmung der Diffusionskonstante}
+Um die Diffusionskonstante der Probe zu bestimmen, wird als erster Schritt die Diffusionszeit
+$T_D$ ermittelt.
+Die aufgenommenen Messwerte sind in \autoref{tab:echo_2} dargestellt.
+\input{build/tabEcho_2.tex}
+Um die Diffusionszeitzu bestimmen werden die gemessenen Echohöhen $M(\tau)$ in Abhängigkeit der Pulslänge $\tau$ in \autoref{fig:echo_2}
+graphisch dargestellt.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{build/echo_2.pdf}
+  \caption{Gemessene Echohöhen in Abhängigkeit der Pulslänge.}
+  \label{fig:echo_2}
+\end{figure}
+Anschließend werden die Messdaten mit 
+\begin{equation*}
+  M\left(\tau\right) = M_0 \exp(-\frac{2\tau}{T_2}) \exp(-\frac{\tau^3}{T_D}) + M_1
+\end{equation*}
+gefittet.
+Der Fit liefert die Fitparameter 
+\begin{align*}
+    M_0 &= \SI{1045 \pm 12}{\mV}\\% \label{eqn:M0_diff} \\
+    M_1 &= \SI{41 \pm 12}{\mV}\\% \label{eqn:M1_diff} \\
+    T_D &= \SI{1,40(5)e3}{\milli\second^3}.% \label{eqn:diff_zeit}.
+\end{align*}
+\FloatBarrier
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{build/echo_gradient.pdf}
+  \caption{Fouriertransformation des vollständigen Echos.}
+  \label{fig:Fouriertransformation}
+\end{figure}
+\FloatBarrier
+Nachdem die Diffusionszeit $T_D$ bestimmt worden ist,
+wird im nächsten Schritt der Magnetfeldgradient mit Hilfe einer Fouriertransformation 
+des vollständigen Echoverlaufs abgeschätzt.
+Die Fouriertransformation ist in \autoref{fig:Fouriertransformation} zu sehen.
+Aus der Fouriertransformation ergibt sich ein Durchmesser der halbkreisförmigen Verlaufes
+$d_f \approx \SI{19,5}{\kilo\hertz}$.
+Daraus folgt mit 
+\begin{equation*}
+  g = \frac{2 \pi d_f}{\gamma d}
+\end{equation*}
+ein Magnetfeldgradient $g=\SI{0,103}{\tesla \meter^{-1}}$. 
+Hierbei ist $\gamma= \SI{267,5e6}{\second^{-1}\tesla^{-1}}$\cite{gyro_wiki} das 
+gyromagnetische Verhältnis für Protonen und $d=\SI{4,2}{\milli\meter}$ der Probeninnendurchmesser.
+Im letzten Schritt kann die Diffusionskonstante mit
+\begin{equation*}
+  D = \frac{3}{2 T_D \gamma^2 g^2} 
+\end{equation*}
+ermittelt werden.
+Die Diffusionskonstante beträgt $D= \SI{1,40(5)e-9}{\meter^2\per\second}$.
+
+\subsection{Bestimmung des Molekülradius}
+Der Molekülradius kann mit Hilfe der Stokes-Formel berechnet werden.
+Es gilt 
+\begin{equation}
+  r=\frac{k_\text{B}T}{6 \pi\eta D}.
+  \label{eqn:r}
+\end{equation}
+Hierbei ist $T = \SI{294.75}{\kelvin}$ die gemessene Temperatur  
+und $\eta = \SI{890.2}{\micro\pascal\second}$\cite{vis} die Viskosität.
+Mit \autoref{eqn:r} ergibt sich ein Molekülradius von 
+\begin{equation*}
+  r = \SI{1.73(6)e-10}{\meter}.
+\end{equation*}
+
+Um einen Vergleichswert zu generieren wird angenommen, dass die Moleküle 
+in Wasser in der hexagonal dichtesten Kugelpackung angeordnet sind.
+Die Einheitszelle besitzt in dieser Konstelation eine Füllung von ca. 74\%.
+Die Dichte von Wasser bei einer Temperatur von $T = \SI{298.15}{\kelvin}$ ist 
+$\rho=\SI{995}{\kilo\gram\per\metre^3}$\cite{dichte}. 
+Das Molekülgewicht von Wasser beträgt $m = \frac{M_\text{mol}}{N_\text{A}} = \SI{2.99e-26}{\kilo\gram}$\cite{wasser}
+Mit der Formel
+\begin{equation*}
+  r_\text{hcp} = \left(\frac{m 0,74}{\frac{4}{3}\pi\rho}\right)^{\frac{1}{3}}
+\end{equation*}
+ergibt sich ein Molekülradius von $r = \SI{1.74e-10}{\meter}$.
+Die Abweichung von Theoriewert beträgt somit ca. 1\%.
+
+
+\section{Diskussion}
+Zu Beginn der Diskussion kann gesagt werden, dass die Änderung der Temperatur während 
+des gesamten Versuches eine wesentliche Fehlerquelle ist. 
+Die Änderung der Temperatur ist durch das wiederholte lüften des Raumes zustande gekommen und zum anderen 
+durch den Erwärmungsvorgang des verwendeten Magneten.
+Des weiteren kann nicht genau gesagt werden ob das permanente Magnetfeld durch 
+die unterschiedlichen Shim-Parameter in der Probe optimal homogenisiert worden ist.\\
+Die gemessenen Relaxationszeiten sind 
+\begin{align*}
+  T_1 &= \SI{2,565 \pm 0,034 }{\second}\\
+  T_2 &= \SI{1,696 \pm 0,019 }{\second}.
+\end{align*}
+Klar erkennbar ist, dass $T_1 > T_2$ ist, welches mit der Theorie übereinstimmt.
+Werden die errechneten Werte direkt mit den Theoriewerten verglichen\cite{diff}
+\begin{align*}
+  T_\text{1,lit} &= \SI{3.09(15)}{\second},\\
+  T_\text{2,lit} &= \SI{1.52(9)}{\second},
+\end{align*}
+ergibt sich für $T_1$ eine Abweichung von $16,99\%$ und für $T_2$ eine Abweichung von $10,37\%$.
+
+Die Diffusionskonstante hat in unserem Experiment der Wert 
+\begin{equation*}
+  D= \SI{1,40(5)e-9}{\meter^2\per\second}.
+\end{equation*}
+Verglichen mit dem Theoriewert\cite{diff} von 
+\begin{equation*}
+  D_\text{lit} = \SI{2.78(4)e-9}{\metre^2\per\second}
+\end{equation*}
+ergibt sich eine Abweichung von 49,64\%.
+%Die Abweichung  warum so groß ? wegen halbkreisförmigen duch geschätzt,??
+
+Der ermittle Molekülradius ist
+\begin{equation*}
+  r = \SI{1.73(6)e-10}{\meter}.
+\end{equation*}
+Verglichen mit dem Theorie von
+\begin{equation*}
+  r_\text{hcp}= \SI{1.74e-10}{\metre}.
+\end{equation*}
+ergibt sich wie bereits erwähnt eine Abweichung von ca. 1\%.
+Der ermittelte Wert scheint also sehr gut zu passen. 
+Allerdings muss gesagt werden, dass für die Berechnung des Theoriewerts die Dichte von Wasser bei einer 
+Temperatur von $\SI{25}{\celsius}$ verwendeten worden ist.
+Im Experiment herrschte aber zu diesem Zeitpunkt eine Temperatur von nur $\SI{21,6}{\celsius}$.
+Außerdem ist zur Berechnung die hexagonal dichtesten Kugelpackung angenommen worden, 
+welche den kleinsten Molekülradius liefert.
+%\FloatBarrier
 %\begin{figure}
 %    \centering
 %    \includegraphics[width=0.7\linewidth]{./figures/xxx.xxx}
@@ -39,7 +257,7 @@
 %        n_\text{si} &= 1 - \delta_\text{ps} 
 %    \end{split}
 %\end{equation}
- 
+\newpage
 \nocite{*}
 \printbibliography{}
 \end{document}

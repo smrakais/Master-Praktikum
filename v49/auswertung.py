@@ -43,7 +43,7 @@ plt.xscale('log')
 plt.minorticks_on()
 plt.grid()
 plt.xlabel(r'$\tau$ / ms')
-plt.ylabel(r"$M(z)$ / mV")
+plt.ylabel(r"$M(\tau)$ / mV")
 plt.legend(loc='best')
 plt.tight_layout()
 plt.savefig("build/T1.pdf")
@@ -54,7 +54,7 @@ plt.clf()
 ##########
 tau_t1, peak_t1 = np.genfromtxt("data/t1.txt", unpack=True)
 #print(type(tau_t1))
-t = TexTable([tau_t1,peak_t1], [r"\tau / ms", r"$M_\text{z}(t)$ / mV"], 
+t = TexTable([tau_t1,peak_t1], [r"$\tau$ / ms", r"$M_\text{z}(t)$ / mV"], 
             label='tab:t1',
             caption='Messwerte zur Bestimmung von $T_{1}$.')
 t.set_row_rounding(0, 0) #reihe und rundung
@@ -72,7 +72,7 @@ plt.plot(meiboom_gill['x-axis'][1:], meiboom_gill['1'][1:])
 plt.minorticks_on()
 plt.grid()
 plt.xlabel(r"$t$ / s")
-plt.ylabel(r"$M_y(t)$ / V")
+plt.ylabel(r"$M(t)$ / V")
 plt.savefig("build/MG.pdf")
 plt.clf()
 
@@ -80,7 +80,7 @@ plt.minorticks_on()
 plt.grid()
 plt.plot(carr_purcell['x-axis'][1:], carr_purcell['1'][1:])
 plt.xlabel(r"$t$ / s")
-plt.ylabel(r"$M_y(t)$ / V")
+plt.ylabel(r"$M(t)$ / V")
 plt.savefig("build/carr_purcell.pdf")
 plt.clf()
 
@@ -118,9 +118,12 @@ x = np.linspace(-0.1, 2.7, 1000)
 plt.plot(meiboom_gill["x-axis"].values[peakkinds_mg],
          meiboom_gill["1"].values[peakkinds_mg], 'r.', label="Daten")
 plt.plot(x, f_t2(x, *params_T2), 'g--', label="Fit")
+
+#y=f_t2(x, *params_T2) #nur für tabelle
+
 plt.xlabel(r"$t$ / s")
 plt.xlim(-0.1,2.05)                                                                 #Cheat
-plt.ylabel(r"$M_y (t)$ / V")
+plt.ylabel(r"$M(t)$ / V")
 plt.minorticks_on()
 plt.grid()
 plt.legend(loc='best')
@@ -130,6 +133,9 @@ plt.clf()
 
 print("M_0 T_1 in mV: ", M0_T1)
 print("M_0 T2 in mV: ", M0_T2*10**(3))
+
+
+
 #-----------------------------------------------------------------------------------------------------
 
 ####################################
@@ -208,7 +214,7 @@ b = ufloat(params[1], err[1])
 c = ufloat(params[2], err[2])
 
 print('\n')
-print('M_1 in mV = '   ,a)
+print('M_0 in mV = '   ,a)
 print('T_D (Diffusionszeit) in ms^3 = ',b)
 print('M_1 in mV = ',c  )
 
@@ -223,6 +229,17 @@ plt.legend(loc='best')
 plt.tight_layout()
 plt.savefig('build/echo_2.pdf')
 plt.clf()
+
+####################    
+# Tabelle für echo_2
+####################
+t = TexTable([t,U], [r"$\tau$ / ms", r"$M(\tau)$ / mV"], 
+            label='tab:echo_2',
+            caption='Gemessene Spannungswerte und Pulslängen.')
+t.set_row_rounding(0, 1) #reihe und rundung
+t.set_row_rounding(1, 1)
+t.write_file('build/tabEcho_2.tex')
+print('Die Tabelle von Echo_2 wurde erzeugt!\n')
 print('--------------------------------------------------------------------- \n')
 
 ###############################
@@ -272,7 +289,7 @@ np.savetxt("echo_gradient_fft.txt", np.array([freqs, np.real(fftdata), np.imag(f
 #Erstellen eines Plots
 plt.figure()
 #skalieren 
-plt.axis([-8000,10000,-1,36])
+#plt.axis([-9500,10000,-1,36])
 plt.xlabel(r"$f / \si{\kilo\hertz}")
 plt.ylabel(r"Anzahl")
 plt.grid()
@@ -284,7 +301,7 @@ print('Die Fouriertransormation wurde durchgeführt!')
 print('---------------------------------------------------------------------\n')
 
 ###  BESTIMMUNG DES MAGNETFELDGRADIENTEN UND DES DIFFUSIONSKOEFFINZIENTEN
-d_f= 9000 + 6000 # abgelesen am Graphen (Nullstellen)
+d_f= 9000 + 9500 # abgelesen am Graphen (Nullstellen) 9500 statt 6000
 gamma = 2.67*10**8 # gyromag  proton verhältnis quelle wikipedia
 durchmesser =  4.2*10**-3 # probeninnendurchmesser
 print('Der Probeninnendurchmesser ist 4,2mm. ')
@@ -301,7 +318,7 @@ print('---------------------------------------------------------------------\n')
 #### Bestimmung des molekülradius per stoks formel
 
 kb = 1.38*10**-23
-Te = 295.35
+Te = 294.75
 n = 890.2*10**-6    #viskosität quelle vgl mampfzwerg s 13 unten
 
 r = (kb*Te)/(6*np.pi*n*Diff)
