@@ -124,7 +124,7 @@ Mit den Anfangsbedingungen $M_x(0) = M_y(0) = 0$ und $M_z(0) = - M_0$ gilt für 
 \begin{equation*}
     M(\tau) = M_0 \left( 1 - 2 \exp(- \frac{\tau}{T_1}) \right) \, .
 \end{equation*}
-Dies folgt aus den Bloch'schen Gleichungen \autoref{eq:bloch}. Die Spin-Gitter-Relaxationszeit $T_1$ kann durch Variation der Dauer $\tau$ zwischen den Pulsen bestimmt werden.
+Dies folgt aus den Bloch'schen Gleichungen (\autoref{eq:bloch}). Die Spin-Gitter-Relaxationszeit $T_1$ kann durch Variation der Dauer $\tau$ zwischen den Pulsen bestimmt werden.
 
 \begin{figure}
     \centering
@@ -145,7 +145,7 @@ Da das statische Magnetfeld in der Realität Inhomogenitäten aufweist, kann nur
     \frac{1}{T^{eff}_2} = \frac{1}{T_2} + \frac{1}{T^{inhom}_2}
 \end{equation*}
 beschrieben werden und ist in der Regel kürzer als $T_2$.
-Dieser Effekt kann durch bestimmte Pulsfolgen eliminiert werden \autoref{sec:spinecho}.
+Dieser Effekt kann wie im Folgenden beschrieben durch bestimmte Pulsfolgen eliminiert werden. %\autoref{sec:spinecho}.
 
 
 \subsubsection{Spin-Echo-Methode}
@@ -153,7 +153,7 @@ Dieser Effekt kann durch bestimmte Pulsfolgen eliminiert werden \autoref{sec:spi
 Bei dem Spin-Echo-Verfahren werden zwei Pulse eingespeist. Der erste Puls ist ein $90 \degree$- Puls.
 Am Ende des FID zur Zeit $\tau$, wenn alle Spins dephasiert sind und daher kein Signal mehr messbar ist, wird ein $180 \degree$-Puls auf die Probe gegeben. Als Resultat laufen die dephasierenden Spins zum Zeitpunkt $2\tau$ wieder zusammen und es entsteht ein Signal mit umgekehrtem Vorzeichen und niedrigerer Amplitude
 \begin{equation*}
-    M_{x,y}(2\tau) = M_{x,y}(0) \exp(-\frac{2\tau}{T_2}) \, .
+    M(2\tau) = M(0) \exp(-\frac{2\tau}{T_2}) \, .
 \end{equation*}
 Aus der exponentiellen Abnahme der Amplituden lässt sich so die Relaxationszeit bestimmen.
 %noch was zur Diffusion?
@@ -193,7 +193,7 @@ Die Pulslängen für die $90 \degree$- und $180 \degree$-Pulse
 werden so eingestellt, dass die Amplitude des FID bei $90 \degree$ maximal und bei $180 \degree$ minimal ist. %
 
 Die Temperatur in der Spule wird mit einem Thermoelement gemessen.
-Die Temperaturmessung wird nach den Messungen \autoref{sec:T2Messung} und \autoref{sec:Diffusionsmessung} wiederholt.
+Die Temperaturmessung wird nach den Messungen in \autoref{sec:T2Messung} und \autoref{sec:Diffusionsmessung} wiederholt.
 
 Nach der Justage wird die Kalibrationsprobe durch bidestilliertes (also hochreines) Wasser ersetzt.
 
@@ -201,11 +201,11 @@ Nach der Justage wird die Kalibrationsprobe durch bidestilliertes (also hochrein
   \centering
   \caption{Die Startwerte der Parameter.}
   \label{tab:params}
-  \begin{tabular}{c c}
+  \begin{tabular}{l l}
     \toprule
     Parameter & Startwert \\
     \midrule
-    Frequenz & $F = \SI{21.7}{\mega\hertz}$ \\
+    Frequenz & $f = \SI{21.7}{\mega\hertz}$ \\
     Pulslänge & $A = \SI{2}{\micro\second}$ \\
     Anzahl der B-Pulse & $N = \num{0}$ \\
     Periode & $P = \SI{0.5}{\second}$ \\
@@ -407,7 +407,7 @@ $\rho=\SI{995}{\kilo\gram\per\metre^3}$\cite{dichte}.
 Das Molekülgewicht von Wasser beträgt $m = \frac{M_\text{mol}}{N_\text{A}} = \SI{2.99e-26}{\kilo\gram}$\cite{wasser}
 Mit der Formel
 \begin{equation*}
-  r_\text{hcp} = \left(\frac{m 0,74}{\frac{4}{3}\pi\rho}\right)^{\frac{1}{3}}
+  r_\text{hcp} = \left(\frac{0,74 \, m}{\frac{4}{3}\pi\rho}\right)^{\frac{1}{3}}
 \end{equation*}
 ergibt sich ein Molekülradius von $r = \SI{1.74e-10}{\meter}$.
 Die Abweichung vom Theoriewert beträgt somit ca. 1\%.
