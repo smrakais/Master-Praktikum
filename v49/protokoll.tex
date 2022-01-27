@@ -26,14 +26,13 @@ In diesem Versuch sollen die Spin-Gitter- und die Spin-Spin-Relaxationszeit sowi
 
 \subsection{Magnetisierung} %?
 Die in diesem Versuch genutzte magnetische Kernspinresonanz ist der Effekt, bei dem die magnetischen Momente der Atomkerne mit einem äußeren Magnetfeld bzw. einem internen elektromagnetischen Feld wechselwirken.
-
-Die Kernspinresonanz basiert auf der Larmorpräzession der Kernspins um die Achse eines konstanten Magnetfelds.
+Die Kernspinresonanz basiert auf der Larmorpräzession der Kernspins um die Achse eines konstanten Magnetfelds (siehe \autoref{fig:larmor}).
 Die Kernspins orientieren sich zum Magnetfeld, wenn die emittierten oder absorbierten magnetischen Wechselfelder mit der Larmorpräzession in Resonanz sind.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\linewidth]{./figures/larmor.png}
-    \caption{Larmor.}
+    \includegraphics[width=0.3\linewidth]{./figures/larmor.png}
+    \caption{Darstellung der Larmorpräzession eines Spins in einem statischen Magnetfeld $\vec{B}_0$ im Laborsystem. \cite{Anleitung}}
     \label{fig:larmor}
 \end{figure}
 
@@ -45,7 +44,7 @@ Bei Spin $\frac{1}{2}$ Teilchen (z.B. Protonen) liegt in einem Magnetfeld eine A
 
 \subsection{Relaxationseffekte}
 Durch Einstrahlung von Hochfrequenzquanten wird die Magnetisierung aus dem thermischen Gleichgewicht gebracht.
-%Sagen was Relaxation ist.
+%Sagen was Relaxation ist?
 Der Verlauf der Relaxation kann durch die Bloch-Gleichungen beschrieben werden. %bzw Zeitentwicklung der Magnetisierung
 Im rotierenden Koordinatensystem lauten diese wie folgt %und ohne RW Feld im Resonanzfall ?
 \begin{align}
@@ -84,31 +83,31 @@ erreicht. Für eine $180 \degree$-Drehung ist die doppelte Pulslänge erforderli
 \subsection{Diffusionsverhalten einer Flüssigkeit}
 Die Kernspins einer Flüssigkeit diffundieren und unterliegen wegen des inhomogenen Magnetfelds unterschiedlichen Feldstärken. Die Magnetisierungsamplitude der Spin-Echos nimmt exponentiell mit der Zeitkonstante
 \begin{equation*}
-    T_D = \frac{3}{D \gamma^2 G^2 \tau^2}
+    T_D = \frac{3}{2 D \gamma^2 g^2}
 \end{equation*}
 ab und ist durch
 \begin{equation*}
-    M_y = M_0 \exp(- \frac{t}{T_2}) \exp(- \frac{t^3}{4 T_D})
+    M(\tau) = M_0 \exp(- \frac{2 \tau}{T_2}) \exp(- \frac{\tau^3}{T_D}) %in der langen Anleitung steht M(2 \tau) ?
 \end{equation*}
-beschrieben, wobei $D$ die Diffusionskonstante und $G$ der Gradient des Magnetfeldes ist.
+beschrieben, wobei $D$ die Diffusionskonstante und $g$ der Gradient des Magnetfeldes ist.
 
 Mit Hilfe der Stokeschen Formel
-\begin{equation}
-    D = \frac{1}{6 \beta \pi \eta r}
-\end{equation}
+\begin{equation*}
+    D = \frac{k_B T}{6 \pi \eta r}
+\end{equation*}
 kann aus der Diffusionskonstanten der Molekülradius der Probenmoleküle bestimmt werden. Dabei ist $\eta$ die Viskosität der Probe.
 
 
 \section{Messverfahren und Aufbau}
 
-Das Prinzip der verwendeten Apparatur ist in \autoref{fig:aufbau} zu sehen.
-Ein Permanentmagnet erzeugt ein homogenes Magnetfeld $B_0 \vec{e}_z$. Die Probe befindet sich in einer Spule, welche sowohl mit einem Sender als auch einem Empfänger gekoppelt ist. Es können also hochfrequente Pulse erzeugt und die entstandene Magnetisierung gemessen werden. %
-\begin{figure}
-    \centering
-    \includegraphics[width=0.4\linewidth]{./figures/aufbau.png}
-    \caption{Der Aufbau.} %Quelle
-    \label{fig:aufbau}
-\end{figure}
+%Das Prinzip der verwendeten Apparatur ist in \autoref{fig:aufbau} zu sehen.
+Der Versuchsaufbau besteht prinzipiell aus einem Permanentmagneten, der ein homogenes Magnetfeld $B_0 \vec{e}_z$ erzeugt. Die Probe befindet sich in einer Spule, welche sowohl mit einem Sender als auch einem Empfänger gekoppelt ist. Es können also hochfrequente Pulse erzeugt und die entstandene Magnetisierung gemessen werden. %
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.4\linewidth]{./figures/aufbau.png}
+%    \caption{Der Aufbau. \cite{Anleitung}}
+%    \label{fig:aufbau}
+%\end{figure}
 
 
 
@@ -123,14 +122,14 @@ Diese Methode wird "inversion recovery" genannt.
 Die Magnetisierung wird mittels eines $180 \degree$ Pulses in negative z-Richtung gekippt. Nach der Zeit $\tau$ wird ein $90 \degree$ Puls gesendet, welcher den z-Anteil in die x-y-Ebene dreht. %und die Amplitude wird gemessen.
 Mit den Anfangsbedingungen $M_x(0) = M_y(0) = 0$ und $M_z(0) = - M_0$ gilt für die Amplitude 
 \begin{equation*}
-    M_z(\tau) = M_0 \left( 1 - 2 \exp(- \frac{\tau}{T_1}) \right) \, .
+    M(\tau) = M_0 \left( 1 - 2 \exp(- \frac{\tau}{T_1}) \right) \, .
 \end{equation*}
 Dies folgt aus den Bloch'schen Gleichungen \autoref{eq:bloch}. Die Spin-Gitter-Relaxationszeit $T_1$ kann durch Variation der Dauer $\tau$ zwischen den Pulsen bestimmt werden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\linewidth]{./figures/inversion_recovery.png}
-    \caption{Inversion Recovery Methode zur Bestimmung der Spin-Gitter-Relaxationszeit.} %Quelle
+    \includegraphics[width=0.5\linewidth]{./figures/inversion_recovery.png}
+    \caption{Inversion Recovery Methode zur Bestimmung der Spin-Gitter-Relaxationszeit. \cite{Anleitung}}
     \label{fig:inv_rec}
 \end{figure}
 
@@ -161,8 +160,8 @@ Aus der exponentiellen Abnahme der Amplituden lässt sich so die Relaxationszeit
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{./figures/spinecho.png}
-    \caption{Quelle: Anleitung}
+    \includegraphics[width=0.5\linewidth]{./figures/spinecho.png}
+    \caption{Spin-Echo-Methode zur Bestimmung der Spin-Spin-Relaxationszeit. Zu sehen ist auch der Einfluss der Diffusion auf das Echo. \cite{Anleitung}}
     \label{fig:spinecho}
 \end{figure}
 
@@ -184,7 +183,7 @@ Für geradzahlige Echos kompensieren sich die Fehler und die Amplituden haben de
 
 \subsection{Justage und Temperaturmessung}
 In den Aufbau wird zunächst eine Kalibrationsprobe aus Wasser mit Kupfersulfat eingebracht. Das Kupfersulfat verkürzt die Relaxationszeit und wird nur für eine schnellere Justage benutzt.
-Es werden die Startparameter eingestellt, welche in \autoref{tab:params} aufgelistet sind. Die Parameter werden nun iterativ eingestellt. Die finalen Werte sind ebenfalls in \autoref{tab:params} zu sehen.
+Es werden die Startparameter eingestellt, welche in \autoref{tab:params} aufgelistet sind. Die Parameter werden nun iterativ eingestellt. %Die finalen Werte sind ebenfalls in \autoref{tab:params} zu sehen.
 
 Die Frequenz des Referenzsignals wird so eingestellt, dass die FID Messung keine Oszillationen enthält. 
 Durch Einstellen der Phase wird die Amplitude eines Signals zum Zeitpunkt $t=0$ auf Null, bzw. auf ihren minimalen Wert, verschoben. 
@@ -198,20 +197,25 @@ Die Temperaturmessung wird nach den Messungen \autoref{sec:T2Messung} und \autor
 
 Nach der Justage wird die Kalibrationsprobe durch bidestilliertes (also hochreines) Wasser ersetzt.
 
-\begin{tabular}[h]{lll}
-    \caption{Die Startwerte der Parameter und die final eingestellten Werte.}
-    Parameter & Startwert & Finaler Wert  \\
-    \hline
-    Frequenz & $F_0 = \SI{21.7}{\mega\hertz}$ & $F = \SI{21.71873}{\mega\hertz}$ \\
-    Pulslänge & $A_0 = \SI{2}{\micro\second}$ & $A = \SI{2.5}{\micro\second}$ \\
-    Anzahl der B-Pulse & $N = \num{0}$ & \, \\
-    Periode & $P = \SI{0.5}{\second}$ & \, \\
-    Shims & $x_0=\num{-1.0}$ & $x=\num{-1.0}$ \\
-      & $y_0=\num{-5.0}$ & $y=\num{-4.2}$ \\
-      & $z_0=\num{3.7}$ & $z=\num{4.1}$ \\
-      & $z_0^2=\num{-2.4}$ & $z^2=\num{-2.24}$ \\
-    \label{tab:params}
-\end{tabular}
+\begin{table}
+  \centering
+  \caption{Die Startwerte der Parameter.}
+  \label{tab:params}
+  \begin{tabular}{c c}
+    \toprule
+    Parameter & Startwert \\
+    \midrule
+    Frequenz & $F = \SI{21.7}{\mega\hertz}$ \\
+    Pulslänge & $A = \SI{2}{\micro\second}$ \\
+    Anzahl der B-Pulse & $N = \num{0}$ \\
+    Periode & $P = \SI{0.5}{\second}$ \\
+    Shims & $x=\num{-1.0}$ \\
+      & $y=\num{-5.0}$ \\
+      & $z=\num{3.7}$ \\
+      & $z^2=\num{-2.4}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \subsection{Messung der Spin-Gitter-Relaxationszeit}
 Die Pulslänge A wird so eingestellt, dass ein $180 \degree$-Puls gesendet wird und Pulslänge B wird so eingestellt, dass ein $90 \degree$-Puls gesendet wird. %Formulierung
@@ -256,7 +260,7 @@ von $T_1$ und $T_2$.
 \end{table}
 \FloatBarrier
 Der Imaginärteil der Schwingung verschwindet für eine eingestellte Phase von $\phi=-64°$.
-Für eine Frequenz von $f=\SI{21,7 }{\mega\hertz}$ weisen beide Signale Real- und Imaginärteil
+Für eine Frequenz von $f=\SI{21,719 }{\mega\hertz}$ weisen beide Signale Real- und Imaginärteil
 keine Oszillationen mehr auf.
 
 
