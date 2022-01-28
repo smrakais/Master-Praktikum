@@ -163,13 +163,35 @@ die Kalibrierung des Multichannel Analyzers ausgewertet.
 
 
 \subsection{Justierung der Koinzidenz}
-Um während der eigentlichen Messung in einer möglichst großen Ereignisrate zu messen, wird
-für verschiedene Verzögerungsdauern die Zählrate am Ende der Koinzidenz betrachtet.
-Dazu wird jeweils eine der Verzögerungleitungen in ihren Wert verändert und die resultierende Zählrate pro 10 Sekunden
-wird aufgenommen.
-Aus diesen Messwerten lässt sich anschließend ein Graph \autoref{fig:koinzidenz} plotten, 
-welcher die Ereignisraten den zugehörigen Verzögerungen zuordnet.
-Die Halbwertsbreite ergibt sich zu $\text{FWHM} = \SI{58}{\nano\second}$.
+Vor Beginn der eigentlichen Messung muss die Koinzidenzschaltung justiert werden.
+Treffen zwei Impulse auf die Koinzidenzschaltung werden beide Signale
+zu einer logischen 1 zusammengeführt und weitergeleitet. 
+Die Bedingung, welche dafür erfüllt sein muss ist, dass die Impulse 
+nahezu gleichzeitig an der Koinzidenzschaltung eintreffen.
+Um dafür zu sorgen, dass die Signale welche zuvor aus den Diskriminatoren stammen genau dies tun,
+werden mit Hilfe von Verzögerungsleitungen unterschiedliche Signallaufzeiten erzeugt. 
+Da in der Wirklichkeit keine perfekte Gleichzeitigkeit realisiert werden kann, wird als 
+Aufweichung dieser Bedingung ein Zeitintervall $\Delta t$ definiert, indem wenn dort zwei Signale eintreffen sie
+als gleichzeitig eintreffend angesehen werden.
+
+Der Zweck der Koinzidenzschaltung besteht darin, dass mit ihr überprüft werden kann, ob die Anzahl der 
+detektierten Signale, eintreffende Myonen, mit dem theoretischen Erwartungswerts übereinstimmt.
+
+Für die Justierung wird jeweils eine der Verzögerungleitungen in ihren Wert 
+verändert und die resultierende Zählrate pro 10 Sekunden wird aufgenommen.
+Anhand der messbaren Zählrate lässt sich erkennen, wann die optimale Verzögerung eingestellt ist.
+Dies ist dann der Fall, wenn die Zählrate über verschieden eingestellte Verzögerungsdauern 
+annähernd Konstant bleibt, sprich ein Plateau zeigt.
+
+Werden die unterschiedlichen Verzögerungsdauern in Abhängigkeit der Zählrate 
+vgl. \autoref{tab:Koinzidenz} aufgetragen, lässt sich die Halbwertsbreite (FWHM) der Verteilung berechnen.
+Der resultierende Graph ist in \autoref{fig:koinzidenz} zu sehen.
+Die Berechnung erfolgte mittels linearer Regression.
+
+Die Halbwertsbreite ergibt sich zu
+\begin{equation}
+    \text{FWHM} = |-22| + |16| = \SI{38}{\nano\second} \, .
+\end{equation}
 Das Plateau gibt die maximale Ereignisrate an. 
 Diese liegt in unserem Experiment bei (gemittelt) $\SI{112,41}{\frac{1}{10 \second}}$ .
 \begin{figure}
@@ -179,14 +201,13 @@ Diese liegt in unserem Experiment bei (gemittelt) $\SI{112,41}{\frac{1}{10 \seco
     \label{fig:koinzidenz}
 \end{figure}
 \FloatBarrier
-Die dazugehörigen Messwerte sind in \autoref{tab:Koinzidenz} zu finden.
 %\input{build/tabKoinzidenz.tex} %OLD
 \input{build_new/tabKoinzidenz_new.tex} %FELIX
 \input{build_new/tabKalibration_new.tex} %FELIX
 \FloatBarrier
 
 \subsection{Kalibrierung des Multichannel Analyzers}
-Um den MCA\footnote{Im Folgenden wird anstelle von Multichannel Analyzer, MCA verwendet.} zu kalibrieren, werden
+Um den MCA zu kalibrieren, werden %TODO in der durchführung einführen
 mit Hilfe eines Doppelimpulsgenerators Impulse mit unterschiedlichen Längen auf den MCA geschickt und von diesem verarbeitet.
 Dadurch kann am Computer jeweils pro Impuls der jeweilige Kanal abgelesen werden.
 Mit Hilfe dieser Wertepaare vgl.\autoref{tab:Kalibration} kann im Folgenden eine lineare Regression der Werte erfolgen und somit 
@@ -215,16 +236,16 @@ haben.
 \end{equation}
 $N_\text{Start}$ steht hierbei für die Myonen, welche einen
 Startimpuls ausgelöst haben.
-Während der Suchzeit $T_{s}$ tun dies im Mittel
-$n= \overline{N} \cdot T_{s}$ Myonen.
+Während der Suchzeit $T_\text{s}$ tun dies im Mittel
+$n= \overline{N} \cdot T_\text{s}$ Myonen.
 Anschließend wird mit Hilfe der Poissonverteilung die Anzahl
 der Fehlmessungen bestimmt, also genau der Fall betrachtet falls zwei 
 Myonen unmittelbar hintereinander den Detektor passieren 
 sollten. Es folgt mit 
-$N_{\symup{start}} = \num{3.0619(17)e6}$, $T_S = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
+$N_{\symup{start}} = \num{3.0619(17)e6}$, $T_\text{s} = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
 = \SI{147182}{\second}$.
 \begin{equation}
-    N_{\symup{fehl}} = \overline{N} \cdot T_S \cdot \symup e^{- \overline{N} \cdot T_S}
+    N_{\symup{fehl}} = \overline{N} \cdot T_\text{s} \cdot \symup e^{- \overline{N} \cdot T_\text{s}}
     \cdot N_{\symup{start}} = \num{1273.4(15)} \, .
 \end{equation}
 Da sich dieser Fehler auf alle Kanäle gleichermaßen 
@@ -238,7 +259,7 @@ mit 450 befüllten Kanälen.
 Im letzten Abschnitt wird die Lebensdauer der Myonen bestimmt.
 Durch die Kalibration des MCA lässt sich jedem Kanal eine Zeit zuordnen, sodass 
 mit den unterschiedlichen Ereignisraten der Graph in \autoref{fig:fit} entsteht.
-Die Exponentialfunktion mit der die Messdaten gefittet worden sind, lautet
+Die Exponentialfunktion mit der die Messdaten gefittet werden, lautet
 \begin{equation}
     f(t) = N_0 \cdot \symup e^{-\lambda \, t} + U_{\symup{fit}} \, .
     \label{fit}
@@ -264,9 +285,8 @@ Diese ist
 
 
 \section{Diskussion}
-Die im Experiment ermittelte Lebensdauer des Myons $\tau = \SI{2.22(4)}{\micro\second}$
-kommt dem Literaturwert $\tau = \SI{2.197}{\micro\second}$ \cite{lebensdauer} sehr nah.
-Es ergibt sich eine Abweichung von 1,04\%.
+Die im Experiment ermittelte Lebensdauer des Myons $\tau = \SI{2.22(4)}{\micro\second}$ besitzt eine Abweichung zum
+Literaturwert $\tau = \SI{2.197}{\micro\second}$ \cite{lebensdauer} von 1,04\%.
 Damit kann der ermittelte Wert als plausibel angenommen werden.
 Die geringe Abweichung ist wahrscheinlich auf die hohe Ereignisrate zurückzuführen.
 Andere kleinere Fehlerquellen sind beispielsweise die Justierung der Suchzeit am Monoflop per Hand oder
