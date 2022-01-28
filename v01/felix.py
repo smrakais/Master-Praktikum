@@ -19,9 +19,11 @@ def linear(x, m, b):
 dt, N = np.genfromtxt('data_new/plateau_daten.txt', unpack=True)
 daten = np.genfromtxt('data_new/ereignisse.Spe', unpack=True)
 print("Summe Stopp: ", ufloat(np.sum(daten), np.sum(np.sqrt(daten))))
+print('\n')
 dt = dt - 20    # Zentrieren
 N *= 10
 hoehe = np.mean(N[4:16])
+mitte = N[4:16]
 links = N[0:4]
 rechts = N[16:]
 dt_rechts = dt[16:]
@@ -34,13 +36,22 @@ b = ufloat(params_links[1], errors_links[1])
 print("Steigung links: ", m)
 print("y-Achsenabschnitt rechts: ", b)
 print("Halbe Höhe: ", hoehe/2)
-
+print('\n')
 params_rechts, cov_rechts = curve_fit(linear, dt_rechts, rechts)
 errors_rechts = np.sqrt(np.diag(cov_rechts))
 m = ufloat(params_rechts[0], errors_rechts[0])
 b = ufloat(params_rechts[1], errors_rechts[1])
 print("Steigung rechts: ", m)
 print("y-Achsenabschnitt rechts: ", b)
+print('\n')
+# linearer fit in der Mitte
+params_mitte, cov_mitte = curve_fit(linear, dt[4:16], mitte)
+errors_mitte = np.sqrt(np.diag(cov_mitte))
+m = ufloat(params_mitte[0], errors_mitte[0])
+b = ufloat(params_mitte[1], errors_mitte[1])
+print("Steigung mitte: ", m)
+print("y-Achsenabschnitt mitte: ", b)
+print('halbe höhe bei ', b/2)
 
 # Berechnen des Schnittpunktes
 x_links = np.linspace(-25, -17)
@@ -122,10 +133,10 @@ print('Die Tabelle der Kalibration wurde erzeugt!\n')
 
 # Bestimmung Untergrundrate
 messdauer = 147182  # Sekunden
-Startimpulse = 3061879
-Startimpulse = ufloat(Startimpulse, np.sqrt(Startimpulse))
+Startimpulse = 3061879  
+Startimpulse = ufloat(Startimpulse, np.sqrt(Startimpulse))     #startimpulse haben keine fehler oder doch? TODO Holger?
 n = Startimpulse/messdauer
-Ts = 20*10**(-6)    # Sekunden
+Ts = 20*10**(-6)    # Suchzeit in Sekunden
 Nf = Startimpulse*n*Ts*unp.exp(-n*Ts)
 Nf_kanal = Nf/450
 print("-------------------")
@@ -162,25 +173,25 @@ daten_ent = np.append(daten_ent, daten[6])
 daten_ent = np.append(daten_ent, daten[14])
 
 # Definition der exp-Funktion
-def e(x, N_0, l, U):
-    return N_0*np.exp(-l*x) + U
+def e(x, N_0, l):#, U):
+    return N_0*np.exp(-l*x) + Nf_kanal.n
 
 params_fit, cov_fit = curve_fit(e, zeiten, daten_ang,
                                 sigma=1/np.sqrt(daten_ang))
 errors_fit = np.sqrt(np.diag(cov_fit))
 N_0 = ufloat(params_fit[0], errors_fit[0])
 l = ufloat(params_fit[1], errors_fit[1])
-U = ufloat(params_fit[2], errors_fit[2])
+#U = ufloat(params_fit[2], errors_fit[2])
 
 print("-------------------")
 print("N_0: ", N_0)
 print("Lambda: ", l)
 print("Lebensdauer: ", 1/l)
-print("Untergrundrate: ", U)
+#print("Untergrundrate: ", U)
 tau = 2.2
 ta_fit = 1/l
 print("Verhältnis: ", (1-ta_fit/tau)*100)
-print("Verhältnis Untergrund: ", (1-U/Nf_kanal)*100)
+#print("Verhältnis Untergrund: ", (1-U/Nf_kanal)*100)
 
 plt.plot(zeiten, daten_ang, 'r.', label="Daten")
 #plt.plot(zeiten_ent, daten_ent, 'gx', label="Nicht-betrachtete Daten")

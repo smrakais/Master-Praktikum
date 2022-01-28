@@ -186,14 +186,15 @@ annähernd Konstant bleibt, sprich ein Plateau zeigt.
 Werden die unterschiedlichen Verzögerungsdauern in Abhängigkeit der Zählrate 
 vgl. \autoref{tab:Koinzidenz} aufgetragen, lässt sich die Halbwertsbreite (FWHM) der Verteilung berechnen.
 Der resultierende Graph ist in \autoref{fig:koinzidenz} zu sehen.
-Die Berechnung erfolgte mittels linearer Regression.
+Die Fehler der Messwerte sind nach $\sqrt{N}$ gebildet worden, also dem Poisson-Fehler für Zählexperimente.
+Zur Berechnung der Halbwertsbreite wird an beiden Flanken in \autoref{fig:koinzidenz}
+eine lineare Regression durchgeführt.
 
 Die Halbwertsbreite ergibt sich zu
 \begin{equation}
-    \text{FWHM} = |-22| + |16| = \SI{38}{\nano\second} \, .
+    \text{FWHM} = |-22| + |16| = \SI{38}{\nano\second} \, ,
 \end{equation}
-Das Plateau gibt die maximale Ereignisrate an. 
-Diese liegt in unserem Experiment bei (gemittelt) $\SI{112,41}{\frac{1}{10 \second}}$ .
+bei einer Ereignisrate von $\SI{114,40 \pm 1,50}{\frac{1}{10 \second}}$ .
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{build_new/plateau.pdf}
@@ -207,8 +208,8 @@ Diese liegt in unserem Experiment bei (gemittelt) $\SI{112,41}{\frac{1}{10 \seco
 \FloatBarrier
 
 \subsection{Kalibrierung des Multichannel Analyzers}
-Um den MCA zu kalibrieren, werden %TODO in der durchführung einführen
-mit Hilfe eines Doppelimpulsgenerators Impulse mit unterschiedlichen Längen auf den MCA geschickt und von diesem verarbeitet.
+Um den Multi-Channel-Analyzer (MCA) zu kalibrieren, werden %TODO in der durchführung einführen
+mit Hilfe eines Doppelimpulsgenerators Impulse mit unterschiedlichen Impulsabständen auf den MCA geschickt und von diesem verarbeitet.
 Dadurch kann am Computer jeweils pro Impuls der jeweilige Kanal abgelesen werden.
 Mit Hilfe dieser Wertepaare vgl.\autoref{tab:Kalibration} kann im Folgenden eine lineare Regression der Werte erfolgen und somit 
 kann jedem Kanal des MCA eine Zeit zugeordnet werden. 
@@ -241,7 +242,7 @@ $n= \overline{N} \cdot T_\text{s}$ Myonen.
 Anschließend wird mit Hilfe der Poissonverteilung die Anzahl
 der Fehlmessungen bestimmt, also genau der Fall betrachtet falls zwei 
 Myonen unmittelbar hintereinander den Detektor passieren 
-sollten. Es folgt mit 
+sollten. Es folgt mit ------- TODO holger haben die startimpulse einen Fehler?------
 $N_{\symup{start}} = \num{3.0619(17)e6}$, $T_\text{s} = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
 = \SI{147182}{\second}$.
 \begin{equation}
@@ -261,20 +262,20 @@ Durch die Kalibration des MCA lässt sich jedem Kanal eine Zeit zuordnen, sodass
 mit den unterschiedlichen Ereignisraten der Graph in \autoref{fig:fit} entsteht.
 Die Exponentialfunktion mit der die Messdaten gefittet werden, lautet
 \begin{equation}
-    f(t) = N_0 \cdot \symup e^{-\lambda \, t} + U_{\symup{fit}} \, .
+    f(t) = N_0 \cdot \symup e^{-\lambda \, t} + U \, .
     \label{fit}
 \end{equation}
-Hierbei steht $U_\text{fit}$ für die Untergrundrate.
+Hierbei steht $U$ für die zuvor berechnete Untergrundrate.
 Die Parameter des Fits sind
 \begin{align}
-    N_0 &= \num{242.5(16)} \ \text{pro Kanal} \\
-    \lambda &= \SI{0.451(8)}{\per\micro\second} \label{dauer} \\
-    U_{\symup{fit}} &= \num{1.8(13)} \ \text{pro Kanal} \label{Untergrund} \, .
+    N_0 &= \num{241.8(13)} \ \text{pro Kanal} \\
+    \lambda &= \SI{0.456(5)}{\per\micro\second} \label{dauer}\, .% \\
+    %U_{\symup{fit}} &= \num{1.8(13)} \ \text{pro Kanal} \label{Untergrund} \, .
 \end{align}
 Der inverse Abklingkoeffizient liefert schließlich die Lebensdauer des Myons.
 Diese ist 
 \begin{equation}
-    \tau = \SI{2.22(4)}{\micro\second} \, .
+    \tau = \SI{2.20(2)}{\micro\second} \, .
 \end{equation}
 \begin{figure}
     \centering
@@ -285,12 +286,26 @@ Diese ist
 
 
 \section{Diskussion}
-Die im Experiment ermittelte Lebensdauer des Myons $\tau = \SI{2.22(4)}{\micro\second}$ besitzt eine Abweichung zum
+TODO kann ich nicht die erwartete anzahl der eriegnisse mit den gemessenen vergelcihen
+was genau muss ich mit der fwhm machen und was sagt diese aus?
+
+
+Die im Experiment ermittelte Lebensdauer des Myons $\tau = \SI{2.20(2)}{\micro\second}$ 
+besitzt eine Abweichung zum
 Literaturwert $\tau = \SI{2.197}{\micro\second}$ \cite{lebensdauer} von 1,04\%.
 Damit kann der ermittelte Wert als plausibel angenommen werden.
 Die geringe Abweichung ist wahrscheinlich auf die hohe Ereignisrate zurückzuführen.
 Andere kleinere Fehlerquellen sind beispielsweise die Justierung der Suchzeit am Monoflop per Hand oder
 das Einstellen des Diskriminators mit Hilfe eines Schraubendrehers. 
+
+TODO suchzeit und Schwelle
+--> suchzeit zu klein der monoflop verwirft quasi jede messung. da das myon noch nicht zerfallen ist.
+--> suchzeit zu groß 2 aufeinander folgende myonen könnten als start stop gewertet werden 
+
+schwelle
+--> schwelle zu klein ich lasse sehr viel rauschen durch messung sehr start durch start und stop von rauschen
+verfälscht, quasi unbrauchbar
+--> schwelle zu groß ich lasse keine signale durch, es wird quasi nicht detektiert.
 
 \nocite{*}
 \printbibliography{}
