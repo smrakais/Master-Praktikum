@@ -133,3 +133,4 @@ dmypy.json
 
 # Für Karina (special K.)
 *.DS_Store
+.DS_Store
