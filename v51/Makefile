@@ -1,37 +1,31 @@
-all: build/protokoll.pdf
+all: build/main.pdf
 
+# hier Python-Skripte:
+#Z.B
+#build/plot1.pdf: plot1.py matplotlibrc header-matplotlib.tex | build
+#	TEXINPUTS="$(call translate,$(pwd):)" python plot1.py
 
-build/protokoll.pdf: protokoll.tex data		
-	latexmk --lualatex protokoll.tex
+# hier weitere Abhängigkeiten für build/main.pdf deklarieren:
+#Z.B
+#build/main.pdf: build/plot1.pdf
 
-data:# build/EMPTY.tex
+build/main.pdf: FORCE | build
+	  TEXINPUTS="$(call translate,build:)" \
+	  BIBINPUTS=build: \
+	  max_print_line=1048576 \
+	latexmk \
+	  --lualatex \
+	  --output-directory=build \
+	  --interaction=nonstopmode \
+	  --halt-on-error \
+	main.tex
 
-#ERZEUGE				ZUTATEN		REZEPT(TERMINAL BEFEHL)
-build/protokoll.pdf: #build/wuerfel1.tex build/wuerfel4_erg.tex build/cäsium.pdf
-build/protokoll.pdf: build
-          max_print_line=1048576 \
-		  BIBINPUTS=build: \
-        latexmk \
-          --lualatex \
-          --output-directory=build \
-          --interaction=nonstopmode \
-          --halt-on-error \
-        protokoll.tex
-#
-#build/wuerfel1.tex: make_tables.py | build
-#	python make_tables.py
-#
-#build/wuerfel1_erg.tex: aluminium_i0.py | build
-#	python aluminium_i0.py
-#
-#build/wuerfel4_erg.tex: leastsquares.py | build
-#	python leastsquares.py
-#
-#build/cäsium.pdf: caesium_spektrum.py | build
-#	python caesium_spektrum.py
-
-build: 
+build:
 	mkdir -p build
 
 clean:
-	rm -r build
+	rm -rf build
+
+FORCE:
+
+.PHONY: all clean

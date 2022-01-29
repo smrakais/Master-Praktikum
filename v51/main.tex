@@ -1,0 +1,27 @@
+\input{../header.tex}
+\usepackage{romannum}
+\usepackage{listings}
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt}
+\lstset{language=Perl}
+\AtBeginDocument{\pagenumbering{arabic}}
+
+\title{\includegraphics[scale=0.8]{../logo.jpg} \\ \vspace*{1cm} V51 \\ - Schaltungen mit Operationsverstärkern -}
+
+%\title{test}
+\date{Durchführung: 31.01.2022, Abgabe: xx.02.2022}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\input{content/theorie.tex}
+\input{content/durchfuehrung.tex}
+\input{content/auswertung.tex}
+\input{content/diskussion.tex}
+
+\nocite{*}
+\printbibliography{}
+\end{document}
