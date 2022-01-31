@@ -3,3 +3,35 @@ Das Ziel dieses Versuchs ist es, ein Verständnis für die Funktionsweise von Op
 
 
 \section{Theorie}
+
+\subsection{Eigenschaften eines idealen Operationsverstärkers}
+Ein Operationsverstärker ist ein gleichstromgekoppelter Differenzverstärker, dessen Ausgangsspannung proportional zur Differenz der beiden Eingangsspannungen ist. Es gibt einen nicht-invertierenden und einen invertierenden Eingang.
+
+
+\subsection{Unterschied zum realen Operationsverstärker}
+
+\subsection{Schaltungen}
+\subsubsection{Linearverstärker}
+
+\subsubsection{Umkehr-Integrator}
+
+\subsubsection{Umkehr-Differentiator}
+
+\subsubsection{Schmitt-Trigger}
+
+
+
+
+%Formeln aus der Kurzanleitung
+\begin{equation*}
+    \nu_{Dreieck} = \frac{R_2}{4 C R_1 R_3}
+    \label{eq:Frequenz}
+\end{equation*}
+
+
+\begin{align}
+    T &= 2 \pi R C \\ %Schwingungsdauer
+    \tau &= \frac{20 R C}{|\eta|} %Abklingdauer
+    \label{eq:SchwingAbkling}
+\end{align}
+Hier ist $\tau$ die Zeit für die Abnahme der Amplitude bis auf den e-ten Teil ihres Anfangswerts bzw. für die Zunahme der Amplitude auf das e-fache ihres Anfangswerts und $\eta$ die Dämpfung ($\eta < 0$) bzw. Enddämpfung ($\eta > 0$). Diese gibt den Bruchteil der Ausgangsspannung $U_A$ an, welcher auf den Eingang des OPV2 gegeben wird. %was ist das?
