@@ -1,0 +1,36 @@
+A) Messungen zum invertierenden Linearverstärker
+1_Linear100.txt   -> R_1 = 1000 Ohm, R_2 = 100000 Ohm  (Verstärkung 100)
+2_Linear10.txt    -> R_1 = 10000 Ohm, R_2 = 100000 Ohm (Verstärkung 10)
+3_Linear_1000.txt -> R_1 = 100 Ohm, R_2 = 100000 Ohm (Verstärkung 1000)
+
+
+B) Messung zum Umkehr-Integrator
+Int.txt
+R = 10000 Ohm, C = 100 nF 
+Eingang: Sinus
+U_E und U_A in Abhängigkeit der Frequenz (irgendwas ist komisch)
+
+Daten/Bilder vom Oszilloskop:
+jeweils Daten von Channel 1 (CH1) und Channel 2 (CH2) & Bildschirmfoto bei 50kHz
+Int_Sinus: Eingang (Channel 1) Sinus
+Int_Rechteck: Eingang (Channel 1) Rechteck
+Int_Dreieck: Eingang (Channel 1) Dreieck
+
+
+C) Messung zum Differenzierer
+Diff.txt
+R = 100000 Ohm, C = 22 nF
+Eingang: Sinus
+U_E und U_A in Abhängigkeit der Frequenz
+
+Daten/Bilder vom Oszilloskop:
+jeweils Daten von Channel 1 (CH1) und Channel 2 (CH2) & Bildschirmfoto bei 50kHz
+Diff_Sinus: Eingang (Channel 1) Sinus
+Diff_Rechteck: Eingang (Channel 1) Rechteck
+Diff_Dreieck: Eingang (Channel 1) Dreieck
+
+
+D) Messung zum Schmitt-Trigger
+
+
+E)
