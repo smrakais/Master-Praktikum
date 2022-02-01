@@ -166,14 +166,13 @@ die Kalibrierung des Multichannel Analyzers ausgewertet.
 Vor Beginn der eigentlichen Messung muss die Koinzidenzschaltung justiert werden.
 Treffen zwei Impulse auf die Koinzidenzschaltung werden beide Signale
 zu einer logischen 1 zusammengeführt und weitergeleitet. 
-Die Bedingung, welche dafür erfüllt sein muss ist, dass die Impulse 
-nahezu gleichzeitig an der Koinzidenzschaltung eintreffen.
-Um dafür zu sorgen, dass die Signale welche zuvor aus den Diskriminatoren stammen genau dies tun,
-werden mit Hilfe von Verzögerungsleitungen unterschiedliche Signallaufzeiten erzeugt. 
-Da in der Wirklichkeit keine perfekte Gleichzeitigkeit realisiert werden kann, wird als 
-Aufweichung dieser Bedingung ein Zeitintervall $\Delta t$ definiert, indem wenn dort zwei Signale eintreffen sie
-als gleichzeitig eintreffend angesehen werden.
-
+%Die Bedingung, welche dafür erfüllt sein muss ist, dass die Impulse 
+%nahezu gleichzeitig an der Koinzidenzschaltung eintreffen.
+%Um dafür zu sorgen, dass die Signale welche zuvor aus den Diskriminatoren stammen genau dies tun,
+%werden mit Hilfe von Verzögerungsleitungen unterschiedliche Signallaufzeiten erzeugt. 
+%Da in der Wirklichkeit keine perfekte Gleichzeitigkeit realisiert werden kann, wird als 
+%Aufweichung dieser Bedingung ein Zeitintervall $\Delta t$ definiert, indem wenn dort zwei Signale eintreffen sie
+%als gleichzeitig eintreffend angesehen werden.
 Der Zweck der Koinzidenzschaltung besteht darin, dass mit ihr überprüft werden kann, ob die Anzahl der 
 detektierten Signale, eintreffende Myonen, mit dem theoretischen Erwartungswerts übereinstimmt.
 
@@ -182,6 +181,9 @@ verändert und die resultierende Zählrate pro 10 Sekunden wird aufgenommen.
 Anhand der messbaren Zählrate lässt sich erkennen, wann die optimale Verzögerung eingestellt ist.
 Dies ist dann der Fall, wenn die Zählrate über verschieden eingestellte Verzögerungsdauern 
 annähernd Konstant bleibt, sprich ein Plateau zeigt.
+Das Plateau sollte in der Theorie $\SI{20}{\nano\second}$ breit sein, da die Diskriminatorpulse
+jeweils eine eingestellt Länge von $\SI{10}{\nano\second}$ besitzen. 
+Somit ist der maximale Überlagerungszeitraum genau die doppelte Pulslänge. 
 
 Werden die unterschiedlichen Verzögerungsdauern in Abhängigkeit der Zählrate 
 vgl. \autoref{tab:Koinzidenz} aufgetragen, lässt sich die Halbwertsbreite (FWHM) der Verteilung berechnen.
@@ -242,8 +244,10 @@ $n= \overline{N} \cdot T_\text{s}$ Myonen.
 Anschließend wird mit Hilfe der Poissonverteilung die Anzahl
 der Fehlmessungen bestimmt, also genau der Fall betrachtet falls zwei 
 Myonen unmittelbar hintereinander den Detektor passieren 
-sollten. Es folgt mit ------- TODO holger haben die startimpulse einen Fehler?------
-$N_{\symup{start}} = \num{3.0619(17)e6}$, $T_\text{s} = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
+sollten.
+Anzumerken ist, dass die Startimpulse ebenfalls fehlerbehaftet ist. 
+Der Fehler der Startimpulse bestimmt sich ebenfalls als Poisson-Fehler.
+$N_{\symup{start}} = 3061879 \pm 1749$, $T_\text{s} = \SI{20}{\micro\second}$ und $T_{\symup{gesamt}}
 = \SI{147182}{\second}$.
 \begin{equation}
     N_{\symup{fehl}} = \overline{N} \cdot T_\text{s} \cdot \symup e^{- \overline{N} \cdot T_\text{s}}
@@ -262,7 +266,7 @@ Durch die Kalibration des MCA lässt sich jedem Kanal eine Zeit zuordnen, sodass
 mit den unterschiedlichen Ereignisraten der Graph in \autoref{fig:fit} entsteht.
 Die Exponentialfunktion mit der die Messdaten gefittet werden, lautet
 \begin{equation}
-    f(t) = N_0 \cdot \symup e^{-\lambda \, t} + U \, .
+    N(t) = N_0 \cdot \symup e^{-\lambda \, t} + U \, .
     \label{fit}
 \end{equation}
 Hierbei steht $U$ für die zuvor berechnete Untergrundrate.
@@ -286,29 +290,43 @@ Diese ist
 
 
 \section{Diskussion}
-TODO kann ich nicht die erwartete anzahl der eriegnisse mit den gemessenen vergelcihen
-was genau muss ich mit der fwhm machen und was sagt diese aus?
-
+%TODO kann ich nicht die erwartete anzahl der eriegnisse mit den gemessenen vergelcihen
+%was genau muss ich mit der fwhm machen und was sagt diese aus?
+%
+Die Messung der Halbwertsbreite der Koinzidenzschaltung liefert einen Wert von $\text{FHWM} = \SI{38}{\nano\second}$.
+Damit weicht die gemessene Halbwertsbreite vom erwarteten Wert $\text{FHWM} = \SI{20}{\nano\second}$ um 47\,\% ab.
+Der wahrscheinlichste Grund für diese Abweichung ist, dass die Pulslänge welche der Diskriminator liefert
+über $\SI{10}{\nano\second}$ liegt.
+Somit ist der Überlagerungszeitraum der beiden Pulse länger.
 
 Die im Experiment ermittelte Lebensdauer des Myons $\tau = \SI{2.20(2)}{\micro\second}$ 
 besitzt eine Abweichung zum
-Literaturwert $\tau = \SI{2.197}{\micro\second}$ \cite{lebensdauer} von 1,04\%.
+Literaturwert $\tau = \SI{2.197}{\micro\second}$ \cite{lebensdauer} von 1,04\,\%.
 Damit kann der ermittelte Wert als plausibel angenommen werden.
-
-Die geringe Abweichung ist wahrscheinlich auf die hohe Ereignisrate zurückzuführen.TODO why--> wegen 
-da ich mehrere messwerte habe um sie in eine ausgleichrechnung habe mit einzubeziehen 
-
+Die geringe Abweichung ist wahrscheinlich auf die hohe Ereignisrate zurückzuführen,
+da die statistischen Abweichungen mit Erhöhung der Messungen sinken.
+Die durchgeführte Ausgleichsrechnung kommt dadurch dem tatsächlichen Verlauf der Zählrate näher.
 Andere kleinere Fehlerquellen sind beispielsweise die Justierung der Suchzeit am Monoflop per Hand oder
 das Einstellen des Diskriminators mit Hilfe eines Schraubendrehers. 
 
-TODO suchzeit und Schwelle
---> suchzeit zu klein der monoflop verwirft quasi jede messung. da das myon noch nicht zerfallen ist.
---> suchzeit zu groß 2 aufeinander folgende myonen könnten als start stop gewertet werden 
+Die Suchzeit des Monoflop beträgt im Experiment $T_\text{s}= \SI{20}{\micro\second}$.
+Würde die Suchzeit am Monoflop beispielsweise auf $\SI{5}{\micro\second}$ verkürzt werden, 
+wäre zwar immer noch eine Verteilung
+der Myonen messbar, aber der Graph in \autoref{fig:fit} würde bereits nach $\SI{5}{\micro\second}$ enden.
+Um also effektiv eine vergleichbare Messgenauigkeit der Lebensdauer zu kommen, müsste deutlich
+länger gemessen werden.
+Wird die Suchzeit hingegen vergrößert besteht die Gefahr, dass zwei eigentliche Startimpulse 
+fälschlicherweise als Start und Stop Signal gewertet werden. 
+Dadurch würde die Lebensdauer verfälscht.
 
-schwelle
---> schwelle zu klein ich lasse sehr viel rauschen durch messung sehr start durch start und stop von rauschen
-verfälscht, quasi unbrauchbar
---> schwelle zu groß ich lasse keine signale durch, es wird quasi nicht detektiert.
+Wird die einstellbare Schwelle am Diskriminator erhöht, so müsste ebenfalls länger gemessen werden um 
+auf eine vergleichbar genaue Lebensdauer zu kommen.
+Nur solche Myonen, welche eine sehr starken Lichtblitz auslösen können den Diskriminator passieren.
+Wenn hingegen die Schelle zu klein angesetzt wird, wird zu viel Rauschen des Szintillator weitergeleitet.
+Damit würde die Koinzidenzschaltung permanent ausgelöst werden und auch der Monoflop würde 
+permanent Start und Stop Signale registrieren. 
+Damit wäre keine Lebensdauerbestimmung mehr möglich.
+
 
 \nocite{*}
 \printbibliography{}
