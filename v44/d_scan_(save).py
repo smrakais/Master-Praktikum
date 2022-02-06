@@ -2,7 +2,6 @@
 
 #in line 204 müssen die werte für die minima angepasst werden und mach das am besten wieder mit plt.show()
 
-from weakref import ref
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import curve_fit
@@ -63,6 +62,21 @@ print('Aus der Strahlbreite d = ' + str(d) +'mm'+' und der Probendicke D = ' + s
 print('ergibt sich mit arcsin(d/D) ein Geometriewinkel von ' + str(np.degrees(np.arcsin(d/D))) + '°.''\n')  
 fig.savefig('build/z_scan.pdf')
 ########################################################################################################
+
+# Geometriefaktor (eigentlich ein Geometriedivisor, deswegen ist das der Kehrwert)
+##############################
+#FUNKTION FUNKTIONIERT NICHT -->  die geo_korr funzt nicht richtig
+#############################
+
+# der vergleich in der funktion geht so python code technisch nicht das .all() oder.any() ist auch nicht die lösung sondern lockt dich in eine scheinbare lösung. der code ist aber damit wirkungslos
+#def geo(x):
+#    if x.all()<0.72: #0.72 ist der abgelesene Geometriewinkel 
+#        return 1/((D*np.degrees(np.sin(x)))/d)
+#    else:
+#       return 1
+
+#########################################################################################################
+
 # Detektor Scan
 
 # read data
@@ -199,34 +213,32 @@ def schichtdicke(delta):
 
 # Peaks manuell einstellen --> plt.show() liefert dir per cursor die passenden Werte. 
 x_min = np.array([0.26615, 0.303459, 0.349215, 0.393094, 0.440259, 0.486015, 0.544208, 0.595361, 0.645342, 0.695087, 0.745302])
-y_min = np.array([0.0663602, 0.0225436, 0.00961888, 0.00473963, 2.9234999e-3, 1.451108e-3, 7.47187e-4, 4.8291e-4, 2.93752e-4, 2.04872e-4, 1.69055e-4]) 
-
+y_min = np.array([0.0370451, 1.3248e-2, 6.07244e-3, 3.4129e-3, 1.98739e-3, 1.27582e-3, 7.6075e-4, 5.21143e-4, 3.43569e-4, 2.22521e-4, 1.69055e-4]) 
 
 # Korrektur um geometrischen Faktor Plot
 print(refektivitaet_rel.shape)
 print(rel_phi.shape)
 ################################################################
-# Liste der jeweiligen G-Faktoren
+
+# Liste der jeweiligen G-Faktoren   
+# Das funktioniert anscheinend und ist besser als meine ursprüngliche idee
+# er sschreibt also alle begechneten g faktoren in ein array mit dem dann multiplizitert wird
+
 faktor = []
 for i in rel_phi:
     if i < 0.72:# das ist der abgelesene geometriewinkel
-        faktor = np.append(faktor, (0.0005*D*np.degrees(np.sin(i)))/d)  #BIG SCAM! die 0.0005*D*... ist eine zahl die in einfüge um zu schummeln ich weiß leider nicht warum der plot nicht geht da muss noch eine kleine ändeung eingeführt werden. aber ich komme einfach nicht drauf
+        faktor = np.append(faktor, (D*np.degrees(np.sin(i)))/d)  
     else:
         faktor = np.append(faktor, 1)
 
-print(faktor[139])#==1
-print(faktor[138])#==1
-print(faktor[0])
-print(rel_phi)
-print(faktor)
+#print(faktor[139])#==1
+#print(faktor[138])#==1
 
-# Anwendung G-Faktor und erneute Normalisierung
-#refektivitaet_rel = refektivitaet_rel/faktor
-#refektivitaet_rel = refektivitaet_rel/refektivitaet_rel[rel_phi == 0.21]
 #################################################################
+#das war vorher
+#plt.plot(rel_phi, refektivitaet_rel*geo(rel_phi)),linewidth = 1.3,label = 'Geometriefaktor Korrektur')
+#jetzt habe ich das in das umgeändert die idee ist von jan
 plt.plot(rel_phi, refektivitaet_rel*(1/faktor),linewidth = 1.3,label = 'Geometriefaktor Korrektur')
-#plt.plot(rel_phi, refektivitaet_rel,linewidth = 1.3,label = 'Geometriefaktor Korrektur')
-
 #print(rel_phi)
 # Minima Plot
 plt.plot(x_min,y_min,'x',color ='k')

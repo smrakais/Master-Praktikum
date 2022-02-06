@@ -21,7 +21,7 @@
 \section{Ziel}
 In diesem Versuch soll ein beschichteter Siliziumwafer mittels Röntgenreflektometrie untersucht werden. 
 Es sollen die Dispersion und Rauigkeit des Siliziumwafers und die Schichtdicke, 
-Dispersion und Rauigkeit der Polysterolschicht bestimmt werden.
+Dispersion und Rauigkeit der Polystyrolschicht bestimmt werden.
 
 \section{Theorie}
 \label{sec:theorie}
@@ -82,7 +82,7 @@ Ein Beispiel einer solchen Reflexionskurve ist in Abb. \ref{fig:Kurve} zu sehen.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Kurve.png}
-    \caption{Die Reflektivität ist in Abhängigkeit vom Einfallswinkel $\alpha_i$ aufgetragen. Zu sehen sind die Reflexionskurven für ein Silizium-Substrat und für ein mit einer Polysterolschicht überzogenes Silizium-Substrat. Es sind außerdem die kritischen Winkel zu sehen. \cite{V44old}}
+    \caption{Die Reflektivität ist in Abhängigkeit vom Einfallswinkel $\alpha_i$ aufgetragen. Zu sehen sind die Reflexionskurven für ein Silizium-Substrat und für ein mit einer Polystyrolschicht überzogenes Silizium-Substrat. Es sind außerdem die kritischen Winkel zu sehen. \cite{V44old}}
     \label{fig:Kurve}
 \end{figure}
 
@@ -264,7 +264,7 @@ Dazu wurde die Reflektivität auf das fünffache der Intensität normiert, da di
 
 Bei der Auswertung der Hauptmessung werden zu Beginn die Messwerte (schwarzer Graph, \autoref{fig:plt1}) um die Messwerte des
 diffusen Scans (roter Graph) korrigiert. Die Messwerte des diffusen Scans werden von den Messwerten abgezogen, um auftretende Rückstreueffekte zu 
-eliminieren. Der entstandene Graph (orange) in ebenfalls in \autoref{fig:plt1} zu sehen. 
+eliminieren. Der dadurch entstandene Graph (orange) ist ebenfalls in \autoref{fig:plt1} abgebildet. 
 
 Anschließend wird mit Hilfe der \autoref{eq:Geometriefaktor} der Geometriefaktor berechnet und der zuvor korrigierte Graph um den Geometriefaktor korrigiert. 
 Die Korrektur um den Geometriefaktor geschieht, da bei geringen Einfallwinkeln nicht die vollständige Intensität auf die Probenoberfläche trifft. 
@@ -280,7 +280,7 @@ Die ermittelte Schichtdicke ist
     \includegraphics[width=12cm]{build/MesswerteUndKorrektur.pdf}
     \caption{Reflektivitätsscan. Der orangene Plot beschreibt die Korrektur der Messwerte (Reflektivitätsscan, schwarz) um den
     diffusen Scan. Die grün eingezeichnete Kurve im Plot entspricht der Theoriekurve für ideal glattes Silizium. 
-    Die kritischen Winkel für Silizium $\alpha_\text{krit,si} = 0,195°$ und Polysterol $\alpha_\text{krit,ps} = 0,0625°$
+    Die kritischen Winkel für Silizium $\alpha_\text{krit,si} = 0,195°$ und Polystyrol $\alpha_\text{krit,ps} = 0,0625°$
      können ebenfalls abgelesen werden.}
     \label{fig:plt1}
 \end{figure}
@@ -290,9 +290,13 @@ Die ermittelte Schichtdicke ist
 \begin{figure}
     \centering                         
     \includegraphics[width=12cm]{build/parratt_und_geo.pdf}
-    \caption{Der hellblaue Graph beschreibt die Korrektur um den Geometriefaktor. Die anderen beiden Graphen sind die jeweiligen 
+    \caption{Geometriefaktor Korrektur und Theoriekurven.
+    Der hellblaue Graph in der Abbildung, beschreibt die Korrektur um den Geometriefaktor
+    des bereits um den diffusen Scan 
+    korrigierten Reflektivitätsscan. 
+    Die anderen beiden Graphen sind die jeweiligen 
     Theoriekurven für glattes und raues Silizium. Die errechneten kritischen Winkel für Silizium 
-    $\alpha_\text{krit,si} = 0,211°$ und Polysterol $\alpha_\text{krit,ps} = 0,063°$ sind als vertikale Linien eingezeichnet. }
+    $\alpha_\text{krit,si} = 0,211°$ und Polystyrol $\alpha_\text{krit,ps} = 0,063°$ sind als vertikale Linien eingezeichnet. }
     \label{fig:plt2}
 \end{figure}
 \FloatBarrier
@@ -379,18 +383,18 @@ und diese ebenfalls stark abweicht.
     
     #Dispersionen   # die werte orientieren sich an den theoriewerten
                     
-    #d1 = 0.7e-6 #Polysterol Disperion
+    #d1 = 0.7e-6 #Polystyrol Disperion
     #d2 = 6.7e-6 #Silizium 
-    d1 = 0.6e-6 #Polysterol Disperion
+    d1 = 0.6e-6 #Polystyrol Disperion
     d2 = 6.8e-6 #Silizium 
     
     #Brechungsindizes
     n1 = 1 #Luft
-    n2 = 1 - d1 #Polysterol
+    n2 = 1 - d1 #Polystyrol
     n3 = 1 - d2 #Silizium
     
     #Rauigkeit
-    s1 = 7.9e-10 #Polysterol 
+    s1 = 7.9e-10 #Polystyrol 
     s2 = 5.7e-10 #Silizium 
     z = 855e-10 
     ########################################################################################################
