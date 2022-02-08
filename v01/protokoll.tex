@@ -18,7 +18,7 @@
 \newpage
 
 \section{Ziel}
-Das Ziel dieses Versuchs ist die Bestimmung der Lebensdauer kosmischer Myonen.
+Das Ziel dieses Versuchs ist die Bestimmung der Lebensdauer kosmischer Myonen. Diese erreichen durch ihre relativistischen Geschwindigkeiten die Erde und können mit Hilfe eines Szintillationsdetektors nachgewiesen werden.
 
 \section{Theorie}
 
@@ -43,20 +43,20 @@ Myonen besitzen eine endliche Lebensdauer. Ihr Zerfall ist ausschließlich unter
 %Ursprung kosmische Myonen & Höhe
 Kosmische Myonen stammen unter anderem aus Pionzerfällen. 
 Pionen entstehen durch Wechselwirkung energiereicher Protonen mit den Atomkernen der Luftmoleküle. 
-Diese Pionen werden typischerweise in einer Höhe von $\SI{15}{\kilo\metre}$ erzeugt und zerfallen schnell, 
-wodurch die kosmischen Myonen ebenfalls in $\SI{15}{\kilo\metre}$ Höhe entstehen. \cite{Grupen}
+Diese Pionen werden typischerweise in einer Höhe von \SI{15}{\kilo\metre} erzeugt und zerfallen schnell, 
+wodurch die kosmischen Myonen ebenfalls in \SI{15}{\kilo\metre} Höhe entstehen. \cite{Grupen}
 
 %Frage 3:
 %Klassische und relativistische Reichweite
 Kosmische Myonen bewegen sich mit relativistischer Geschwindigkeit, wodurch es ihnen möglich ist, die Erde zu erreichen. 
 Die klassische Reichweite eines Myons mit einer Energie von $E_{\mu} = \SI{10}{\giga\electronvolt}$ 
-beträgt $s_{kl} = \SI{656}{\meter}$, während die relativistische 
-Reichweite $s_{rel} = \gamma \cdot s_{kl} \approx \SI{6.3}{\kilo\metre}$ beträgt. 
+beträgt $s_\text{kl} = \SI{656}{\meter}$, während die relativistische 
+Reichweite $s_\text{rel} = \gamma \cdot s_{kl} \approx \SI{6.3}{\kilo\metre}$ beträgt. 
 Dabei ist $\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}$ und zur 
 Berechnung wurden der Zusammenhang $E(v) = \gamma \, m_0 \, c^2$ und eine 
 Lebensdauer von $\tau = \SI{2.2e-6}{\second}$ genutzt. Für energiereichere 
 Myonen mit einer Geschwindigkeit von $v = \num{0.9998} c$ beträgt die relativistische 
-Reichweite sogar $s_{rel} \approx \SI{33}{\kilo\metre}$.
+Reichweite sogar $s_\text{rel} \approx \SI{33}{\kilo\metre}$.
 
 
 %Frage 2:
@@ -94,8 +94,8 @@ Kosmische Myonen können auf der Erdoberfläche mithilfe eines Szintillations-De
 Im Szintillatortank geben sie Energie an Moleküle des Szintillatormaterials ab, wodurch diese in angeregte Zustände übergehen. Bei dem Übergang in den Grundzustand werden Photonen emittiert. Mithilfe der an beiden Enden des Tanks angekoppelten Photomultipliern wird durch diesen Lichtblitz  ein elektrisches Signal erzeugt. Ein Teil der Myonen kann im Szintillatorvolumen bis zum Stillstand abgebremst werden und zerfällt somit im Detektor. Die daraus entstehenden Elektronen erzeugen ebenfalls einen Lichtblitz. Der zeitliche Abstand dieser beiden Signale entspricht der Lebensdauer eines Myons und kann mithilfe einer elektronischen Vorrichtung gemessen werden.
 
 %Frage 4:
-%Welche Ereignisrate erwarten Sie auf der Erdoberfläche? Den Szintillatortank kön- nen Sie als liegenden Zylinder mit h = 2r und V = 50 l nähern
-Auf der Erdoberfläche wird pro Minute und Quadratzentimeter ein Myon erwartet. Im Szintillatortank, der ein Volumen von $\SI{50}{\litre}$ hat, wird also eine Ereignisrate von $\SI{1}{\per\minute}$ erwartet. %WERT ÄNDERN
+%Welche Ereignisrate erwarten Sie auf der Erdoberfläche? Den Szintillatortank können Sie als liegenden Zylinder mit h = 2r und V = 50 l nähern
+Auf der Erdoberfläche wird pro Minute und Quadratzentimeter ein Myon erwartet \cite{Grupen}.  Im Szintillatortank, der ein Volumen von $\SI{50}{\litre}$ hat, wird eine Ereignisrate von $\SI{27}{\per\second}$ erwartet. Dies gilt unter der Annahme, dass der Tank ein liegender Zylinder mit einer Höhe von $h = 2r$ ist.
 
 %\subsection{Vialkanalanalysator}
 %Frage 7:
@@ -116,15 +116,15 @@ Es sind zwei Photomultiplier nötig, damit keine Signalpulse herausgefiltert wer
 \subsection{Aufbau}
 In diesem Versuch wird die Lebensdauer kosmischer Myonen mithilfe dem in \autoref{fig:Aufbau} gezeigten Aufbau bestimmt. Ein Foto des Aufbaus ist in \autoref{fig:Aufbau_Foto} zu sehen. Die einzelnen Bauteile werden im Folgenden kurz beschrieben.
 \begin{itemize}
-    \item Der Szintillator ist ein mit Tuolol gefüllter Edelstahltank mit einem Fassungsvermögen von $\SI{50}{\litre}$. Myonen regen wegen ihrer hohen kinetischen Energie die Szintillatormoleküle an, wodurch ein Photon emittiert wird. Beim Zerfall eines Myons im Detektor regt das entstandene Elektron ebenfalls Szintillatormoleküle an.
+    \item Der Szintillator ist ein mit Toluol gefüllter Edelstahltank mit einem Fassungsvermögen von $\SI{50}{\litre}$. Myonen deponieren beim Durchgang einen Teil ihrer kinetischen Energie im Szintillatormaterial und regen die Szintillatormoleküle an, wodurch ein Photon emittiert wird. Beim Zerfall eines Myons im Detektor regt das entstandene Elektron ebenfalls Szintillatormoleküle an. %umformuliert, weil vorher vermutlich falsch
     \item Die beiden Photomultiplier bestehen im Wesentlichen aus einer Photokathode und einem Sekundärelektronenvervielfacher, durch den das Signal verstärkt wird. Es wird also Lichteinwirkung in ein elektrisches Signal umgewandelt.
-    \item Die Verzögerungsleitungen bestehen aus Kabeln, die einzeln dazu geschaltet werden können. Der Sinn dieser Leitungen ist es, die verschiedenen Eigenschaften der Photomultiplier ausgleichen zu können.
+    \item Die Verzögerungsleitungen bestehen aus Kabeln, die einzeln dazu geschaltet werden können. Der Sinn dieser Leitungen ist es, die verschiedenen Eigenschaften und Kabellängen der Photomultiplier ausgleichen zu können. %reicht diese Ergänzung als Korrektur?
     \item Der Diskriminator legt eine Schwelle fest, ab der Spannungsimpulse durchgelassen werden. Die Länge der ausgegebenen Rechteckimpulse kann variiert werden.
-    \item Mithilfe der Koinzidenzschaltung wird nach Ereignissen gefiltert, die "gleichzeitig" auftreten. 
-    \item Für die Dauer eines Impulses, der am AND-Gatter ankommt, liegt an diesem ein HIGH an. %noch was?
+    \item Mithilfe der Koinzidenzschaltung wird nach Ereignissen gefiltert, die "gleichzeitig" auftreten. Der Ausgang der Koinzidenz wird an zwei AND-Gatter und an eine monostabile Kippstufe angeschlossen. %Zweiten Satz noch ergänzt bei der Korrektur
+    \item An ein AND-Gatter wird der inverse Ausgang der Kippstufe angeschlossen. Dieses geht in den Start-Eingang des Zeit-Amplituden-Converter (TAC). Das AND-Gatter, an das der nicht inverse Ausgang der Kippstufe angeschlossen ist, wird an den Stop-Eingang des TAC angeschlossen. Für die Dauer eines Impulses, der am AND-Gatter ankommt, liegt an diesem ein HIGH an. Die AND-Gatter leiten die Start- und Stopsignale an den TAC weiter. %ersten drei Sätze und letzten Satz ergänzt
     \item Die monostabile Kippstufe (Univibrator) gewährleistet, dass ein neuer Startimpuls auch als solcher erkannt wird, indem sie durch den Stop-Impuls wieder zurückkippt. Hier wird eine Suchzeit eingestellt, damit sichergestellt ist, dass die Zeitmessung zurückgesetzt wird, falls kein Stop-Signal eintrifft. %noch was?
-    \item Der Zeit-Amplituden-Converter (TAC) bestimmt die Zeit zwischen dem Start- und Stop-Signal und wandelt diese in ein Spannungssignal um, das proportional zur Dauer ist.
-    \item Der Vielkanalanalysator speichert die Spannungssignale ihrer Höhe entsprechend in einem Kanal.
+    \item Der Zeit-Amplituden-Converter bestimmt die Zeit zwischen dem Start- und Stop-Signal und wandelt diese in ein Spannungssignal um, das proportional zur Dauer ist.
+    \item Der Multichannel Analyzer (MCA) speichert die Spannungssignale ihrer Höhe entsprechend in einem Kanal.
 \end{itemize}
 \begin{figure}
     \centering
@@ -148,7 +148,7 @@ Anschließend werden die Photomultiplier über die Verzögerungsleitungen mit de
 Als nächstes werden die Ausgänge der Diskriminatoren an einen Impulszähler angeschlossen. Die Schwelle der Diskriminatoren wird so angepasst, dass an beiden Ausgängen ca. $\num{30}$ Pulse pro Sekunde gemessen werden.
 Im nächsten Schritt wird die Koinzidenz in die Schaltung integriert und der Ausgang an den Impulszähler angeschlossen. Die Verzögerungen werden systematisch nacheinander variiert. Dabei wird für jede Verzögerung die Impulsrate aufgenommen. Es ist ein deutliches Maximum, bzw. ein Plateau in der Verteilung, der Impulsrate zu sehen. Die Verzögerung wird auf diesen Wert eingestellt.
 Die restliche Schaltung wird verkabelt. 
-Am Monoflop wird eine Suchzeit $T_s$ eingestellt, die am auch TAC entsprechend eingestellt wird.
+Am Monoflop wird eine Suchzeit $T_\text{s}$ eingestellt, die am auch TAC entsprechend eingestellt wird.
 
 Der Teil vor der Koinzidenzschaltung wird abgeklemmt. Stattdessen wird ein Doppelimpulsgenerator an die Koinzidenz angeschlossen.
 Die Pulsabstände werden zwischen $\SI{0.3}{\micro\second}$ und $\SI{9.9}{\micro\second}$ variiert und die entsprechende Kanalnummer des Vielkanalanalysators aufgenommen.
@@ -210,7 +210,7 @@ bei einer Ereignisrate von $\SI{114,40 \pm 1,50}{\frac{1}{10 \second}}$ .
 \FloatBarrier
 
 \subsection{Kalibrierung des Multichannel Analyzers}
-Um den Multi-Channel-Analyzer (MCA) zu kalibrieren, werden %TODO in der durchführung einführen
+Um den MCA zu kalibrieren, werden %TODO in der durchführung einführen -> erledigt
 mit Hilfe eines Doppelimpulsgenerators Impulse mit unterschiedlichen Impulsabständen auf den MCA geschickt und von diesem verarbeitet.
 Dadurch kann am Computer jeweils pro Impuls der jeweilige Kanal abgelesen werden.
 Mit Hilfe dieser Wertepaare vgl.\autoref{tab:Kalibration} kann im Folgenden eine lineare Regression der Werte erfolgen und somit 
