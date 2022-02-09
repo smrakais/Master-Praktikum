@@ -5,6 +5,10 @@ import matplotlib.patches as patches
 from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 from scipy.signal import peak_widths
+from texutils.table import TexTable
+
+plt.rcParams['figure.figsize'] = (10, 8)
+plt.rcParams['font.size'] = 18
 
 
 #########################################################################################
@@ -59,3 +63,14 @@ plt.tight_layout()
 
 plt.show()
 ########################################################################################################
+
+##########
+# Tabelle
+##########
+t = TexTable([dt, N], [r"$t$ / ns",r"Zählrate(10s) "], 
+            label='tab:Koinzidenz',
+            caption='Messwerte der Zählraten in Abhängigkeit der Verzögerungsleitungen.')
+t.set_row_rounding(0, 1) #reihe und rundung
+t.set_row_rounding(1, 0)
+t.write_file('build_new/tabKoinzidenz_new.tex')
+print('Die Tabelle der Koinzidenz wurde erzeugt!\n')
