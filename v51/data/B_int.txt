@@ -1,6 +1,6 @@
-R = 10 kOhm; C = 100 nF; Sinus
-
-Frequenz in Hz      U_E in mV    U_A in mV
+#R = 10 kOhm; C = 100 nF; Sinus
+#
+#Frequenz in Hz      U_E in mV    U_A in mV
 100         800     420
 250         800     500
 500         800     540

@@ -1,6 +1,5 @@
-C = 22 nF; R = 100 kOhm; Sinus
-
-Frequenz in Hz      U_E in mV        U_A in V 
+#C = 22 nF; R = 100 kOhm; Sinus
+#Frequenz in Hz      U_E in mV        U_A in V 
 100         750     0.75
 250         750     2
 500         750     4

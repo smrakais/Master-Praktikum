@@ -1,8 +1,8 @@
-U_E = 50 mV; Sinus; R_1 = 1kOhm; R_2 = 100 kOhm
-Frequenz in Hz  U_A in V   {Phase: Position U_E Max (Cursor1)   Position U_A Max (Cursor2) in micro s}
-
-100       5       6.4ms     11.5ms
-250       5       -1.08ms   960
+#U_E = 50 mV; Sinus; R_1 = 1kOhm; R_2 = 100 kOhm
+#Frequenz in Hz  U_A in V   {Phase: Position U_E Max (Cursor1)   Position U_A Max (Cursor2) in micro s}
+#                 micro sekunden
+100       5       6400     11500
+250       5       -1080     960
 500       5       -680      360
 750       5       260       910
 1000      5       210       680
