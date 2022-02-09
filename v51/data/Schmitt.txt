@@ -1,0 +1,7 @@
+R_1 = 10kOhm
+R_2 = 100kOhm
+U_B = 5V
+f = 105Hz
+U_E = 9,2V
+U_Schwelle = 800mV
+U_A = 2V
