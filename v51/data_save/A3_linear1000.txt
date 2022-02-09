@@ -1,0 +1,18 @@
+#U_E = 50 mV; Sinus; R_1 = 100 Ohm; R_2 = 100 kOhm
+#Frequenz in Hz  U_A in V   {Phase: Position U_E Max (Cursor1)   Position U_A Max (Cursor2) in micro s}
+#
+100     50                          #
+250     50      840     2.72ms#
+500     50      420     1.3ms#
+750     50      280     840#
+1000    50      200     650#
+2500    45      80      210         #          (U_E auf 100mV hochgegangen)
+5000    40      46      110#
+7500    7       28      68          #          (U_E auf 200mV hochgegangen; vor Messung auf 50mV gestellt)
+10000   6       22      68#
+25000   3       7.6     18.8        #          (U_E auf 75mV hochgegangen)
+50000   1.5     4.8     10#
+75000   1       3       6#
+100000  0.75    2.3     4.6#
+250000  0.2     -3.4    -2.4#
+500000                              #           (wurde nicht messbar)

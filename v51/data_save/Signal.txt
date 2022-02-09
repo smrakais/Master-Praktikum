@@ -1,0 +1,7 @@
+R_1 = 10kOhm
+R_2 = 100kOhm
+R_3 = 1kOhm
+C = 1 micro F 
+U_A = 360mA
+f_A = 1111.1Hz
+f_theo = 2500Hz
