@@ -4,6 +4,7 @@ import uncertainties.unumpy as unp
 from uncertainties import ufloat
 from scipy.optimize import curve_fit
 from texutils.table import TexTable
+from texutils.table import Combined
 
 def linear(x, m, b):
     return m*x + b
@@ -288,39 +289,38 @@ print('--------------------done-------------------------')
 ##############################
 # Tabelle GESAMMELTE PARAMETER
 ##############################
-# Tabellle 1
+
 V_theo = np.array([100,10,1000])
 V_berech = np.array([float(unp.nominal_values(Verstärkungsfaktor_100)),float(unp.nominal_values(Verstärkungsfaktor_10)),float(unp.nominal_values(Verstärkungsfaktor_1000))]) 
 V_log_berech =np.log(V_berech) 
+#check
 print(V_theo,'\n', V_berech,'\n',V_log_berech,'\n')
 
-# Tabellle 2
 f_gr = np.array([float(unp.nominal_values(f_gr_100)),float(unp.nominal_values(f_gr_10)),float(unp.nominal_values(f_gr_1000))])
 f_gr_log = np.log(f_gr)
 GBP = np.array([BWP_100.n,BWP_10.n,BWP_1000.n])
+#check
 print(f_gr,'\n',f_gr_log,'\n',GBP,'\n')
 
-# Tabelle 1
-t1 = TexTable([V_theo, V_berech, V_log_berech], [r"$V_\text{theo}$ ",r"$V_\text{b}$ ",r"ln($V_\text{b}$) "], 
-            label='tab:t1 ')#,
-            #caption='Messwerte des Linearverstärkers bei einem Verstärkungsfaktor von 1000.')
-t1.set_row_rounding(0, 0) #reihe und rundung
-t1.set_row_rounding(1, 2)
-t1.set_row_rounding(2, 2)
+# Tabelle 
+t = TexTable([V_theo, V_berech, V_log_berech,f_gr, f_gr_log, GBP], [r"$V_\text{theo}$ ",r"$V_\text{b}$ ",r"ln($V_\text{b}$) ",r"$f_\text{gr}$ / Hz ",r"ln($f_\text{gr}$) / ln(Hz)",r"$GBP (V_\text{b} \cdot f_\text{gr})$ / Hz"], 
+            label='tab:Verstärkungen ',
+            caption='Tabelle der berechneten Verstärkungen, Grenzfrequenzen und des Bandbreitenprodukts (GBP).'
+            'bla')
+t.set_row_rounding(0, 0) #reihe und rundung
+t.set_row_rounding(1, 2)
+t.set_row_rounding(2, 2)
+t.set_row_rounding(3, 0)
+t.set_row_rounding(4, 2)
+t.set_row_rounding(5, 0)
+t.write_file('build/tabParameter_Linearverstärker.tex')
+print('Die Tabelle des Linearverstärkers bei einem Verstärkungsfaktor von 1000 wurde erzeugt!\n')
 
-t1.write_file('build/Parameter_Linearverstärker.tex')
-#print('Die Tabelle des Linearverstärkers bei einem Verstärkungsfaktor von 1000 wurde erzeugt!\n')
-
-# Tabelle 2
-t2 = TexTable([f_gr, f_gr_log, GBP], [r"$f_\text{gr}$ / Hz ",r"ln($f_\text{gr}$) / ln(Hz)",r"$GBP (V_\text{b} \cdot f_\text{gr})$ / Hz "], 
-            label='tab:t2 ')#,
-            #caption='Messwerte des Linearverstärkers bei einem Verstärkungsfaktor von 1000.')
-t2.set_row_rounding(0, 0) #reihe und rundung
-t2.set_row_rounding(1, 2)
-t2.set_row_rounding(2, 0)
-
-t2.write_file('build/Parameter_Linearverstärker2.tex')
-
-#combierte tabelle aber muss importiert werden
-
+###########################
+# Für kombinierte Tabellen
+###########################
+# Kombinierte Tabelle
+# t=Combined([t1, t2], label= 'tab_1_2',caption='Kombinierte Tabelle der berechneten Verstärkungen, Grenzfrequenzen und des Bandbreitenprodukts (GBP)')
+# t.write_file('build/tabKombiniert_1_2.tex')
+###########################
 #########################################################################################################
