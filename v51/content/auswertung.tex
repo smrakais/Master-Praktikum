@@ -1,13 +1,117 @@
+\newpage
 \section{Auswertung}
 Im folgenden Kapitel werden die aufgenommenen Messwerte ausgewertet und die Ergebnisse 
-diskutiert.
-\textit{Hinweis} beim aufzeichnen der Messwerte ist ab dem invertierenden Integrator
+diskutiert.\\
+\textit{Hinweis} beim aufzeichnen der Messwerte, ist ab dem invertierenden Integrator
 ein unbekannter Fehler im Experiment aufgetreten. Dieser ist dafür verantwortlich, dass
 unsere Messwerte ab diesem Zeitpunkt unbrauchbar geworden sind.
 Damit dennoch die wesentlichen Zusammenhänge und Ziele des Experiments gezeigt werden können,
 sind Messwerte von zwei unterschiedlichen Gruppen für die weitere Auswertung herangezogen worden.
+Die Benutzung sowie die Quellen der Messwerte,
+ist in diesem Abschnitt an unterschiedlichen Stellen kenntlich gemacht.
 
-\section{Der invertierende Verstärker / Linearverstärker }
+\section{Der invertierende Verstärker / Linearverstärker}
+\subsection{Untersuchung der Verstärkung}
+Im ersten Teil des Versuches wird das Frequenzabhängige Verhalten der Verstärkung untersucht.
+Hierzu wird die Ausgangspannung in Abhängigkeit der Frequenz über mehrere Dekaden gemessen 
+und die Verstärkung in einem doppellogarithmischen Plot aufgetragen aufgetragen.
+Die Plots sind sind in \autoref{fig:Linearverstaerker} dargestellt.
+Per linearer Regression
+\begin{equation*}
+    f(x) = mx+b,
+\end{equation*}
+lassen sich die Verstärkung, die Grenzfrequenz und das Bandbreitenprodukt bestimmen.
+Im Plot schwarz markierte Messwerte werden als Ausreißer betrachtet 
+und fließen nicht in die Berechnungen ein.
+Die errechneten Parameter sind in \autoref{tab:params} dargestellt.
+Hierbei ist $V_\text{theo}$ die theoretische Verstärkung, berechnet anhand des gewählten 
+Widerstandsverhältnisses, $V_\text{b}$ die gemessene Verstärkung, $f_\text{gr}$ die 
+gemessene Grenzfrequenz und $GBP$ das aus den Messwerten 
+(vgl. Anhang \ref{sub:Messwerte des Linarverstärkers}) errechnete Bandbreitenprodukt.
+\input{build/tabParameter_Linearverstärker.tex}
+\FloatBarrier
+Betrachtet man die unterschiedlichen Graphen so lässt sich erkennen, dass
+die jeweiligen Verstärkungen bei niedrigen Frequenzen in guter Näherung konstant
+bleiben. Mit steigender Frequenz fällt die Verstärkung im Plot linearer ab.
+Dies entspricht ganz den Erwartungen der vorrangestellten Theorie.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{build/a.pdf}
+        \caption{Linearverstärker bei einer Verstärkung von 100.\\ $R_1 = \SI{1}{\kilo\ohm}$,
+        $R_2 = \SI{100}{\kilo\ohm}$ }
+        \label{fig:a}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{build/b.pdf}
+        \caption{Linearverstärker bei einer Verstärkung von 10.\\ $R_1 = \SI{10}{\kilo\ohm}$,
+        $R_2 = \SI{100}{\kilo\ohm}$ }
+        \label{fig:b}
+    \end{subfigure}    
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{build/c.pdf}
+        \caption{Linearverstärker bei einer Verstärkung von 1000.\\ $R_1 = \SI{100}{\ohm}$,
+        $R_2 = \SI{100}{\kilo\ohm}$ }
+        \label{fig:c}
+    \end{subfigure}
+       \caption{Aufgenommene Graphen bei unterschiedlichen Verstärkungsfaktoren.}
+       \label{fig:Linearverstaerker}
+\end{figure}
+\FloatBarrier
+
+\subsection{Verhalten der Phasedifferenz bei steigender Frequenz}
+Im nächsten Teil des Versuches wird die Phasenverschiebung von Ein- und Ausgangspannung 
+untersucht.
+Dazu wird die gemessene Phasendifferenz $\phi$ in Abhängigkeit der logarithmierten Frequenz $f$
+aufgetragen.
+Die Plots sind sind in \autoref{fig:phase} dargestellt.
+
+Anhand der Plots ist erkennbar, dass mit steigender Frequenz die Phasendifferenz zwischen 
+Ein- und Ausgangspannung sinkt.
+Da es sich bei der verwendeten Schaltung um einen invertierenden Verstärker handelt, beginnt 
+der Phasenversatz bei $\SI{180}{\degree}$.
+
+Des Weiteren lässt sich erkennen, dass je höher der Verstärkungsfaktor ist, desto früher
+beginnt der Phasenversatz zu sinken. 
+Bei der \autoref{fig:phase_1000} wurden insgesamt 3 Messwerte rausgenommen und 
+als Ausreißer identifiziert.
+
+Betrachtet man insbesondere die \autoref{fig:phase_10} so ähnelt der Verlauf
+des Graphen dem Verlauf eines Tiefpasses.
+Bei einen Tiefpasses können niedrige Frequenzen passieren, wo hingegen hohe Frequenzen
+unterdrückt werden.
+
+\section{Der invertierende Integrator}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{build/Phasenbeziehung_100.pdf}
+        \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 100.}
+        \label{fig:phase_100}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{build/Phasenbeziehung_10.pdf}
+        \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 10.}
+        \label{fig:phase_10}
+    \end{subfigure}    
+    \begin{subfigure}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{build/Phasenbeziehung_1000.pdf}
+        \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 1000.}
+        \label{fig:phase_1000}
+    \end{subfigure}
+       \caption{Aufgenommene Phasendifferenz unterschiedlichen Verstärkungsfaktoren.}
+       \label{fig:phase}
+\end{figure}
+\FloatBarrier
+
+
 %\begin{figure}
 %    \centering
 %    \includegraphics[width=0.7\linewidth]{./figures/xxx.xxx}

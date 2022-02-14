@@ -113,7 +113,7 @@ print('--------------------done-------------------------')
 # Phasenbeziehung in Abhängigkeit der Frequenz
 ##############################################
 fig, ax = plt.subplots()
-plt.ylabel(r"$\phi \, / \, \mathrm{rad}$")
+plt.ylabel(r"$\phi \, / \, ^\circ$")
 plt.xlabel(r"$f \, / \, \mathrm{Hz}$")
 ax.grid(ls =  '--')
 ax.minorticks_on()
@@ -218,7 +218,7 @@ print('--------------------done-------------------------')
 # Phasenbeziehung in Abhängigkeit der Frequenz
 ##############################################
 fig, ax = plt.subplots()
-plt.ylabel(r"$\phi \, / \, \mathrm{rad}$")
+plt.ylabel(r"$\phi \, / \, ^\circ$")
 plt.xlabel(r"$f \, / \, \mathrm{Hz}$")
 ax.grid(ls =  '--')
 ax.minorticks_on()
@@ -324,7 +324,7 @@ print('--------------------done-------------------------')
 # Phasenbeziehung in Abhängigkeit der Frequenz
 ##############################################
 fig, ax = plt.subplots()
-plt.ylabel(r"$\phi \, / \, \mathrm{rad}$")
+plt.ylabel(r"$\phi \, / \, ^\circ$")
 plt.xlabel(r"$f \, / \, \mathrm{Hz}$")
 ax.grid(ls =  '--')
 ax.minorticks_on()
@@ -359,9 +359,8 @@ GBP = np.array([BWP_100.n,BWP_10.n,BWP_1000.n])
 
 # Tabelle 
 t = TexTable([V_theo, V_berech, V_log_berech,f_gr, f_gr_log, GBP], [r"$V_\text{theo}$ ",r"$V_\text{b}$ ",r"ln($V_\text{b}$) ",r"$f_\text{gr}$ / Hz ",r"ln($f_\text{gr}$) / ln(Hz)",r"$GBP (V_\text{b} \cdot f_\text{gr})$ / Hz"], 
-            label='tab:Verstärkungen ',
-            caption='Tabelle der berechneten Verstärkungen, Grenzfrequenzen und des Bandbreitenprodukts (GBP).'
-            'bla')
+            label='tab:params',
+            caption='Tabelle der berechneten Verstärkungen, Grenzfrequenzen und des Bandbreitenprodukts (GBP).')
 t.set_row_rounding(0, 0) #reihe und rundung
 t.set_row_rounding(1, 0)
 t.set_row_rounding(2, 2)
