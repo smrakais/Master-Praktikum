@@ -15,6 +15,7 @@ ist in diesem Abschnitt an unterschiedlichen Stellen kenntlich gemacht.
 Im ersten Teil des Versuches wird das Frequenzabhängige Verhalten der Verstärkung untersucht.
 Hierzu wird die Ausgangspannung in Abhängigkeit der Frequenz über mehrere Dekaden gemessen 
 und die Verstärkung in einem doppellogarithmischen Plot aufgetragen aufgetragen.
+Es sind insgesamt drei unterschiedliche Verstärkungen untersucht worden.
 Die Plots sind sind in \autoref{fig:Linearverstaerker} dargestellt.
 Per linearer Regression
 \begin{equation*}
@@ -32,28 +33,33 @@ gemessene Grenzfrequenz und $GBP$ das aus den Messwerten
 \FloatBarrier
 Betrachtet man die unterschiedlichen Graphen so lässt sich erkennen, dass
 die jeweiligen Verstärkungen bei niedrigen Frequenzen in guter Näherung konstant
-bleiben. Mit steigender Frequenz fällt die Verstärkung im Plot linearer ab.
+bleiben. Mit steigender Frequenz fällt die Verstärkung im Plot linear ab.
 Dies entspricht ganz den Erwartungen der vorrangestellten Theorie.
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.6\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/a.pdf}
-        \caption{Linearverstärker bei einer Verstärkung von 100.\\ $R_1 = \SI{1}{\kilo\ohm}$,
+        \caption{Linearverstärker bei einer Verstärkung von 100. $R_1 = \SI{1}{\kilo\ohm}$,
         $R_2 = \SI{100}{\kilo\ohm}$ }
         \label{fig:a}
     \end{subfigure}
-    \begin{subfigure}[b]{0.6\textwidth}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/b.pdf}
-        \caption{Linearverstärker bei einer Verstärkung von 10.\\ $R_1 = \SI{10}{\kilo\ohm}$,
+        \caption{Linearverstärker bei einer Verstärkung von 10. $R_1 = \SI{10}{\kilo\ohm}$,
         $R_2 = \SI{100}{\kilo\ohm}$ }
         \label{fig:b}
-    \end{subfigure}    
-    \begin{subfigure}[b]{0.6\textwidth}
+    \end{subfigure}
+    \newline
+    \newline    
+    \newline    
+    \newline    
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/c.pdf}
-        \caption{Linearverstärker bei einer Verstärkung von 1000.\\ $R_1 = \SI{100}{\ohm}$,
+        \caption{Linearverstärker bei einer Verstärkung von 1000. $R_1 = \SI{100}{\ohm}$,
         $R_2 = \SI{100}{\kilo\ohm}$ }
         \label{fig:c}
     \end{subfigure}
@@ -62,7 +68,7 @@ Dies entspricht ganz den Erwartungen der vorrangestellten Theorie.
 \end{figure}
 \FloatBarrier
 
-\subsection{Verhalten der Phasedifferenz bei steigender Frequenz}
+\subsection{Verhalten der Phasendifferenz bei steigender Frequenz}
 Im nächsten Teil des Versuches wird die Phasenverschiebung von Ein- und Ausgangspannung 
 untersucht.
 Dazu wird die gemessene Phasendifferenz $\phi$ in Abhängigkeit der logarithmierten Frequenz $f$
@@ -84,23 +90,111 @@ des Graphen dem Verlauf eines Tiefpasses.
 Bei einen Tiefpasses können niedrige Frequenzen passieren, wo hingegen hohe Frequenzen
 unterdrückt werden.
 
-\section{Der invertierende Integrator}
+\section{Der invertierende Integrator \cite{int_data}, \cite{int_picture}}
+In diesem Abschnitt wird überprüft ob die Ausgangspannung des Integrators sich proportional 
+zur Frequenz verhält.
+Dazu wird im Experiment die Ein- und Ausgangspannung in Abhängigkeit der Frequenz gemessen.
+
+Die Messdaten sind in \autoref{tab:integrator} zu finden. 
+Wie bereits im obigen Hinweis erwähnt, handelt es sich bei den ausgewerteten Messwerten
+um Fremddaten.
+
+Im nächsten Schritt ist die Ausgangspannung in Abhängigkeit der Frequenz in einem Plot
+mit doppellogarithmischer Skala aufgetragen worden.
+Dieser Plot ist in \autoref{fig:integrator} zu sehen.
+Anschließend wird mit Hilfe der Regressionsfunktion
+\begin{equation*}
+    ln(f(x)) =  m\,ln(x) + b
+\end{equation*}
+der erste Bereich (bis ca. 1000\,Hz) gefittet.
+Dadurch ist in \autoref{fig:integrator} der blaue Fit enstanden.
+
+Anhand des blauen Fits ist erkennbar, dass sich die Ausgangspannung antiproportional zu der Frequenz
+verhält.
+Dies ist genau was man aus der Theorie erwartet.
+
+Wird allerdings der weitere Verlauf der Messwerte betrachtet so fällt auf, dass die 
+Ausgangspannung ab ca. 1000\,Hz wieder zu steigen beginnt. 
+Dieser Effekt kann zum jetzigen Zeitpunkt noch nicht erklärt werden.
+Im weiteren Verlauf beginnt diese aber wieder zu sinken (roter Fit), was der ursprünglichen 
+Erwartung entspricht. 
+Die beiden Steigungen der Fits sind nahezu gleich, was dafür spricht das der Abfall
+auf dem selben Effekt beruht.
+\begin{align*}
+    m_\text{blau} &=  \SI{-0.87\pm0.05}{\volt\per\hertz}\\
+    m_\text{rot} &=  \SI{-0.82\pm0.05}{\volt\per\hertz}
+\end{align*}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build/integrator.pdf}
+    \caption{Ausgangspannung in Abhängigkeit der Frequenz. $R = \SI{10}{\kilo\ohm}$,
+        $C = \SI{100}{\nano\farad}$.}
+    \label{fig:integrator}
+\end{figure}
+\FloatBarrier
+
+Mit Hilfe der aufgebauten Integratorschaltung lassen sich verschiedene Eingangssignale 
+integrieren. 
+Im unserem Experiment werden die Integrationen einer Sinus-, einer Dreiecks- und einer Rechteckspannung 
+untersucht.
+Die Integrationen sind mit Hilfe eines Oszilloskops aufgezeichnet worden.
+Daraus ergeben sich die Bilder in \autoref{fig:int}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{data_of_others_cuz_ours_suck/int/int_sinus.JPG}
+        \caption{Oszillographische Darstellung einer integrierten Sinusspannung.
+        Die integrierte Sinusspannung ist auf Channel 2 dargestellt und ist ein Kosinus.}
+        \label{fig:int_sin}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{data_of_others_cuz_ours_suck/int/int_recht.JPG}
+        \caption{Oszillographische Darstellung einer integrierten Rechteckspannung.
+        Die integrierte Rechteckspannung ist auf Channel 2 dargestellt und ist eine Dreieckspannung.}
+        \label{fig:int_recht}
+    \end{subfigure}
+    \newline
+    \newline  
+    \newline
+    \newline  
+    \newline  
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{data_of_others_cuz_ours_suck/int/int_dreieck.JPG}
+        \caption{Oszillographische Darstellung einer integrierten Dreieckspannung.
+        Die integrierte Dreieckspannung ist auf Channel 2 dargestellt und zeigt einen Sinus.}
+        \label{fig:int_drei}
+    \end{subfigure}
+       \caption{Ein- und Ausgangssignale eines invertierenden Integrators. Channel 1 zeigt
+       das Eingangssignal. Channel 2 zeigt das integrierte Signal.}
+       \label{fig:int}
+\end{figure}
+\FloatBarrier
+
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.6\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/Phasenbeziehung_100.pdf}
         \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 100.}
         \label{fig:phase_100}
     \end{subfigure}
-    \begin{subfigure}[b]{0.6\textwidth}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/Phasenbeziehung_10.pdf}
         \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 10.}
         \label{fig:phase_10}
-    \end{subfigure}    
-    \begin{subfigure}[b]{0.6\textwidth}
+    \end{subfigure} 
+    \newline
+    \newline   
+    \newline   
+    \newline   
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/Phasenbeziehung_1000.pdf}
         \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 1000.}
@@ -111,6 +205,70 @@ unterdrückt werden.
 \end{figure}
 \FloatBarrier
 
+\section{Der invertierende Differenzierer \cite{int_data}, \cite{int_picture}}
+Analog zu dem invertierende Integrator, lassen sich die gleichen Betrachtungen 
+für einen invertierende Differenzierer anstellen.
+Der Plot welcher sich durch die Messwerte \autoref{tab:differenzierer} ergibt, ist in
+\autoref{fig:differenzierer} zu sehen.
+Anhand des Verlaufs der linearen Regression lässt sich feststellen, dass die Ausgangspannung
+im Bereich von 100\,Hz bis ca. 4000\,Hz proportional zu der Frequenz der Eingangsspannung ist.
+Dies stimmt mit den Erwartungen überein.
+
+Wird die Frequenz der Eingangsspannung weiter erhöht beginnt die Ausgangspannung
+wieder zu sinken.
+Dies ist genau der umgekehrte experimentelle Befund, welcher beim invertierenden Integrator
+ebenfalls aufgetreten ist.
+Dieser kann zum jetzigen Zeitpunkt noch nicht erklärt werden.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{build/differenzierer.pdf}
+    \caption{Ausgangspannung in Abhängigkeit der Frequenz. $R = \SI{100}{\kilo\ohm}$,
+        $C = \SI{22}{\nano\farad}$.}
+    \label{fig:differenzierer}
+\end{figure}
+\FloatBarrier
+Mit Hilfe der aufgebauten Differenziererschaltung lassen sich verschiedene Eingangssignale 
+differenzierern. 
+Hier werden ebenfalls eine Sinus-, einer Dreiecks- und einer Rechteckspannung 
+untersucht.
+Die Differenziationen sind mit Hilfe eines Oszilloskops aufgezeichnet worden.
+Daraus ergeben sich die Bilder in \autoref{fig:diff}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{data_of_others_cuz_ours_suck/diff/diff_sin.JPG}
+        \caption{Oszillographische Darstellung einer differenzierten Sinusspannung.
+        Die differenzierte Sinusspannung ist auf Channel 2 dargestellt und ist ein Kosinus.}
+        \label{fig:diff_sin}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{data_of_others_cuz_ours_suck/diff/diff_recht.JPG}
+        \caption{Oszillographische Darstellung einer differenzierten Rechteckspannung.
+        Die differenzierte Rechteckspannung ist auf Channel 2 dargestellt und sind Nadelpulse.}
+        \label{fig:diff_recht}
+    \end{subfigure}
+    \newline
+    \newline  
+    \newline
+    \newline  
+    \newline  
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{data_of_others_cuz_ours_suck/diff/diff dreieck.JPG}
+        \caption{Oszillographische Darstellung einer differenzierten Dreieckspannung.
+        Die differenzierte Dreieckspannung ist auf Channel 2 dargestellt und zeigt eine Rechteckspannung.}
+        \label{fig:diff_drei}
+    \end{subfigure}
+       \caption{Ein- und Ausgangssignale eines invertierenden Differenzierers. Channel 1 zeigt
+       das Eingangssignal. Channel 2 zeigt das differenzierte Signal.}
+       \label{fig:diff}
+\end{figure}
+\FloatBarrier
+
+\section{Der nicht invertierende Schmitt-Trigger}
 
 %\begin{figure}
 %    \centering

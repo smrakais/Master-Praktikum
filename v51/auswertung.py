@@ -6,6 +6,9 @@ from scipy.optimize import curve_fit
 from texutils.table import TexTable
 from texutils.table import Combined
 
+#plt.rcParams['figure.figsize'] = (10, 8)
+plt.rcParams['font.size'] = 12
+
 def linear(x, m, b):
     return m*x + b
 
@@ -422,7 +425,7 @@ print('Der Plot des Integrators wurde erstellt!','\n')
 # Tabelle
 ##########
 t = TexTable([f, ua, ue], [r"$f$ / Hz",r"$U_a$ / V",r"$U_e$ / V"], 
-            label='tab:integrator ',
+            label='tab:integrator',
             caption='Messwerte des invertierenden Integrators.')
 t.set_row_rounding(0, 0) #reihe und rundung
 t.set_row_rounding(1, 1)
@@ -470,7 +473,7 @@ print('Der Plot des Differenzierers wurde erstellt!\n')
 # Tabelle
 ##########
 t = TexTable([f, ua, ue], [r"$f$ / Hz",r"$U_a$ / V",r"$U_e$ / V"], 
-            label='tab:differenzierer ',
+            label='tab:differenzierer',
             caption='Messwerte des invertierenden Differenzierers.')
 t.set_row_rounding(0, 0) #reihe und rundung
 t.set_row_rounding(1, 1)
