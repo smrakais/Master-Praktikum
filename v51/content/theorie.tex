@@ -7,29 +7,29 @@ Es werden einige Anwendungen verwirklicht und so überprüft, dass der Operation
 \section{Theorie}
 
 \subsection{Operationsverstärker}
-Ein Operationsverstärker (wie in \autoref{fig:OPV} zu sehen) ist ein gleichstromgekoppelter Differenzverstärker, dessen Ausgangsspannung $U_A$ proportional zur Differenz der beiden Eingangsspannungen $U_P$ und $U_N$ ist
+Ein Operationsverstärker (wie in \autoref{fig:OPV} zu sehen) ist ein gleichstromgekoppelter Differenzverstärker, dessen Ausgangsspannung $U_\text{A}$ proportional zur Differenz der beiden Eingangsspannungen $U_\text{P}$ und $U_\text{N}$ ist
 \begin{equation*}
-    U_A = V_0 (U_P - U_N) \, .
+    U_\text{A} = V_0 (U_\text{P} - U_\text{N}) \, .
 \end{equation*}
-Dabei ist $V_0$ die Leerlaufverstärkung des Operationsverstärkers. Bei einem idealen Operationsverstärker ist die Leerlaufverstärkung unendlich, während sie bei einem realen Werte von etwa $\num{200000}$ erreicht und frequenzabhängig ist. %Quelle: https://www.batronix.com/versand/know-how/op-amp.html#04
+Dabei ist $V_0$ die Leerlaufverstärkung des Operationsverstärkers. Bei einem idealen Operationsverstärker ist die Leerlaufverstärkung unendlich, während sie bei einem realen Werte von etwa $\num{200000}$ \cite{Verstaerkung} erreicht und frequenzabhängig ist.
 
 Es gibt einen nicht-invertierenden und einen invertierenden Eingang, bei welchem die Spannung gegenphasig zur Ausgangsspannung ist. Die Eingangswiderstände sind bei einem idealen Operationsverstärker unendlich und für einen realen sehr groß. Der Ausgangswiderstand ist idealerweise Null. Ein realer Operationsverstärker hat einen sehr kleinen Ausgangswiderstand.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{./figures/OPV.png}
-    \caption{Das Schaltsymbol eines Operationsverstärkers. Es sind die beiden Eingangsspannungen $U_P$ (am nicht-invertierenden Eingang) und $U_N$ (am invertierenden Eingang), die Betriebsspannung $U_B$ und $-U_B$ sowie die Ausgangsspannung $U_A$ zu sehen.}
+    \caption{Das Schaltsymbol eines Operationsverstärkers. Es sind die beiden Eingangsspannungen $U_\text{P}$ (am nicht-invertierenden Eingang) und $U_\text{N}$ (am invertierenden Eingang), die Betriebsspannung $U_\text{B}$ und $-U_\text{B}$ sowie die Ausgangsspannung $U_\text{A}$ zu sehen.}
     \label{fig:OPV}
 \end{figure}
 
 %Neben den bereits genannten Kenngrößen gibt sind außerdem weitere wichtige Größen zu nennen. \dots
 
-Die Ausgangsspannung kann maximal und minimal den Wert der Betriebsspannung $U_B$ annehmen. Die Verstärkungskennlinie ist in \autoref{fig:kennlinie} abgebildet. Der Ansteuerungsbereich des Operationsverstärkers kann wie in \autoref{sec:linearverstaerker} beschrieben vergrößert werden.
+Die Ausgangsspannung kann maximal und minimal den Wert der Betriebsspannung $U_\text{B}$ annehmen. Die Verstärkungskennlinie ist in \autoref{fig:kennlinie} abgebildet. Der Ansteuerungsbereich des Operationsverstärkers kann wie in \autoref{sec:linearverstaerker} beschrieben vergrößert werden.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{./figures/Kennlinie.png}
-    \caption{Die Verstärkungskennlinie eines Operationsverstärkers bei symmetrischer Betriebsspannung. Die Ausgangsspannung ist in Abhängigkeit der Differenz der Eingangsspannungen dargestellt. Bei $+U_B$ und $-U_B$ erreicht die Ausgangsspannung einen Sättigungsbereich.} %Bild einfügen & "Sättigungsbereich"?? & Quelle 
+    \caption{Die Verstärkungskennlinie eines Operationsverstärkers bei symmetrischer Betriebsspannung. Die Ausgangsspannung ist in Abhängigkeit der Differenz der Eingangsspannungen dargestellt. Außerhalb des Ansteuerungsbereichs erreicht die Ausgangsspannung einen Sättigungsbereich. \cite{V51old}} 
     \label{fig:kennlinie}
 \end{figure}
 
@@ -43,18 +43,18 @@ Im Folgenden werden einige wichtige Schaltungen und Anwendungen mit Operationsve
 
 \subsubsection{Linearverstärker}
 \label{sec:linearverstaerker}
-Die Schaltung des invertierenden linearverstaerkers ist in \autoref{fig:InvLinear} abgebildet.
+Die Schaltung des invertierenden Linearverstärkers ist in \autoref{fig:InvLinear} abgebildet.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/1_InvLinear.png}
-    \caption{Aufbau. \cite{Anleitung}} %Quelle
+    \caption{Die Schaltung des invertierenden Linearverstärkers. Hier ist $U_\text{e}$ die Eingangsspannung, $U_\text{a}$ die Ausgangsspannung, R steht für den Widerstand $R_2$ und der mit 1 gekennzeichnete Widerstand ist $R_1$. \cite{V51}}
     \label{fig:InvLinear}
 \end{figure}
 
 Bei einem invertierenden Linearverstärker wird mit einer Gegenkopplung gearbeitet. Es wird ein Teil der Ausgangsspannung zurück auf den invertierenden Eingang gegeben wodurch eine Zunahme der Ausgangsspannung eine Abnahme der Eingangsspannung bedeutet. Dadurch kann der Ansteuerungsbereich vergrößert werden. Es wird also verhindert, dass bereits für eine minimale Eingangsspannungsdifferenz die Aussteuergrenze erreicht wird. Die Gesamtverstärkung der Schaltung ist kleiner als die Leerlaufverstärkung und bei einem idealen Operationsverstärker nur abhängig von dem Verhältnis der beiden Widerstände
 \begin{equation*}
-    V = \frac{U_A}{U_E} = - \frac{R_N}{R_1} \, .
+    V = \frac{U_\text{A}}{U_\text{E}} = - \frac{R_2}{R_1} \, .
 \end{equation*}
 %folgt aus der Kirchhoffscher Knotenregel; I_P = I_N = 0A, da R_E = unendlich
 Durch die Gegenkopplung wird eine hohe Stabilität der Schaltung erreicht. Die Verstärkung ist auch bei Operationsverstärkern mit endlicher Leerlaufverstärkung näherungsweise nur vom Widerstandsverhältnis abhängig und somit stabil gegenüber Schwankungen der Leerlaufverstärkung, beispielsweise aufgrund von Temperaturänderungen.
@@ -64,7 +64,7 @@ Die Gegenkopplung erhöht die Bandbreite der Frequenz. Das ist in \autoref{fig:B
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Bandbreite.png}
-    \caption{Die Verstärkung ist in Abhängigkeit der Frequenz $\nu$ doppellogarithmisch aufgetragen. Hier ist $V$ die Leerlaufverstärkung und $V'$ die Verstärkung mit Gegenkopplung.} %Quelle
+    \caption{Die Verstärkung ist in Abhängigkeit der Frequenz $\nu$ doppellogarithmisch aufgetragen. Hier ist $V$ die Leerlaufverstärkung und $V'$ die Verstärkung mit Gegenkopplung. \cite{V51old}}
 \end{figure}
 
 
@@ -75,24 +75,25 @@ Dafür wird in den Rückkopplungszweig ein Kondensator eingebaut. Die Schaltung 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/2_Umkehr.png}
-    \caption{Die Schaltung des Umkehr-Integrators. Der Widerstand hat den Wert $R$. Der Kondensator im Rückkopplungszweig hat die Kapazität $C$. \cite{Anleitung}} %Quelle
+    \caption{Die Schaltung des Umkehr-Integrators. Der Widerstand hat den Wert $R$. Der Kondensator im Rückkopplungszweig hat die Kapazität $C$. \cite{V51}}
     \label{fig:UmkehrInt}
 \end{figure}
 
-Am Eingang fließt kein Strom, also $I_N = 0$. Aus der Knotenregel folgt dann, dass $I_E = - I_C$ ist. Daraus ergibt sich für die Ausgangsspannung
-\begin{equation}
-    U_A = - \frac{1}{R C} \int U_E(t) dt \, .
+Am Eingang fließt kein Strom, also $I_\text{N} = 0$. Aus der Knotenregel folgt dann, dass $I_\text{R} = - I_\text{C}$ ist. Daraus ergibt sich für die Ausgangsspannung
+\begin{equation*}
+    U_\text{A} = - \frac{1}{R C} \int U_\text{E}(t) dt \, .
     \label{eq:Integrator}
-\end{equation}
+\end{equation*}
 Für ein sinusförmiges Eingangssignal
 \begin{equation}
-    U_E = U_0 \sin(\omega t)
+    U_\text{E} = U_0 \sin(\omega t)
     \label{eq:Sinus}
 \end{equation}
-ergibt sich ein cosinusförmiges Ausgangssignal, das umgekehrt proportional zur Frequenz $\omega$ ist
-\begin{equation*}
-    U_A = \frac{U_0}{\omega R C} \cos(\omega t) \, .
-\end{equation*}
+ergibt sich ein kosinusförmiges Ausgangssignal, das umgekehrt proportional zur Frequenz $\omega$ ist
+\begin{equation}
+    U_\text{A} = \frac{U_0}{\omega R C} \cos(\omega t) \, .
+    \label{eq:Int_Kosinus}
+\end{equation}
 
 
 \subsubsection{Umkehr-Differenzierer}
@@ -101,19 +102,20 @@ Analog zum Integrator differenziert der Umkehr-Differenzierer die Eingangsspannu
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/3_InvDiff.png}
-    \caption{Die Schaltung des Umkehr-Differenzierers. Der Kondensator hat die Kapazität $C$. In dem Rückkopplungszweig ist der Widerstand $R$ eingebaut. \cite{Anleitung}}
+    \caption{Die Schaltung des Umkehr-Differenzierers. Der Kondensator hat die Kapazität $C$. In dem Rückkopplungszweig ist der Widerstand $R$ eingebaut. \cite{V51}}
     \label{fig:InvDiff}
 \end{figure}
 
-Aus der Knotenregel folgt, dass $I_C = - I_R$ ist. Daraus folgt für die Ausgangsspannung
-\begin{equation}
-    U_A = - R C \frac{d U_E}{dt} \, .
-    \label{eq:Differenzierer}
-\end{equation}
-Bei einem sinusförmigen Eingangssignal wie in \autoref{eq:Sinus} hat das Ausgangssignal die Form 
+Aus der Knotenregel folgt, dass $I_\text{C} = - I_\text{R}$ ist. Daraus folgt für die Ausgangsspannung
 \begin{equation*}
-    U_A = - \omega R C U_0 \cos(\omega t)
+    U_\text{A} = - R C \frac{d U_\text{E}}{dt} \, .
+    \label{eq:Differenzierer}
 \end{equation*}
+Bei einem sinusförmigen Eingangssignal wie in \autoref{eq:Sinus} hat das Ausgangssignal die Form 
+\begin{equation}
+    U_\text{A} = - \omega R C U_0 \cos(\omega t)
+    \label{eq:Diff_Kosinus}
+\end{equation}
 und ist, anders als beim Integrator, proportional zur Frequenz $\omega$.
 
 \subsubsection{Schmitt-Trigger}
@@ -122,7 +124,7 @@ Eine weitere Anwendung des Operationsverstärkers ist der Schmitt-Trigger. Hier 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/4_Schmitt.png}
-    \caption{Die Schaltung des Schmitt-Triggers. Der erste Widerstand hat den Wert $R_1$. Der Widerstand im Mitkopplungszweig hat den Wert $R_P$. \cite{Anleitung}} %Quelle
+    \caption{Die Schaltung des Schmitt-Triggers. Der erste Widerstand hat den Wert $R_1$. Der Widerstand im Mitkopplungszweig hat den Wert $R_2$. \cite{V51}}
     \label{fig:Schmitt}
 \end{figure}
 
@@ -131,11 +133,11 @@ Das Verhalten der Schaltung ist instabil. Wird eine bestimmte Schwelle erreicht,
 
 Die Schwellspannung ist durch 
 \begin{equation*}
-    \pm U_S = \pm \frac{R_1}{R_P} U_B
+    \pm U_\text{thres} = \pm \frac{R_1}{R_2} U_\text{B}
     \label{eq:Schwelle}
 \end{equation*}
-definiert. Bei diesen Werten von $U_E$ wechselt die Spannung $U_P$ gerade ihr Vorzeichen.
-Überschreitet die Eingangsspannung $U_E$ diesen Wert $+ U_S$, nimmt die Ausgangsspannung den Wert der Betriebsspannung an. Unterschreitet die Eingangsspannung $- U_S$ folgt für die Ausgangsspannung $U_A = - U_B$.
+definiert. Bei diesen Werten von $U_\text{E}$ wechselt die Spannung $U_\text{P}$ gerade ihr Vorzeichen.
+Überschreitet die Eingangsspannung $U_\text{E}$ diesen Wert $+ U_\text{thres}$, nimmt die Ausgangsspannung den Wert der Betriebsspannung an. Unterschreitet die Eingangsspannung $- U_\text{thres}$ folgt für die Ausgangsspannung $U_\text{A} = - U_\text{B}$.
 
 Die Verläufe eines sinusförmigen Eingangssignals und des resultierenden rechteckförmigen Ausgangssignals sind in \autoref{fig:Kurvenverlauf} zu sehen.
 
@@ -146,16 +148,16 @@ Wird die Ausgangsspannung in Abhängigkeit der Eingangsspannung aufgetragen, erg
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=0.75\linewidth]{./figures/Kurvenverlauf.png}
-        \caption{Der Verlauf einer sinusförmigen Eingangsspannung $U_E$ und die resultierende Ausgangsspannung $U_A$ bei einer Schmitt-Trigger-Schaltung.} %Quelle: https://www.elektronik-kompendium.de/sites/bau/0209241.htm
+        \caption{Der Verlauf einer sinusförmigen Eingangsspannung $U_\text{E}$ und die resultierende Ausgangsspannung $U_\text{A}$ bei einer Schmitt-Trigger-Schaltung. \cite{SchmittTrigger}}
         \label{fig:Kurvenverlauf}
     \end{subfigure}
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=0.8\linewidth]{./figures/Hysterese.png}
-        \caption{Die Ausgangsspannung $U_A$ in Abhängigkeit der Eingangsspannung $U_E$ bei einer Schmitt-Trigger-Schaltung.} %Quelle: https://www.elektronik-kompendium.de/sites/bau/0209241.htm
+        \caption{Die Ausgangsspannung $U_\text{A}$ in Abhängigkeit der Eingangsspannung $U_\text{E}$ bei einer Schmitt-Trigger-Schaltung. \cite{SchmittTrigger}}
         \label{fig:Hysterese}
     \end{subfigure}
-    \caption{Abbildungen zum Schmitt-Trigger.}
+    \caption{Abbildungen zur Schmitt-Trigger-Schaltung.}
     \label{fig:Abbildung}
 \end{figure}
 
@@ -165,13 +167,13 @@ Werden ein Schmitt-Trigger und ein Integrator zusammengeschaltet, ergibt sich ei
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/5_Signal.png}
-    \caption{Die Schaltung eines Signalgenerators besteht aus einer Schmitt-Trigger-Schaltung und einem Integrator. Der Ausgang des Integrator wird auf den Eingang des Schmitt-Triggers zurückgeführt. \cite{Anleitung}} %Quelle
+    \caption{Die Schaltung eines Signalgenerators besteht aus einer Schmitt-Trigger-Schaltung und einem Integrator. Der Ausgang des Integrator wird auf den Eingang des Schmitt-Triggers zurückgeführt. \cite{V51}}
     \label{fig:Signal}
 \end{figure}
 
-Die Ausgangsspannung des Schmitt-Triggers $U_A = + U_B$ wird integriert. Die Ausgangsspannung des Integrators $U_I$ verringert sich mit der Zeit und erreicht die Schwelle $- R_1/R_P U_B$. Dadurch kippt die Ausgangsspannung des Schmitt-Triggers auf $U_A = - U_B$. Diese wird integriert, bis die Schwelle $+ R_1/R_P U_B$ erreicht wird und die Ausgangsspannung des Schmitt-Triggers wieder auf $U_A = + U_B$ kippt. Es ergibt sich also eine periodische Schwingung am Ausgang des Integrators. Die Frequenz $\nu$ dieser Schwingung ist nur abhängig von den verwendeten Widerständen und der Kapazität
+Die Ausgangsspannung des Schmitt-Triggers $U_1 = + U_\text{B}$ wird integriert. Die Ausgangsspannung des Integrators $U_\text{A}$ verringert sich mit der Zeit und erreicht die Schwelle $- R_1/R_2 U_\text{B}$. Dadurch kippt die Ausgangsspannung des Schmitt-Triggers auf $U_1 = - U_\text{B}$. Diese wird integriert, bis die Schwelle $+ R_1/R_2 U_\text{B}$ erreicht wird und die Ausgangsspannung des Schmitt-Triggers wieder auf $U_1 = + U_\text{B}$ kippt. Es ergibt sich also eine periodische Schwingung am Ausgang des Integrators in Form eines Dreiecksignals. Die Frequenz $f$ dieser Schwingung ist nur abhängig von den verwendeten Widerständen und der Kapazität
 \begin{equation}
-    \nu = \frac{R_P}{4 R_1 R C} \, .
+    f = \frac{R_2}{4 R_1 R_3 C} \, .
     \label{eq:Frequenz}
 \end{equation}
 
