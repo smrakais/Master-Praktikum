@@ -13,7 +13,7 @@ ist in diesem Abschnitt an unterschiedlichen Stellen kenntlich gemacht.
 \section{Der invertierende Verstärker / Linearverstärker}
 \subsection{Untersuchung der Verstärkung}
 Im ersten Teil des Versuches wird das Frequenzabhängige Verhalten der Verstärkung untersucht.
-Hierzu wird die Ausgangspannung in Abhängigkeit der Frequenz über mehrere Dekaden gemessen 
+Hierzu wird die Ausgangsspannung in Abhängigkeit der Frequenz über mehrere Dekaden gemessen 
 und die Verstärkung in einem doppellogarithmischen Plot aufgetragen aufgetragen.
 Es sind insgesamt drei unterschiedliche Verstärkungen untersucht worden.
 Die Plots sind sind in \autoref{fig:Linearverstaerker} dargestellt.
@@ -69,14 +69,14 @@ Dies entspricht ganz den Erwartungen der vorrangestellten Theorie.
 \FloatBarrier
 
 \subsection{Verhalten der Phasendifferenz bei steigender Frequenz}
-Im nächsten Teil des Versuches wird die Phasenverschiebung von Ein- und Ausgangspannung 
+Im nächsten Teil des Versuches wird die Phasenverschiebung von Ein- und Ausgangsspannung 
 untersucht.
 Dazu wird die gemessene Phasendifferenz $\phi$ in Abhängigkeit der logarithmierten Frequenz $f$
 aufgetragen.
 Die Plots sind sind in \autoref{fig:phase} dargestellt.
 
 Anhand der Plots ist erkennbar, dass mit steigender Frequenz die Phasendifferenz zwischen 
-Ein- und Ausgangspannung sinkt.
+Ein- und Ausgangsspannung sinkt.
 Da es sich bei der verwendeten Schaltung um einen invertierenden Verstärker handelt, beginnt 
 der Phasenversatz bei $\SI{180}{\degree}$.
 
@@ -91,15 +91,15 @@ Bei einen Tiefpasses können niedrige Frequenzen passieren, wo hingegen hohe Fre
 unterdrückt werden.
 
 \section{Der invertierende Integrator \cite{int_data}, \cite{int_picture}}
-In diesem Abschnitt wird überprüft ob die Ausgangspannung des Integrators sich proportional 
+In diesem Abschnitt wird überprüft ob die Ausgangsspannung des Integrators sich proportional 
 zur Frequenz verhält.
-Dazu wird im Experiment die Ein- und Ausgangspannung in Abhängigkeit der Frequenz gemessen.
+Dazu wird im Experiment die Ein- und Ausgangsspannung in Abhängigkeit der Frequenz gemessen.
 
 Die Messdaten sind in \autoref{tab:integrator} zu finden. 
 Wie bereits im obigen Hinweis erwähnt, handelt es sich bei den ausgewerteten Messwerten
 um Fremddaten.
 
-Im nächsten Schritt ist die Ausgangspannung in Abhängigkeit der Frequenz in einem Plot
+Im nächsten Schritt ist die Ausgangsspannung in Abhängigkeit der Frequenz in einem Plot
 mit doppellogarithmischer Skala aufgetragen worden.
 Dieser Plot ist in \autoref{fig:integrator} zu sehen.
 Anschließend wird mit Hilfe der Regressionsfunktion
@@ -109,12 +109,12 @@ Anschließend wird mit Hilfe der Regressionsfunktion
 der erste Bereich (bis ca. 1000\,Hz) gefittet.
 Dadurch ist in \autoref{fig:integrator} der blaue Fit enstanden.
 
-Anhand des blauen Fits ist erkennbar, dass sich die Ausgangspannung antiproportional zu der Frequenz
+Anhand des blauen Fits ist erkennbar, dass sich die Ausgangsspannung antiproportional zu der Frequenz
 verhält.
 Dies ist genau was man aus der Theorie erwartet.
 
 Wird allerdings der weitere Verlauf der Messwerte betrachtet so fällt auf, dass die 
-Ausgangspannung ab ca. 1000\,Hz wieder zu steigen beginnt. 
+Ausgangsspannung ab ca. 1000\,Hz wieder zu steigen beginnt. 
 Dieser Effekt kann zum jetzigen Zeitpunkt noch nicht erklärt werden.
 Im weiteren Verlauf beginnt diese aber wieder zu sinken (roter Fit), was der ursprünglichen 
 Erwartung entspricht. 
@@ -127,7 +127,7 @@ auf dem selben Effekt beruht.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{build/integrator.pdf}
-    \caption{Ausgangspannung in Abhängigkeit der Frequenz. $R = \SI{10}{\kilo\ohm}$,
+    \caption{Ausgangsspannung in Abhängigkeit der Frequenz. $R = \SI{10}{\kilo\ohm}$,
         $C = \SI{100}{\nano\farad}$.}
     \label{fig:integrator}
 \end{figure}
@@ -180,14 +180,14 @@ Daraus ergeben sich die Bilder in \autoref{fig:int}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/Phasenbeziehung_100.pdf}
-        \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 100.}
+        \caption{Phasenverschiebung zwischen Ein- und Ausgangsspannung bei einer Verstärkung von 100.}
         \label{fig:phase_100}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/Phasenbeziehung_10.pdf}
-        \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 10.}
+        \caption{Phasenverschiebung zwischen Ein- und Ausgangsspannung bei einer Verstärkung von 10.}
         \label{fig:phase_10}
     \end{subfigure} 
     \newline
@@ -197,7 +197,7 @@ Daraus ergeben sich die Bilder in \autoref{fig:int}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{build/Phasenbeziehung_1000.pdf}
-        \caption{Phasenverschiebung zwischen Ein- und Ausgangspannung bei einer Verstärkung von 1000.}
+        \caption{Phasenverschiebung zwischen Ein- und Ausgangsspannung bei einer Verstärkung von 1000.}
         \label{fig:phase_1000}
     \end{subfigure}
        \caption{Aufgenommene Phasendifferenz unterschiedlichen Verstärkungsfaktoren.}
@@ -222,7 +222,7 @@ Dieser kann zum jetzigen Zeitpunkt noch nicht erklärt werden.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{build/differenzierer.pdf}
-    \caption{Ausgangspannung in Abhängigkeit der Frequenz. $R = \SI{100}{\kilo\ohm}$,
+    \caption{Ausgangsspannung in Abhängigkeit der Frequenz. $R = \SI{100}{\kilo\ohm}$,
         $C = \SI{22}{\nano\farad}$.}
     \label{fig:differenzierer}
 \end{figure}
@@ -268,14 +268,73 @@ Daraus ergeben sich die Bilder in \autoref{fig:diff}
 \end{figure}
 \FloatBarrier
 
-\section{Der nicht invertierende Schmitt-Trigger}
+\section{Der nicht invertierende Schmitt-Trigger \cite{schmitt}}
+In diesem Teil der Auswertung wird das Schaltverhalten eines Schmitt Triggers untersucht.
+Hierbei werden für eine dreieckige Eingangsspannung die theoretischen Schaltschwellen berechnet und 
+anschließend mit denen im Experiment gemessenen verglichen.
+Die verschwendeten Bilder sind in \cite{schmitt} zu finden.
 
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.7\linewidth]{./figures/xxx.xxx}
-%    \caption{xxx}
-%    \label{fig:xxx}
-%\end{figure}
+Für eine Versorgungsspannung von $U_\text{v} = \SI{\pm 15}{\volt}$ und
+den Widerständen $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$ ergibt sich eine 
+untere und obere Schaltschwelle gemäß \autoref{eqn:TODO} von 
+\begin{align*}
+    U_\text{thres, min} &=  \SI{-150}{\milli\volt},\\
+    U_\text{thres, max} &=  \SI{150}{\milli\volt}.
+\end{align*}
+Dieses Ergebnis bedeutet, dass zu erwarten ist das jeweils ab $\SI{\pm150}{\milli\volt}$ 
+der Schmitt Trigger in die Hysterese schaltet.
+
+In \autoref{fig:schmitt} ist das oszillographische Bild zu sehen.
+Der orangefarbene Graph ist das Eingangssignal und der grüne das Ausgangssignal.
+Erbennbar ist, dass ab einer Spannung von
+\begin{equation*}
+    U_\text{thres, max, gem} =  \SI{151}{\milli\volt}
+\end{equation*}
+der Schmitt Trigger in die obere Aussteuergrenze läuft.
+Dieser Wert wird so lange gehalten, bis die Spannung des Eingangssignals unter die 
+Schwelle 
+\begin{equation*}
+    U_\text{thres, min, gem} =  \SI{-167}{\milli\volt}
+\end{equation*}
+kommt. 
+Ab diesem Wert schaltet der Schmitt Trigger in die negative Aussteuergrenze.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{data_of_others_cuz_ours_suck/schmitt/schmitt_2.png}
+    \caption{Oszillographische Aufnahme des Schmitt Triggers bei einem dreieckigen Eingangssignal.}
+    \label{fig:schmitt}
+\end{figure}
+\FloatBarrier
+Werden die beiden gemessenen Werte vergleichen ergibt sich eine Abweichung von
+0,7\% für die obere Schaltschwelle und 11\% für die untere Schaltschwelle.
+
+\section{Der Signalgenerator \cite{signal}}
+Wird hinter dem Schmitt Trigger ein invertierender Integrator geschaltet, lässt sich 
+ein Signalgenerator (vgl.\autoref{fig:Signal}) erzeugen. 
+Für die im Experiment verwendeten Bauteile gilt $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{100}{\kilo\ohm}$,
+$R_3 = \SI{100}{\kilo\ohm}$ und $C = \SI{1}{\micro\farad}$.\cite{signal}
+
+Da hinter dem Schmitt Trigger ein invertierender Integrator aufgebaut ist, wird eine Dreieckspannung
+als Ausgangssignal erwartet.
+Das Bild, welches am Oszilloskop aufgenommen worden ist ist in \autoref{fig:Signalgen}
+zu sehen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{data_of_others_cuz_ours_suck/Signal/Bildschirmfoto vom 2022-02-11 13-19-10.png}
+    \caption{Oszillographische Aufnahme des Signal nach dem Schmitt Trigger (grün) und 
+    nach dem invertierenden Integrators. Der orangefarbene Graph ist das Ausgangssignal und die erwartete
+    Dreieckspannung.}
+    \label{fig:Signalgen}
+\end{figure}
+\FloatBarrier
+
+Die gemessene Frequenz der Ausgangsspannung beträgt $\SI{216}{\hertz}$.
+Verglichen mit dem erwarteten Wert, welcher sich nach
+\begin{equation}
+    f_\text{Dreieck} =  \frac{R_2}{4 C R_1 R_3} = \SI{250}{\hertz}
+\end{equation}
+berechnet, ergibt sich eine Abweichung von 14\%.
+
 %
 %\begin{equation}\label{eq:xxx}    
 %    \begin{split}
