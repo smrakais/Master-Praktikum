@@ -22,7 +22,7 @@ Es gibt einen nicht-invertierenden und einen invertierenden Eingang, bei welchem
     \label{fig:OPV}
 \end{figure}
 
-Neben den bereits genannten Kenngrößen gibt sind außerdem weitere wichtige Größen zu nennen. \dots
+%Neben den bereits genannten Kenngrößen gibt sind außerdem weitere wichtige Größen zu nennen. \dots
 
 Die Ausgangsspannung kann maximal und minimal den Wert der Betriebsspannung $U_B$ annehmen. Die Verstärkungskennlinie ist in \autoref{fig:kennlinie} abgebildet. Der Ansteuerungsbereich des Operationsverstärkers kann wie in \autoref{sec:linearverstaerker} beschrieben vergrößert werden.
 
@@ -35,7 +35,7 @@ Die Ausgangsspannung kann maximal und minimal den Wert der Betriebsspannung $U_B
 
 
 
-
+\newpage
 \subsection{Schaltungen mit Operationsverstärkern}
 \label{sec:Schaltungen}
 
@@ -139,20 +139,24 @@ definiert. Bei diesen Werten von $U_E$ wechselt die Spannung $U_P$ gerade ihr Vo
 
 Die Verläufe eines sinusförmigen Eingangssignals und des resultierenden rechteckförmigen Ausgangssignals sind in \autoref{fig:Kurvenverlauf} zu sehen.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\linewidth]{./figures/Kurvenverlauf.png}
-    \caption{Der Verlauf einer sinusförmigen Eingangsspannung $U_E$ und die resultierende Ausgangsspannung $U_A$ bei einer Schmitt-Trigger-Schaltung.} %Quelle: https://www.elektronik-kompendium.de/sites/bau/0209241.htm
-    \label{fig:Kurvenverlauf}
-\end{figure}
-
 Wird die Ausgangsspannung in Abhängigkeit der Eingangsspannung aufgetragen, ergibt sich eine Hysterese. Diese ist in \autoref{fig:Hysterese} dargestellt. %noch mehr erklären?
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{./figures/Hysterese.png}
-    \caption{Die Ausgangsspannung $U_A$ in Abhängigkeit der Eingangsspannung $U_E$ bei einer Schmitt-Trigger-Schaltung.} %Quelle: https://www.elektronik-kompendium.de/sites/bau/0209241.htm
-    \label{fig:Hysterese}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.75\linewidth]{./figures/Kurvenverlauf.png}
+        \caption{Der Verlauf einer sinusförmigen Eingangsspannung $U_E$ und die resultierende Ausgangsspannung $U_A$ bei einer Schmitt-Trigger-Schaltung.} %Quelle: https://www.elektronik-kompendium.de/sites/bau/0209241.htm
+        \label{fig:Kurvenverlauf}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{./figures/Hysterese.png}
+        \caption{Die Ausgangsspannung $U_A$ in Abhängigkeit der Eingangsspannung $U_E$ bei einer Schmitt-Trigger-Schaltung.} %Quelle: https://www.elektronik-kompendium.de/sites/bau/0209241.htm
+        \label{fig:Hysterese}
+    \end{subfigure}
+    \caption{Abbildungen zum Schmitt-Trigger.}
+    \label{fig:Abbildung}
 \end{figure}
 
 \subsubsection{Signalgenerator}
