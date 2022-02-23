@@ -11,14 +11,14 @@ Ein Operationsverstärker (wie in \autoref{fig:OPV} zu sehen) ist ein gleichstro
 \begin{equation*}
     U_\text{A} = V_0 (U_\text{P} - U_\text{N}) \, .
 \end{equation*}
-Dabei ist $V_0$ die Leerlaufverstärkung des Operationsverstärkers. Bei einem idealen Operationsverstärker ist die Leerlaufverstärkung unendlich, während sie bei einem realen Werte von etwa $\num{200000}$ \cite{Verstaerkung} erreicht und frequenzabhängig ist.
+Dabei ist $V_0$ die Leerlaufverstärkung des Operationsverstärkers. Bei einem idealen Operationsverstärker ist die Leerlaufverstärkung unendlich, während sie bei einem realen Werte von etwa $\num{20000}$ \cite{Verstaerkung} erreicht und frequenzabhängig ist.
 
-Es gibt einen nicht-invertierenden und einen invertierenden Eingang, bei welchem die Spannung gegenphasig zur Ausgangsspannung ist. Die Eingangswiderstände sind bei einem idealen Operationsverstärker unendlich und für einen realen sehr groß. Der Ausgangswiderstand ist idealerweise Null. Ein realer Operationsverstärker hat einen sehr kleinen Ausgangswiderstand.
+Es gibt einen nicht-invertierenden und einen invertierenden Eingang, bei welchem die Spannung gegenphasig zur Ausgangsspannung ist. Die Eingangswiderstände sind bei einem idealen Operationsverstärker unendlich und für einen realen sehr groß. Dadurch kann bei Berechnungen angenommen werden, dass am Eingang kein Strom fließt. Diese Tatsache vereinfacht die Rechnung, wie später deutlich wird. Der Ausgangswiderstand ist idealerweise Null. Ein realer Operationsverstärker hat einen sehr kleinen Ausgangswiderstand. %Schlussfolgerung & warum braucht man das für die Rechnung? -> Reicht das so?
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{./figures/OPV.png}
-    \caption{Das Schaltsymbol eines Operationsverstärkers. Es sind die beiden Eingangsspannungen $U_\text{P}$ (am nicht-invertierenden Eingang) und $U_\text{N}$ (am invertierenden Eingang), die Betriebsspannung $U_\text{B}$ und $-U_\text{B}$ sowie die Ausgangsspannung $U_\text{A}$ zu sehen.}
+    \caption{Das Schaltsymbol eines Operationsverstärkers. Es sind die beiden Eingangsspannungen $U_\text{P}$ (am nicht-invertierenden Eingang) und $U_\text{N}$ (am invertierenden Eingang), die Betriebsspannung $U_\text{B}$ und $-U_\text{B}$ sowie die Ausgangsspannung $U_\text{A}$ zu sehen. \cite{V51old}}
     \label{fig:OPV}
 \end{figure}
 
@@ -65,6 +65,7 @@ Die Gegenkopplung erhöht die Bandbreite der Frequenz. Das ist in \autoref{fig:B
     \centering
     \includegraphics[width=0.7\linewidth]{./figures/Bandbreite.png}
     \caption{Die Verstärkung ist in Abhängigkeit der Frequenz $\nu$ doppellogarithmisch aufgetragen. Hier ist $V$ die Leerlaufverstärkung und $V'$ die Verstärkung mit Gegenkopplung. \cite{V51old}}
+    \label{fig:Bandbreite}
 \end{figure}
 
 
@@ -80,7 +81,7 @@ Dafür wird in den Rückkopplungszweig ein Kondensator eingebaut. Die Schaltung 
 \end{figure}
 \FloatBarrier
 
-Am Eingang fließt kein Strom, also $I_\text{N} = 0$. Aus der Knotenregel folgt dann, dass $I_\text{R} = - I_\text{C}$ ist. Daraus ergibt sich für die Ausgangsspannung
+Am Eingang fließt kein Strom, also $I_\text{N} = 0$, da der Eingangswiderstand als unendlich angenommen wird. Aus der Knotenregel folgt dann, dass $I_\text{R} = - I_\text{C}$ ist. Daraus ergibt sich für die Ausgangsspannung
 \begin{equation*}
     U_\text{A} = - \frac{1}{R C} \int U_\text{E}(t) dt \, .
     \label{eq:Integrator}
@@ -113,7 +114,7 @@ Aus der Knotenregel folgt, dass $I_\text{C} = - I_\text{R}$ ist. Daraus folgt f�
     U_\text{A} = - R C \frac{d U_\text{E}}{dt} \, .
     \label{eq:Differenzierer}
 \end{equation*}
-Bei einem sinusförmigen Eingangssignal wie in \autoref{eq:Sinus} hat das Ausgangssignal die Form 
+Bei einem sinusförmigen Eingangssignal, wie in \autoref{eq:Sinus}, hat das Ausgangssignal die Form 
 \begin{equation}
     U_\text{A} = - \omega R C U_0 \cos(\omega t)
     \label{eq:Diff_Kosinus}
@@ -131,7 +132,7 @@ Eine weitere Anwendung des Operationsverstärkers ist der Schmitt-Trigger. Hier 
 \end{figure}
 
 Beim Schmitt-Trigger wird eine Mitkopplung verwendet. Ein Teil der Ausgangsspannung wird auf den nicht-invertierenden Eingang zurückgegeben. Bei Zunahme der Ausgangsspannung nimmt die Eingangsspannung ebenfalls zu. Das wiederum führt zu einer Zunahme der Ausgangsspannung. Die Schaltung hat also eine selbstverstärkende Wirkung.
-Das Verhalten der Schaltung ist instabil. Wird eine bestimmte Schwelle erreicht, kippt die Schaltung von einem Zustand in einen anderen.
+Das Verhalten der Schaltung ist instabil, was auch in \autoref{fig:Hysterese} zu sehen ist. Wird eine bestimmte Schwelle erreicht, kippt die Schaltung von einem Zustand in einen anderen.
 
 Die Schwellspannung ist durch 
 \begin{equation*}
@@ -143,7 +144,8 @@ definiert. Bei diesen Werten von $U_\text{E}$ wechselt die Spannung $U_\text{P}$
 
 Die Verläufe eines sinusförmigen Eingangssignals und des resultierenden rechteckförmigen Ausgangssignals sind in \autoref{fig:Kurvenverlauf} zu sehen.
 
-Wird die Ausgangsspannung in Abhängigkeit der Eingangsspannung aufgetragen, ergibt sich eine Hysterese. Diese ist in \autoref{fig:Hysterese} dargestellt. %noch mehr erklären?
+Wird die Ausgangsspannung in Abhängigkeit der Eingangsspannung aufgetragen, ergibt sich eine Hysterese, welche in \autoref{fig:Hysterese} dargestellt ist. %noch mehr erklären?
+Dort springt die Ausgangsspannung bei einer bestimmten Eingangsspannung auf den maximalen oder minimalen Wert. Dabei ist die Richtung der Pfeile zu beachten. Ist die Ausgangsspannung bereits auf ihrem maximalen Wert, verlängert eine Erhöhung der Eingangsspannung die horizontale Linie. Die Spannung befindet sich also im Sättigungsbereich. %Sättigungsbereich?
 
 \begin{figure}
     \centering
@@ -159,7 +161,7 @@ Wird die Ausgangsspannung in Abhängigkeit der Eingangsspannung aufgetragen, erg
         \caption{Die Ausgangsspannung $U_\text{A}$ in Abhängigkeit der Eingangsspannung $U_\text{E}$ bei einer Schmitt-Trigger-Schaltung. \cite{SchmittTrigger}}
         \label{fig:Hysterese}
     \end{subfigure}
-    \caption{Abbildungen zur Schmitt-Trigger-Schaltung.}
+    \caption{Abbildungen zum Spannungsverhalten einer Schmitt-Trigger-Schaltung.}
     \label{fig:Abbildung}
 \end{figure}
 
