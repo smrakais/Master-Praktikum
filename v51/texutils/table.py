@@ -60,9 +60,11 @@ class TexTable:
             else:
                 # print(self.rowOptions)
                 # print(i)
-                a += 'S['
+                a += 'c'               # geändert bei rakai002 von S[ zu c  TODO ermacht jetzt komischer weise keine kommas mehr sondern punkte
                 a += ','.join(self.rowOptions[i])
-                a += ']'
+                # das er jetzt keine kommas mehr macht muss aber am makefile liegen, denn des werden erst im dokument
+                # kommas erzeugt wenn das makefile gestartet wurde 
+                #a += ']'               # geändert bei rakai002 
         return a + '} \n'
 
     def gen_toprule(self):

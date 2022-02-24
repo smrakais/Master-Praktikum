@@ -203,8 +203,8 @@ y_min = np.array([0.0663602, 0.0225436, 0.00961888, 0.00473963, 2.9234999e-3, 1.
 
 
 # Korrektur um geometrischen Faktor Plot
-print(refektivitaet_rel.shape)
-print(rel_phi.shape)
+#print(refektivitaet_rel.shape)
+#print(rel_phi.shape)
 ################################################################
 # Liste der jeweiligen G-Faktoren
 faktor = []
@@ -214,11 +214,11 @@ for i in rel_phi:
     else:
         faktor = np.append(faktor, 1)
 
-print(faktor[139])#==1
-print(faktor[138])#==1
-print(faktor[0])
-print(rel_phi)
-print(faktor)
+#print(faktor[139])#==1
+#print(faktor[138])#==1
+#print(faktor[0])
+#print(rel_phi)
+#print(faktor)
 
 # Anwendung G-Faktor und erneute Normalisierung
 #refektivitaet_rel = refektivitaet_rel/faktor

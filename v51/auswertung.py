@@ -46,33 +46,33 @@ ax1.plot(np.log(f),np.log(gain),'x',label= 'Messwerte')
 #fit
 params, covariance_matrix = curve_fit(linear, np.log(f[0:6]), np.log(gain[0:6]))
 errors = np.sqrt(np.diag(covariance_matrix))
-m = ufloat(params[0], errors[0])
-b = ufloat(params[1], errors[1])
+m_100 = ufloat(params[0], errors[0])
+b_100 = ufloat(params[1], errors[1])
 #print(type(b))
 #print(b)
-Verstärkungsfaktor_100 = unp.exp(b)
+Verstärkungsfaktor_100 = unp.exp(b_100)
 #print(type(unp.exp(b)))
 #print(np.shape(Verstärkungsfaktor_100))
 #print(type(float(unp.nominal_values(Verstärkungsfaktor_100)))) #convert to float
 print('\n')
-print("Steigung Plateau: ", m)
-print("y-Achsenabschnitt Plateau: ", b)
-print('Die Verstäkung ist ',Verstärkungsfaktor_100)
+print("Steigung Plateau: ", m_100)
+print("y-Achsenabschnitt Plateau: ", b_100)
+print('Die Verstärkung ist ',Verstärkungsfaktor_100)
 f_new =f[0:6]
 f_new = np.linspace(f_new[0], f_new[-1], 100)
 ax1.plot(np.log(f_new), linear(np.log(f_new), *params), 'r', label="lineare Regression")
 
 #rausgenommen
-plt.plot(np.log(f[6:9]),np.log(gain[6:9]),'x',color= 'black',label= 'rausgenommen')
+plt.plot(np.log(f[6:9]),np.log(gain[6:9]),'o',color= 'black',label= 'rausgenommen')
 
 ##fit 2
 params2, covariance_matrix2 = curve_fit(linear, np.log(f[9:]), np.log(gain[9:]))
 errors2 = np.sqrt(np.diag(covariance_matrix2))
-m = ufloat(params2[0], errors2[0])
-b = ufloat(params2[1], errors2[1])
+m_100_100 = ufloat(params2[0], errors2[0])
+b_100_100 = ufloat(params2[1], errors2[1])
 print('\n')
-print("Steigung am Abfall: ", m)
-print("y-Achsenabschnitt am Abfall: ", b,'\n')
+print("Steigung am Abfall: ", m_100_100)
+print("y-Achsenabschnitt am Abfall: ", b_100_100,'\n')
 f_new2 =f[9:]
 f_new2= np.linspace(f_new2[0],f_new2[-1],100)
 plt.plot(np.log(f_new2),linear(np.log(f_new2),*params2),'b',label= 'lineare Regression')
@@ -110,7 +110,7 @@ t.set_row_rounding(2, 0)
 
 t.write_file('build/Linearverstärker_100.tex')
 print('Die Tabelle des Linearverstärkers bei einem Verstärkungsfaktor von 100 wurde erzeugt!\n')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 
 ##############################################
 # Phasenbeziehung in Abhängigkeit der Frequenz
@@ -127,7 +127,7 @@ plt.tight_layout()
 plt.savefig('build/Phasenbeziehung_100.pdf')
 
 print('Der Plot der Phasenbeziehung <-> Frequenz wurde erstellt!')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 #############################################################################################################
 ###########################################################
 ################# Plot 2 ## Verstärkung = 10 ##############
@@ -157,13 +157,13 @@ ax1.plot(np.log(f),np.log(gain),'x',label= 'Messwerte')
 #fit
 params, covariance_matrix = curve_fit(linear, np.log(f[0:10]), np.log(gain[0:10]))
 errors = np.sqrt(np.diag(covariance_matrix))
-m = ufloat(params[0], errors[0])
-b = ufloat(params[1], errors[1])
-Verstärkungsfaktor_10 = unp.exp(b)
+m_10 = ufloat(params[0], errors[0])
+b_10 = ufloat(params[1], errors[1])
+Verstärkungsfaktor_10 = unp.exp(b_10)
 print('\n')
-print("Steigung Plateau: ", m)
-print("y-Achsenabschnitt Plateau: ", b)
-print('Die Verstäkung ist ',Verstärkungsfaktor_10)
+print("Steigung Plateau: ", m_10)
+print("y-Achsenabschnitt Plateau: ", b_10)
+print('Die Verstärkung ist ',Verstärkungsfaktor_10)
 f_new =f[0:10]
 f_new = np.linspace(f_new[0], f_new[-1], 100)
 ax1.plot(np.log(f_new), linear(np.log(f_new), *params), 'r', label="lineare Regression")
@@ -174,11 +174,11 @@ ax1.plot(np.log(f_new), linear(np.log(f_new), *params), 'r', label="lineare Regr
 ##fit 2
 params2, covariance_matrix2 = curve_fit(linear, np.log(f[10:]), np.log(gain[10:]))
 errors2 = np.sqrt(np.diag(covariance_matrix2))
-m = ufloat(params2[0], errors2[0])
-b = ufloat(params2[1], errors2[1])
+m_10_10 = ufloat(params2[0], errors2[0])
+b_10_10 = ufloat(params2[1], errors2[1])
 print('\n')
-print("Steigung am Abfall: ", m)
-print("y-Achsenabschnitt am Abfall: ", b,'\n')
+print("Steigung am Abfall: ", m_10_10)
+print("y-Achsenabschnitt am Abfall: ", b_10_10,'\n')
 f_new2 =f[10:]
 f_new2= np.linspace(f_new2[0],f_new2[-1],100)
 plt.plot(np.log(f_new2),linear(np.log(f_new2),*params2),'b',label= 'lineare Regression')
@@ -216,7 +216,7 @@ t.set_row_rounding(2, 0)
 
 t.write_file('build/Linearverstärker_10.tex')
 print('Die Tabelle des Linearverstärkers bei einem Verstärkungsfaktor von 10 wurde erzeugt!\n')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 ##############################################
 # Phasenbeziehung in Abhängigkeit der Frequenz
 ##############################################
@@ -232,7 +232,7 @@ plt.tight_layout()
 plt.savefig('build/Phasenbeziehung_10.pdf')
 
 print('Der Plot der Phasenbeziehung <-> Frequenz wurde erstellt!')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 #########################################################################################################
 ###########################################################
 ################# Plot 3 ## Verstärkung = 1000 ############
@@ -262,28 +262,28 @@ ax1.plot(np.log(f),np.log(gain),'x',label= 'Messwerte')
 #fit
 params, covariance_matrix = curve_fit(linear, np.log(f[0:6]), np.log(gain[0:6]))
 errors = np.sqrt(np.diag(covariance_matrix))
-m = ufloat(params[0], errors[0])
-b = ufloat(params[1], errors[1])
-Verstärkungsfaktor_1000 = unp.exp(b)
+m_1000 = ufloat(params[0], errors[0])
+b_1000 = ufloat(params[1], errors[1])
+Verstärkungsfaktor_1000 = unp.exp(b_1000)
 print('\n')
-print("Steigung Plateau: ", m)
-print("y-Achsenabschnitt Plateau: ", b)
-print('Die Verstäkung ist ',Verstärkungsfaktor_1000)
+print("Steigung Plateau: ", m_1000)
+print("y-Achsenabschnitt Plateau: ", b_1000)
+print('Die Verstärkung ist ',Verstärkungsfaktor_1000)
 f_new =f[0:6]
 f_new = np.linspace(f_new[0], f_new[-1], 100)
 ax1.plot(np.log(f_new), linear(np.log(f_new), *params), 'r', label="lineare Regression")
 
 #rausgenommen
-plt.plot(np.log(f[6:9]),np.log(gain[6:9]),'x',color= 'black',label= 'rausgenommen')
+plt.plot(np.log(f[6:9]),np.log(gain[6:9]),'o',color= 'black',label= 'rausgenommen')
 
 ##fit 2
 params2, covariance_matrix2 = curve_fit(linear, np.log(f[9:]), np.log(gain[9:]))
 errors2 = np.sqrt(np.diag(covariance_matrix2))
-m = ufloat(params2[0], errors2[0])
-b = ufloat(params2[1], errors2[1])
+m_1000_1000 = ufloat(params2[0], errors2[0])
+b_1000_1000 = ufloat(params2[1], errors2[1])
 print('\n')
-print("Steigung am Abfall: ", m)
-print("y-Achsenabschnitt am Abfall: ", b,'\n')
+print("Steigung am Abfall: ", m_1000_1000)
+print("y-Achsenabschnitt am Abfall: ", b_1000_1000,'\n')
 f_new2 =f[9:]
 f_new2= np.linspace(f_new2[0],f_new2[-1],100)
 plt.plot(np.log(f_new2),linear(np.log(f_new2),*params2),'b',label= 'lineare Regression')
@@ -321,7 +321,54 @@ t.set_row_rounding(2, 0)
 
 t.write_file('build/Linearverstärker_1000.tex')
 print('Die Tabelle des Linearverstärkers bei einem Verstärkungsfaktor von 1000 wurde erzeugt!\n')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
+#########################################################################################################
+#########################################################################################################
+##########
+# Tabelle der Fitparameter
+##########
+print(type(m_100))
+m1 = [m_100,m_100_100]
+m2 = [m_10,m_10_10]
+m3 = [m_1000,m_1000_1000]
+b1 = [b_100,b_100_100]
+b2 = [b_10,b_10_10]
+b3 = [b_1000,b_1000_1000]
+
+# tab 1
+t = TexTable([m1, b1], [r"$m$ / ln(dB/Hz)",r"$b$ / ln(dB)"], 
+            label='tab:fitparams_100',
+            caption='Fitparameter bei einer Verstärkung von 100. Die erste Zeile bezeichnet die Parameter des Plateaus, die zweite die des Abfalls.')
+t.set_row_rounding(0, 2) #reihe und rundung
+t.set_row_rounding(1, 2)
+
+t.write_file('build/fitparams_100.tex')
+print('Die Tabelle der fitparams_100 wurde erzeugt!\n')
+print('---------------------------------------------------')
+
+# tab 2
+t = TexTable([m2, b2], [r"$m$ / ln(dB/Hz)",r"$b$ / ln(dB)"], 
+            label='tab:fitparams_10',
+            caption='Fitparameter bei einer Verstärkung von 10. Die erste Zeile bezeichnet die Parameter des Plateaus, die zweite die des Abfalls.')
+t.set_row_rounding(0, 2) #reihe und rundung
+t.set_row_rounding(1, 2)
+
+t.write_file('build/fitparams_10.tex')
+print('Die Tabelle der fitparams_10 wurde erzeugt!\n')
+print('---------------------------------------------------')
+
+# tab 3
+t = TexTable([m3, b3], [r"$m$ / ln(dB/Hz)",r"$b$ / ln(dB)"], 
+            label='tab:fitparams_1000',
+            caption='Fitparameter bei einer Verstärkung von 1000. Die erste Zeile bezeichnet die Parameter des Plateaus, die zweite die des Abfalls.')
+t.set_row_rounding(0, 2) #reihe und rundung
+t.set_row_rounding(1, 2)
+
+t.write_file('build/fitparams_1000.tex')
+print('Die Tabelle der fitparams_1000 wurde erzeugt!\n')
+print('---------------------------------------------------')
+
+#########################################################################################################
 #########################################################################################################
 ##############################################
 # Phasenbeziehung in Abhängigkeit der Frequenz
@@ -333,15 +380,15 @@ ax.grid(ls =  '--')
 ax.minorticks_on()
 ax.set_xscale('log')
 ax.plot(f,phase,'x', label = 'Messwerte' )
-ax.plot(f[4],phase[4],'x',color='black', label = 'rausgenommen' )
-ax.plot(f[8],phase[8],'x',color='black' )
-ax.plot(f[13],phase[13],'x',color='black' )
+ax.plot(f[4],phase[4],'o',color='black', label = 'rausgenommen' )
+ax.plot(f[8],phase[8],'o',color='black' )
+ax.plot(f[13],phase[13],'o',color='black' )
 ax.legend(loc ='best')
 plt.tight_layout()
 plt.savefig('build/Phasenbeziehung_1000.pdf')
 
 print('Der Plot der Phasenbeziehung <-> Frequenz wurde erstellt!')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 #########################################################################################################
 
 ##############################
@@ -361,7 +408,7 @@ GBP = np.array([BWP_100.n,BWP_10.n,BWP_1000.n])
 #print(f_gr,'\n',f_gr_log,'\n',GBP,'\n')
 
 # Tabelle 
-t = TexTable([V_theo, V_berech, V_log_berech,f_gr, f_gr_log, GBP], [r"$V_\text{theo}$ ",r"$V_\text{b}$ ",r"ln($V_\text{b}$) ",r"$f_\text{gr}$ / Hz ",r"ln($f_\text{gr}$) / ln(Hz)",r"$GBP (V_\text{b} \cdot f_\text{gr})$ / Hz"], 
+t = TexTable([V_theo, V_berech, V_log_berech, f_gr, f_gr_log, GBP], [r"$V_\text{theo}$", r"$V_\text{b}$", r"ln($V_\text{b}$)", r"$f_\text{gr}$ / Hz", r"ln($f_\text{gr}$) / ln(Hz)", r"$GBP (V_\text{b} \cdot f_\text{gr})$ / Hz"], 
             label='tab:params',
             caption='Tabelle der berechneten Verstärkungen, Grenzfrequenzen und des Bandbreitenprodukts (GBP).')
 t.set_row_rounding(0, 0) #reihe und rundung
@@ -372,7 +419,7 @@ t.set_row_rounding(4, 2)
 t.set_row_rounding(5, 0)
 t.write_file('build/tabParameter_Linearverstärker.tex')
 print('Die Tabelle der berechneten Paramter wurde erzeugt!\n')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 ###########################
 # Für kombinierte Tabellen
 ###########################
@@ -433,8 +480,60 @@ t.set_row_rounding(2, 1)
 
 t.write_file('build/tab_integrator.tex')
 print('Die Tabelle des invertierenden Integrators wurde erzeugt!\n')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 #########################################################################################################
+###############################################################
+# Vergleich der Abname der Verstärkung mit dem Integrator <--> Linarverstärker       #EXTRA
+###############################################################
+gain = ua/ue 
+params, covariance_matrix = curve_fit(linear, np.log(f[:4]), np.log(gain[:4]))
+errors = np.sqrt(np.diag(covariance_matrix))
+m = ufloat(params[0], errors[0])
+b = ufloat(params[1], errors[1])
+print('\n')
+print("Sonderaufgabe Steigung Integrator: ", m)
+print("y-Achsenabschnitt log(v) beim integrator: ", b,'\n')
+print('---------------------------------------------------')
+
+
+#########################################################################################################
+#################################################
+# Der invertierende Integrator mit Theoriewerten
+################################################
+u0 = 7 #volt 
+R = 10e3 # kilo ohm
+C = 100e-9 #nano farad 
+
+fig, ax = plt.subplots()
+f = np.linspace(51,1.2e6,16)
+#print(f)
+ua =  u0/(2 * np.pi * f * R * C)
+#print(ua)
+
+plt.xlabel(r"$f \, / \, \mathrm{Hz}$")
+plt.ylabel(r"$U_a \, / \, \mathrm{V}$")
+ax.grid(ls =  '--')
+ax.minorticks_on()
+ax.set_xscale('log')
+ax.set_yscale('log')
+
+#steigung
+# np.exp(np.log(x)*m+b)
+params1_theo, covariance_matrix1_theo = curve_fit(fx, f, ua)
+errors1_theo = np.sqrt(np.diag(covariance_matrix1_theo))
+m = ufloat(params1_theo[0], errors1_theo[0])
+b = ufloat(params1_theo[1], errors1_theo[1])
+print("Steigung am Integrator_theo : ", m)
+print("y-Achsenabschnitt am Integrator_theo : ", b,'\n')
+
+plt.plot(f,ua, '-', color ='red' ,  label ='Theoriekurve des invertierenden Integrators' )
+plt.legend(loc ='best')
+plt.tight_layout()
+plt.savefig('build/integrator_theo.pdf')
+plt.clf()
+print('Der Plot des Integrators_theorie wurde erstellt!','\n')
+#########################################################################################################
+
 ##################################################
 # Der invertierende Differenzierer mit Fremddaten   # verlauf oke.. aber ein paar werte seltsam über 250 Volt ...?
 ##################################################
@@ -450,8 +549,8 @@ ax.minorticks_on()
 ax.set_xscale('log')
 ax.set_yscale('log')
 ax.plot(f,ua,'x', label = 'Messwerte' )
-ax.plot(f[2],ua[2],'x',color='black', label = 'rausgenommen' )
-ax.plot(f[4],ua[4],'x',color='black' )
+ax.plot(f[2],ua[2],'o',color='black', label = 'rausgenommen' )
+ax.plot(f[4],ua[4],'o',color='black' )
 
 # fit 
 int_pos = np.array([0,1,3,5,6]) # damit wähle ich in ua und f nur bestimmte array werte aus, da ich nicht alle will. 
@@ -481,7 +580,43 @@ t.set_row_rounding(2, 1)
 
 t.write_file('build/tab_differenzierer.tex')
 print('Die Tabelle des invertierenden Differenzierers wurde erzeugt!\n')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
+#########################################################################################################
+#####################################################
+# Der invertierende Differenzierer mit Theoriewerten
+#####################################################
+u0 = 7 #volt 
+R = 100e3 # kilo ohm
+C = 22e-9 #nano farad 
+
+fig, ax = plt.subplots()
+f = np.linspace(108,1.7e6,15)
+#print(f)
+ua =  u0*(2 * np.pi * f * R * C)
+#print(ua)
+
+plt.xlabel(r"$f \, / \, \mathrm{Hz}$")
+plt.ylabel(r"$U_a \, / \, \mathrm{V}$")
+ax.grid(ls =  '--')
+ax.minorticks_on()
+ax.set_xscale('log')
+ax.set_yscale('log')
+
+#steigung
+# np.exp(np.log(x)*m+b)
+params1_theo, covariance_matrix1_theo = curve_fit(fx, f, ua)
+errors1_theo = np.sqrt(np.diag(covariance_matrix1_theo))
+m = ufloat(params1_theo[0], errors1_theo[0])
+b = ufloat(params1_theo[1], errors1_theo[1])
+print("Steigung am Differenzierer_theo : ", m)
+print("y-Achsenabschnitt am Differenzierer_theo : ", b,'\n')
+
+plt.plot(f,ua, '-', color ='red' ,  label ='Theoriekurve des invertierenden Differenzierers' )
+plt.legend(loc ='best')
+plt.tight_layout()
+plt.savefig('build/differenzierer_theo.pdf')
+plt.clf()
+print('Der Plot des DIfferenzierer_theorie wurde erstellt!','\n')
 #########################################################################################################
 #############################################
 # Der invertierende Schmitt Trigger
@@ -504,7 +639,7 @@ Abweichung_min = (1-(150/168))*100
 
 print('Abweichung ist von U_thres_max_theo ist',Abweichung_max,'%')
 print('Abweichung ist von U_thres_min_theo ist',Abweichung_min,'%')
-print('--------------------done-------------------------')
+print('---------------------------------------------------')
 #########################################################################################################
 ######################
 # Der Signalgenerator

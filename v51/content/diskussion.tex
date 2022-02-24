@@ -4,12 +4,21 @@ Im folgenden Abschnitt werden die ausgewerteten Messwerte und Ergebnisse diskuti
 
 \subsection{Der invertierende Verstärker / Linearverstärker}
 Werden die aus den Messdaten erhaltenen Graphen (vgl. \autoref{fig:Linearverstaerker})
-betrachtet, so bestätigt sie die vorangestellte Theorie und sind somit als 
+betrachtet, so bestätigen sie die vorangestellte Theorie und sind somit als 
 wiedererkennbar zu charakterisieren. 
+Die jeweilig gemessenen Verstärkungen weichen bei einer theoretischen Verstärkung von 10 um 33\%
+und bei einer theoretischen Verstärkung von 1000 um 13\% nach oben ab.
+Bei einer Verstärkung von 100 ist keine Abweichung aufgetreten.
+Es wird somit immer (bis auf eben genannte Verstärkung) eine zu große Verstärkung gemessen.
 
-Auffällig ist hierbei, dass für niedrige Verstärkungsfaktoren eine größere Bandbreite erkennbar ist.
+Auffällig ist, dass für niedrige Verstärkungsfaktoren eine größere Bandbreite erkennbar ist.
 Das heißt konkret, dass bei niedrigen Verstärkungsfaktoren die Verstärkung über einen
 größeren Frequenzbereich konstant gehalten werden kann.
+
+Wird der Beginn der Abnahme der Phasendifferenz (vgl. \autoref{fig:phase}) mit dem Ende der Plateaus
+in \autoref{fig:Linearverstaerker} verglichen so fällt auf, dass dies jeweils Paarweise
+ungefähr bei der gleichen Frequenz auftritt. 
+Im Beispiel von \autoref{fig:b} und \autoref{fig:phase_10} ist es bei einer Frequenz von ca. 22\,kHz.
 
 Wird speziell der Graph in \autoref{fig:c} betrachtet, so fällt auf, dass die 
 maximal gemessene Ausgangsspannung bei $\SI{50}{\volt}$ (vgl. \autoref{tab:Linearverstärker_1000 }) liegt. 
@@ -24,9 +33,12 @@ Dieses Ergebnis ist ebenfalls mit der Theorie vereinbar.
 Die Phasendifferenz sinkt bei niedrigen Verstärkungsfaktoren langsamer als bei hohen.
 
 \subsection{Der invertierende Integrator}
-Die im Experiment gesuchte Antiproportionalität zwischen der Ausgangsspannung $U_\text{A}$ und der Frequenz
-$f$ kann durch \autoref{fig:integrator} bestätigt werden.
-Allerdings ist im Bereich von 1000\,Hz bis 100.000\,Hz ein nicht eindeutig identifizierbares 
+Die im Experiment gesuchte Antiproportionalität zwischen der Ausgangsspannung $U_\text{A}$ 
+und der Frequenz $f$ kann durch \autoref{fig:integrator} bestätigt werden.
+Hierbei weicht die gemessene Steigung
+$m = \SI{-0,87\pm0,05}{\volt\per\hertz}$ von der Theorie $m = \SI{-1}{\volt\per\hertz}$ 
+um 13\% nach oben ab.
+Allerdings ist im Bereich von $\num{1000}$\,Hz bis $\num{100000}$\,Hz ein nicht eindeutig identifizierbares 
 Verhalten der Ausgangsspannung gemessen worden. 
 In diesem Bereich scheint die Ausgangsspannung zu steigen und danach wieder zu fallen.
 
@@ -36,8 +48,11 @@ die Erwartungen ab.
 \subsection{Der invertierende Differenzierer}
 Die im Experiment gesuchte Proportionalität zwischen der Ausgangsspannung $U_\text{A}$ und der Frequenz
 $f$ kann hier ebenfalls durch \autoref{fig:differenzierer} bestätigt werden.
-Ab einer Frequenz von ca.10.000\,Hz ist allerdings wieder ein Abfall der Ausgangsspannung gemessen worden,
+Ab einer Frequenz von ca. $\num{10000}$\,Hz ist allerdings wieder ein Abfall der Ausgangsspannung gemessen worden,
 ähnlich wie der Anstieg bei einem invertierenden Integrator.
+Hierbei weicht die gemessene Steigung
+$m = \SI{1,06\pm0,01}{\volt\per\hertz}$ von der Theorie $m = \SI{1}{\volt\per\hertz}$ 
+um 6\% nach oben ab.
 
 \subsection{Schmitt-Trigger und Signalgenerator}
 Die berechneten und gemessenen Schaltschwellen des Schmitt-Triggers stimmen
@@ -47,3 +62,8 @@ Damit kann der gemessene Wert als plausibel angenommen werden.
 Beim Signalgenerator ist hinter dem Integrator eine Dreieckspannung gemessen worden,
 was ganz den Erwartungen entspricht.
 Die zuvor berechnete Ausgangsfrequenz weicht von der gemessenen um 14\% ab.
+
+\subsection{Fazit}
+Zusammenfassend lässt sich die zugrunde liegende Theorie bestätigen.
+Die unterschiedlichen Schaltungen der Operationsverstärker liefern die vorausgesagten  
+Ergebnisse.
